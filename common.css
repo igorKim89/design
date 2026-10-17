@@ -24,7 +24,8 @@
 /* loader: 3 seconds, orange fades out while the ring of text keeps spinning */
 .loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;pointer-events:none}
 .loader .bgfade{position:absolute;inset:0;background:var(--orange);animation:fade 5s cubic-bezier(.45,0,.6,1) forwards}
-.ring{position:relative;overflow:visible;width:clamp(230px,18vw,340px);aspect-ratio:1;animation:spin 5s linear forwards,txt 5s ease-in forwards}
+.loader{--r:clamp(230px,18vw,340px)}
+.ring{grid-area:1/1;position:relative;overflow:visible;width:var(--r);aspect-ratio:1;animation:spin 5s linear forwards,txt 5s ease-in forwards}
 .ring text{font-family:var(--round);font-weight:500;font-size:24px;fill:#fff}
 @keyframes fade{0%,15%{opacity:1}100%{opacity:0}}
 @keyframes spin{to{transform:rotate(660deg)}}
@@ -39,3 +40,9 @@
 .box .row2{display:flex;gap:8px;flex-wrap:wrap}
 .box .go{border:0;border-radius:99px;background:#fff;color:var(--orange);font:inherit;font-weight:500;padding:10px 22px;cursor:pointer}
 .box .go.ghost{background:rgba(255,255,255,.25);color:#fff}
+
+/* text inside the spinning ring: appears, stays, fades out with the loader */
+.inside{grid-area:1/1;position:relative;width:calc(var(--r)*.62);text-align:center;color:#fff;font-family:var(--round);opacity:0;animation:ins 5s ease-in-out forwards}
+.inside small{display:block;font-size:calc(var(--r)*.068);line-height:1.25;font-weight:500}
+.inside b{display:block;margin-top:calc(var(--r)*.05);font-size:calc(var(--r)*.19);line-height:1;font-weight:500;letter-spacing:-.01em}
+@keyframes ins{0%,6%{opacity:0;transform:translateY(12px) scale(.92)}16%{opacity:1;transform:none}70%{opacity:1;transform:none}100%{opacity:0}}
