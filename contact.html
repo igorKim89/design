@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Kim Product Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#fea831;--ink:#3b3224;--bgc:#fcfcaa;--round:"Outfit","Avenir Next","Segoe UI",system-ui,sans-serif;--sh:max(100vh,calc(100vw*704/1248))}
+*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--bgc);font-family:var(--round);color:var(--ink)}
+button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.stage{position:fixed;inset:0;overflow:hidden}
+.stage img{position:absolute;left:50%;top:50%;width:max(100vw,calc(100vh*1248/704));aspect-ratio:1248/704;transform:translate(-50%,-50%) scale(1.05);display:block}
+
+.brand{position:fixed;z-index:15;left:clamp(16px,2.4vw,44px);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
+.brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;letter-spacing:0;margin-bottom:10px}
+.brand span{display:block;font-weight:400;font-size:clamp(13px,.95vw,16px);letter-spacing:.02em}
+
+.hero{position:fixed;left:0;right:0;z-index:12;top:calc(50vh - var(--sh)/2 + var(--sh)*.135);transform:translateY(-50%);text-align:center;padding:0 16px;pointer-events:none}
+.hero h1{margin:0;display:inline-flex;align-items:center;gap:.28em;font-weight:500;font-size:clamp(32px,4.4vw,64px);letter-spacing:-.02em;line-height:1.1}
+.hero .w{display:inline-block;white-space:pre}
+.ch{display:inline-block;opacity:0;transform:translateY(70%);animation:chr .8s cubic-bezier(.2,.9,.3,1.25) forwards;animation-delay:calc(4.7s + var(--i)*55ms)}
+@keyframes chr{to{opacity:1;transform:none}}
+.arrow{pointer-events:auto;display:inline-grid;place-items:center;width:.62em;height:.62em;border:0;background:none;padding:0;cursor:pointer;opacity:0;transform:scale(.3) rotate(-40deg);animation:pop .7s cubic-bezier(.3,1.7,.5,1) 5.45s forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+.arrow svg{width:100%;height:100%;overflow:visible;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.arrow:hover svg{transform:translate(4px,-4px) scale(1.1)}
+.hero p{margin:8px 0 0;font-weight:400;font-size:clamp(15px,1.5vw,22px);opacity:0;transform:translateY(12px);animation:fu .8s ease-out 5.2s forwards}
+@keyframes fu{to{opacity:1;transform:none}}
+
+.side{position:fixed;z-index:15;right:clamp(16px,2.2vw,40px);bottom:clamp(16px,2.4vw,30px);display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.side button{display:flex;align-items:center;gap:8px;background:none;border:0;padding:1px 0;cursor:pointer;font-size:13px;color:#9a9578;transition:color .2s}
+.side button::after{content:"";width:8px;height:8px;border-radius:50%;background:#fed9a6;transition:background .2s}
+.side button:hover{color:#000}.side button:hover::after{background:var(--orange)}
+.side button.cur{color:#000;font-weight:500}.side button.cur::after{background:var(--orange)}
+.copy{position:fixed;z-index:15;left:clamp(16px,2.4vw,44px);bottom:clamp(16px,2.4vw,30px);font-size:13px;color:#8d8a6c}
+
+.nav{position:fixed;z-index:70;top:calc(22px + env(safe-area-inset-top,0px));right:44px;width:56px;height:56px;border-radius:28px;background:var(--orange);color:#fff;overflow:hidden;transition:width .5s cubic-bezier(.7,0,.2,1),height .5s cubic-bezier(.7,0,.2,1)}
+.nav.open{width:212px}
+@media (max-width:700px){.nav{right:16px}.side{display:none}}
+</style><link rel="stylesheet" href="common.css"></head>
+<body data-page="contact">
+<div class="stage"><img src="contact.gif" alt="Designer character standing"></div>
+
+<div class="brand"><a href="index.html" data-go>Kim Product Design</a><span>UX/UI Design</span><span>Service Design</span><span>Design Management</span></div>
+
+<div class="hero"><h1 id="hd"></h1><p>Send me a DM or reply on Email, okay?</p></div>
+
+<div class="side" aria-label="Sections"><button data-k="about">About</button><button data-k="c1">Case 1</button><button data-k="c2">Case 2</button><button data-k="c3">Case 3</button><button data-k="c4">Case 4</button><button class="cur" data-k="contact">Contact</button></div>
+<div class="copy">©kim product design</div>
+
+<nav class="nav" id="nav" aria-label="Main menu">
+ <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
+ <div class="list" id="list">
+  <button data-k="home">Home</button>
+  <button data-k="about">About</button>
+  <div class="grp">Case</div>
+  <button class="sub" data-k="c1">Case 1</button><button class="sub" data-k="c2">Case 2</button><button class="sub" data-k="c3">Case 3</button><button class="sub" data-k="c4">Case 4</button>
+  <button data-k="contact" style="margin-top:8px">Contact</button>
+ </div>
+</nav>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh"><div class="box"><button class="cl" id="cl" aria-label="Close">×</button><h2 id="sh"></h2><div id="sb"></div></div></div>
+
+<div class="loader" id="loader" aria-hidden="true"><div class="bgfade"></div>
+ <svg class="ring" viewBox="-30 -30 360 360"><defs><path id="c" d="M150,150 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
+ <text><textPath href="#c" textLength="868" lengthAdjust="spacing">Welcome to my room. Click me! Welcome to my room. Click me!</textPath></text></svg></div>
+<script>
+/* heading: letters rise one by one, then the arrow pops in */
+(function(){const h=document.getElementById('hd');let i=0;
+ 'Say “Hey!”'.split(' ').forEach((word,wi)=>{const w=document.createElement('span');w.className='w';
+  [...word].forEach(c=>{const s=document.createElement('span');s.className='ch';s.style.setProperty('--i',i++);s.textContent=c;w.appendChild(s)});h.appendChild(w)});
+ const b=document.createElement('button');b.className='arrow';b.dataset.k='mail';b.setAttribute('aria-label','Write me an email');
+ b.innerHTML='<svg viewBox="0 0 40 40" fill="none" stroke="#fea831" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 30 30 10"/><path d="M13 10h17v17"/></svg>';h.appendChild(b)})();
+</script>
+<script src="app.js"></script>
+</body></html>

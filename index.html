@@ -25,44 +25,13 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 
 .shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(120deg,rgba(60,30,0,.4),transparent 36%)}
 /* bottom-left greeting */
-.card{position:fixed;left:clamp(14px,2.4vw,36px);bottom:clamp(14px,2.4vw,32px);z-index:10;max-width:min(88vw,310px);padding:14px 16px 15px;border-radius:20px;background:rgba(43,26,5,.5);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(255,255,255,.2);animation:rise .95s cubic-bezier(.2,.9,.3,1.12) 2.7s both}
+.card{position:fixed;left:clamp(14px,2.4vw,36px);bottom:clamp(14px,2.4vw,32px);z-index:10;max-width:min(88vw,310px);padding:14px 16px 15px;border-radius:20px;background:rgba(43,26,5,.5);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(255,255,255,.2);animation:rise .95s cubic-bezier(.2,.9,.3,1.12) 4.7s both}
 @keyframes rise{from{transform:translateY(calc(100% + 60px));opacity:0}to{transform:none;opacity:1}}
 .card h1{margin:0;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.01em;line-height:1.1}
 .card p{margin:5px 0 11px;font-size:clamp(12.5px,1vw,14.5px);font-weight:400;line-height:1.35;color:#fff3df}
 .links{display:flex;gap:6px;flex-wrap:wrap}.links a{background:var(--orange);color:#fff;text-decoration:none;font-weight:500;font-size:12.5px;padding:6px 13px;border-radius:99px;transition:transform .2s}.links a.g{background:rgba(255,255,255,.2)}.links a:hover{transform:translateY(-2px)}
 
-/* menu: orange circle with dots that unfolds into a rounded panel */
-.nav{position:fixed;z-index:70;top:calc(22px + env(safe-area-inset-top,0px));right:44px;width:56px;height:56px;border-radius:28px;background:var(--orange);overflow:hidden;transition:width .5s cubic-bezier(.7,0,.2,1),height .5s cubic-bezier(.7,0,.2,1),border-radius .5s cubic-bezier(.7,0,.2,1)}
-.nav.open{width:212px;border-radius:28px}
-.tog{position:absolute;z-index:2;top:0;right:0;width:56px;height:56px;border:0;background:none;cursor:pointer}
-.dots,.x{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .25s,transform .4s}
-.dots i{display:block;width:5px;height:5px;border-radius:50%;background:#fff;margin:2px 0}
-.x{opacity:0;transform:rotate(-90deg);font-size:0}
-.x::before,.x::after{content:"";position:absolute;left:18px;top:27px;width:20px;height:2.5px;background:#fff;border-radius:2px;transform:rotate(45deg)}.x::after{transform:rotate(-45deg)}
-.nav.open .dots{opacity:0;transform:rotate(90deg)}.nav.open .x{opacity:1;transform:none}
-.list{padding:18px 20px 22px 40px;width:212px;pointer-events:none;opacity:0;transition:opacity .2s}.nav.open .list{pointer-events:auto;opacity:1;transition:opacity .35s .25s}
-.list button{display:block;width:100%;text-align:left;background:none;border:0;padding:7px 0;font-weight:500;font-size:15px;cursor:pointer;line-height:1.3}
-.list button:hover{text-decoration:underline}.list .dim{opacity:.6}.list .sub{padding-left:14px}
-.list .grp{font-size:11px;font-weight:500;opacity:.65;margin:10px 0 2px}
-
-/* content sheet */
-.sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:rgba(43,26,5,.35);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
-.sheet.on{opacity:1;visibility:visible;transition:opacity .3s}
-.sheet .box{position:relative;width:min(92vw,440px);padding:30px 28px 28px;border-radius:28px;background:var(--orange);transform:scale(.85);transition:transform .45s cubic-bezier(.3,1.5,.5,1)}
-.sheet.on .box{transform:none}
-.box h2{margin:0 0 12px;font-size:28px;line-height:1.15;padding-right:40px}.box p{margin:0;font-size:17px;line-height:1.55;font-weight:500;color:#fff3df}
-.box .cl{position:absolute;top:14px;right:14px;width:40px;height:40px;border:0;border-radius:50%;background:#fff;color:var(--orange);font-size:22px;line-height:1;cursor:pointer}
-.box .ml{display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:18px}.box .ml a{text-decoration:none}.box .ml a:hover{text-decoration:underline}
-
-/* loader: 3 seconds, orange fades out while the ring of text keeps spinning */
-.loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;pointer-events:none}
-.loader .bgfade{position:absolute;inset:0;background:var(--orange);animation:fade 3s cubic-bezier(.45,0,.6,1) forwards}
-.ring{position:relative;overflow:visible;width:clamp(230px,18vw,340px);aspect-ratio:1;animation:spin 3s linear forwards,txt 3s ease-in forwards}
-.ring text{font-family:var(--round);font-weight:500;font-size:24px;fill:#fff}
-@keyframes fade{0%,15%{opacity:1}100%{opacity:0}}
-@keyframes spin{to{transform:rotate(400deg)}}
-@keyframes txt{0%,70%{opacity:1}100%{opacity:0}}
-</style></head><body>
+</style><link rel="stylesheet" href="common.css"></head><body data-page="home">
 <div class="stage" id="st"><img src="bg.gif" alt="Designer character working at his desk"><div class="hot" id="hot"></div></div>
 <div class="hi" id="hi" aria-hidden="true">Hey!</div>
 
@@ -75,7 +44,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 <nav class="nav" id="nav" aria-label="Main menu">
  <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
  <div class="list" id="list">
-  <button class="dim" data-k="home">Home</button>
+  <button data-k="home">Home</button>
   <button data-k="about">About</button>
   <div class="grp">Case</div>
   <button class="sub" data-k="c1">Case 1</button><button class="sub" data-k="c2">Case 2</button><button class="sub" data-k="c3">Case 3</button><button class="sub" data-k="c4">Case 4</button>
@@ -96,25 +65,5 @@ function show(e){tx=e.clientX;ty=e.clientY;if(!hi.classList.contains('on')){x=tx
 hot.addEventListener('pointerenter',show);hot.addEventListener('pointermove',show);
 hot.addEventListener('pointerleave',()=>hi.classList.remove('on'));
 hot.addEventListener('click',e=>{show(e);clearTimeout(hideT);if(e.pointerType==='touch')hideT=setTimeout(()=>hi.classList.remove('on'),1600)});
-/* menu */
-const nav=$('nav'),tog=$('tog'),list=$('list');
-function setMenu(o){nav.classList.toggle('open',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu');nav.style.height=o?(list.scrollHeight+4)+'px':'56px'}
-tog.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
-/* content sheets */
-const L='<p class="ml">';
-const C={
- about:['About','<p>Senior Product &amp; UI/UX Designer with eight years of experience in FinTech, Crypto and Web3. I take products from first research to launch and build the design systems that keep them consistent.</p>'],
- c1:['Case 1: Crypto trading platform','<p>A trading interface built from scratch (order book, charts, portfolio) with one mode for beginners and another for pros. Blockbyte, 2025–2026.</p>'],
- c2:['Case 2: Crypto academy','<p>Simpler onboarding with progressive disclosure, validated through usability tests with real users. Blockbyte, 2025–2026.</p>'],
- c3:['Case 3: Web3 gaming platform','<p>Lobby, personal account, wallet and transaction views, plus an internal moderation dashboard. Gameless.one, 2022–2025.</p>'],
- c4:['Case 4: B2B platform','<p>Redesign of a data-heavy product: clearer navigation, powerful tables and real-time dashboards. Roobinium, 2019–2021.</p>'],
- contact:['Contact','<div class="ml"><a href="mailto:kimerchiwe1989@gmail.com">kimerchiwe1989@gmail.com</a><a href="https://t.me/BUSD_BOSS" target="_blank" rel="noopener">Telegram @BUSD_BOSS</a><a href="https://dribbble.com/kimmmy" target="_blank" rel="noopener">Dribbble</a></div>']
-};
-const sheet=$('sheet');
-function openSheet(k){if(k==='home'){setMenu(false);return}$('sh').textContent=C[k][0];$('sb').innerHTML=C[k][1];sheet.classList.add('on');setMenu(false);$('cl').focus()}
-list.addEventListener('click',e=>{const b=e.target.closest('button');if(b)openSheet(b.dataset.k)});
-$('cl').addEventListener('click',()=>sheet.classList.remove('on'));
-sheet.addEventListener('click',e=>{if(e.target===sheet)sheet.classList.remove('on')});
-addEventListener('keydown',e=>{if(e.key==='Escape'){sheet.classList.remove('on');setMenu(false)}});
-setTimeout(()=>$('loader').remove(),3100);
-</script></body></html>
+</script><script src="app.js"></script>
+</body></html>
