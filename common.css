@@ -1,5 +1,5 @@
 /* menu: orange circle with dots that unfolds into a rounded panel */
-.nav{position:fixed;z-index:70;top:calc(22px + env(safe-area-inset-top,0px));right:44px;width:56px;height:56px;border-radius:28px;background:var(--orange);overflow:hidden;transition:width .5s cubic-bezier(.7,0,.2,1),height .5s cubic-bezier(.7,0,.2,1),border-radius .5s cubic-bezier(.7,0,.2,1)}
+.nav{position:fixed;z-index:70;top:calc(22px + var(--st));right:calc(max(14px,min(44px,4vw)) + var(--sr));width:56px;height:56px;border-radius:28px;background:var(--orange);overflow:hidden;transition:width .5s cubic-bezier(.7,0,.2,1),height .5s cubic-bezier(.7,0,.2,1),border-radius .5s cubic-bezier(.7,0,.2,1)}
 .nav.open{width:212px;border-radius:28px}
 .tog{position:absolute;z-index:2;top:0;right:0;width:56px;height:56px;border:0;background:none;cursor:pointer}
 .dots,.x{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .25s,transform .4s}
@@ -7,10 +7,10 @@
 .x{opacity:0;transform:rotate(-90deg);font-size:0}
 .x::before,.x::after{content:"";position:absolute;left:18px;top:27px;width:20px;height:2.5px;background:#fff;border-radius:2px;transform:rotate(45deg)}.x::after{transform:rotate(-45deg)}
 .nav.open .dots{opacity:0;transform:rotate(90deg)}.nav.open .x{opacity:1;transform:none}
-.list{padding:18px 20px 22px 40px;width:212px;pointer-events:none;opacity:0;transition:opacity .2s}.nav.open .list{pointer-events:auto;opacity:1;transition:opacity .35s .25s}
+.list{padding:18px 20px 22px 40px;width:212px;pointer-events:none;opacity:0;transition:opacity .2s}.nav.open .list{pointer-events:auto;opacity:1;transition:opacity .25s .06s}
 .list button{display:block;width:100%;text-align:left;background:none;border:0;padding:7px 0;font-weight:500;font-size:15px;cursor:pointer;line-height:1.3}
-.list button:hover{text-decoration:underline}.list .dim{opacity:.6}.list .sub{padding-left:14px}
-.list .grp{font-size:11px;font-weight:500;opacity:.65;margin:10px 0 2px}
+.list button:hover{text-decoration:underline}.list .dim{--o:.6}.list .sub{padding-left:14px}
+.list .grp{font-size:11px;font-weight:500;--o:.65;margin:10px 0 2px}
 
 /* content sheet */
 .sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:rgba(43,26,5,.35);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
@@ -46,3 +46,121 @@
 .inside small{display:block;font-size:calc(var(--r)*.068);line-height:1.25;font-weight:500}
 .inside b{display:block;margin-top:calc(var(--r)*.05);font-size:calc(var(--r)*.19);line-height:1;font-weight:500;letter-spacing:-.01em}
 @keyframes ins{0%,6%{opacity:0;transform:translateY(12px) scale(.92)}16%{opacity:1;transform:none}70%{opacity:1;transform:none}100%{opacity:0}}
+
+/* language switcher */
+.list .lg-btn{display:flex;align-items:center;gap:10px;margin-top:12px;padding:4px 0}
+.lg-ico{position:relative;display:block;width:36px;height:36px;flex:none;filter:drop-shadow(0 2px 3px rgba(150,70,0,.25))}
+.lg-ico.globe{animation:wob 5s ease-in-out infinite}
+.lg-ico.pop{animation:lpop .7s cubic-bezier(.3,1.5,.5,1)}
+.lg-ico .sp{transform-box:fill-box;transform-origin:center;animation:twk 2.2s ease-in-out infinite}
+.bst{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;pointer-events:none}
+@keyframes wob{0%,84%,100%{transform:rotate(0)}88%{transform:rotate(-12deg)}93%{transform:rotate(10deg)}97%{transform:rotate(-4deg)}}
+@keyframes lpop{0%{transform:scale(.2) rotate(-200deg);opacity:0}60%{transform:scale(1.18) rotate(12deg);opacity:1}100%{transform:none;opacity:1}}
+@keyframes twk{50%{transform:scale(.55) rotate(20deg);opacity:.7}}
+.lg-row{display:flex;gap:8px;margin-left:-24px;height:0;pointer-events:none}
+.lg-row.open{height:56px;pointer-events:auto}
+.list .lc{display:block;width:38px;height:38px;padding:0;margin-top:10px;border-radius:50%;transform:scale(.3);opacity:0;transition:transform .4s cubic-bezier(.3,1.7,.5,1),opacity .25s;transition-delay:calc(var(--n)*55ms)}
+.lg-row.open .lc{transform:none;opacity:1}
+.list .lc:hover{text-decoration:none;transform:translateY(-3px) scale(1.08);transition-delay:0s}
+.list .lc.sel{box-shadow:0 0 0 3px rgba(255,255,255,.95),0 0 0 6px rgba(255,255,255,.35)}
+html[lang=ru] .ring text{font-size:17px}html[lang=de] .ring text{font-size:19px}html[lang=zh] .ring text{font-size:24px}
+/* text swap animation when language changes */
+.sw{animation:sw .55s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--d,0)*35ms)}
+@keyframes sw{from{opacity:0;transform:translateY(10px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+
+/* even spacing: same breathing room at the top and the bottom of the panel, in both states */
+.list{padding:18px 20px 28px 40px}
+.list .lg-btn{padding:0;margin-top:14px}
+.lg-row{overflow:hidden}
+.lg-row.open{height:48px;overflow:visible}
+
+
+/* ============================================================
+   ADAPTIVE LAYER: phones, tablets, landscape, touch
+   ============================================================ */
+:root{--vh:100vh;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);--sl:env(safe-area-inset-left,0px);--sr:env(safe-area-inset-right,0px);--kb:0px}
+@supports (height:100dvh){:root{--vh:100dvh}}
+
+/* the page never scrolls and never zooms out: body is pinned to the viewport */
+html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{position:fixed;inset:0;width:100%;height:var(--vh)}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.box{color:#fff}
+
+/* menu: tall lists scroll inside the panel instead of running off-screen; items fade in one by one */
+.list{max-height:calc(var(--vh) - var(--st) - 22px - var(--sb) - 14px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.list::-webkit-scrollbar{display:none}
+.list>*{opacity:0;transform:translateX(14px);transition:opacity .25s,transform .3s ease}
+.nav.open .list>*{opacity:var(--o,1);transform:none;transition:opacity .4s calc(.12s + var(--k,0)*38ms),transform .6s cubic-bezier(.2,.8,.3,1) calc(.12s + var(--k,0)*38ms)}
+.tog{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.tog:active{transform:scale(.88)}
+
+/* dim layer behind the open menu (tablets and phones) */
+.scrim{display:none}
+@media (max-width:1100px),(pointer:coarse){
+ .scrim{display:block;position:fixed;inset:0;z-index:60;background:rgba(43,26,5,.34);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+ .scrim.on{opacity:1;visibility:visible;transition:opacity .4s}
+}
+
+/* sheets: never taller than the screen, scroll inside, keyboard-aware */
+.sheet{padding:calc(var(--st) + 12px) calc(var(--sr) + 12px) calc(var(--sb) + var(--kb) + 12px) calc(var(--sl) + 12px)}
+.sheet .box{max-height:calc(var(--vh) - var(--st) - var(--sb) - var(--kb) - 24px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.sheet .box::-webkit-scrollbar{display:none}
+.box:focus{outline:none}
+.box .grab{display:none}
+.box .go,.box .cl{transition:transform .25s cubic-bezier(.3,1.6,.5,1),background .2s}
+.box .go:active{transform:scale(.95)}.box .cl:active{transform:scale(.86)}
+.list button:active{opacity:.7}
+
+/* loader ring sized to the screen */
+@media (max-width:1100px){.loader{--r:clamp(240px,min(72vw,calc(var(--vh)*.52)),340px)}}
+
+/* ---- phones, portrait: sheets slide up from the bottom and can be swiped away ---- */
+@media (max-width:600px) and (orientation:portrait){
+ .sheet{place-items:end center;padding:0 0 var(--kb)}
+ .sheet .box{width:100%;max-width:560px;padding:38px 22px calc(26px + var(--sb));border-radius:28px 28px 0 0;transform:translateY(105%);transition:transform .6s cubic-bezier(.2,.9,.25,1.04);max-height:calc(var(--vh) - var(--st) - var(--kb) - 20px)}
+ .sheet.on .box{transform:translateY(var(--dy,0px))}
+ .sheet .box.drag{transition:none}
+ .box h2{font-size:25px}.box p{font-size:16.5px}
+ .box .grab{display:block;position:absolute;z-index:1;top:0;left:0;right:64px;height:44px;touch-action:none;cursor:grab}
+ .box .grab::before{content:"";position:absolute;top:11px;left:50%;width:44px;height:5px;margin-left:-22px;border-radius:3px;background:rgba(255,255,255,.6)}
+ .box .row2 .go{flex:1 1 140px}
+}
+
+/* ---- touch devices: comfortable tap targets, no sticky hover ---- */
+@media (pointer:coarse){
+ .list button{padding:11px 0}
+ .list .lg-btn{margin-top:10px;padding:6px 0}
+ .lg-row{gap:8px}.lg-row.open{height:54px}
+ .list .lc{width:40px;height:40px}
+ .box .cl{width:44px;height:44px}
+ .box .go{min-height:46px;padding:0 22px}
+ .box input,.box textarea{padding:13px 15px}
+}
+@media (hover:none){
+ .list button:hover{text-decoration:none}
+ .lg-row.open .lc:hover{transform:none}
+}
+
+/* ---- landscape phones: compact paddings ---- */
+@media (max-height:520px) and (min-aspect-ratio:1/1){
+ .nav{top:calc(8px + var(--st))}
+ .list{padding-top:12px;padding-bottom:12px;max-height:calc(var(--vh) - var(--st) - 8px - var(--sb) - 10px)}
+ .list button{padding-top:4px;padding-bottom:4px}
+ .list .grp{margin:4px 0 0}
+ .list .lg-btn{margin-top:4px;padding:2px 0}
+ .lg-row.open{height:50px}
+ .sheet .box{padding:22px 24px;width:min(86vw,460px)}
+ .box h2{font-size:22px;margin-bottom:8px}.box p{font-size:15.5px;line-height:1.5}
+ .box textarea{height:76px}
+ .box input,.box textarea{margin-bottom:8px;padding:9px 13px}
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion:reduce){
+ .lg-ico.globe,.lg-ico .sp{animation:none}
+ .ring{animation:txt 5s ease-in forwards}
+ .wipe{transition-duration:.3s}
+ .list>*,.nav.open .list>*{transition-delay:0s!important}
+ .sheet .box{transition-duration:.01ms!important}
+}
