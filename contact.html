@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="theme-color" content="#f6f6e8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"><script>(function(){var d=document.documentElement;function s(){var h=(window.visualViewport&&visualViewport.height)||innerHeight;d.style.setProperty('--vh',(h*0.01).toFixed(3)+'px')}s();addEventListener('resize',s);addEventListener('orientationchange',function(){setTimeout(s,150)});if(window.visualViewport)visualViewport.addEventListener('resize',s)})();</script><meta name="theme-color" content="#f6f6e8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Contact — Kim Product Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--orange:#fea831;--ink:#3b3224;--bgc:#f6f6e8;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;--sh:max(100vh,calc(100vw*704/1248))}
-*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--bgc);font-family:var(--round);color:var(--ink)}
+html{--vh:1vh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+:root{--orange:#fea831;--ink:#3b3224;--bgc:#f6f6e8;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;--sh:max(calc(var(--vh,1vh)*100),calc(100vw*704/1248))}
+*{box-sizing:border-box}html,body{height:calc(var(--vh,1vh)*100);margin:0;overflow:hidden;background:var(--bgc) url(contact-bg.png) center/100% 100% no-repeat;font-family:var(--round);color:var(--ink)}
 button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-.stage{position:fixed;inset:0;overflow:hidden}
-.stage img{position:absolute;left:50%;top:50%;width:max(100vw,calc(100vh*1248/704));aspect-ratio:1248/704;transform:translate(-50%,-50%) scale(1.05);display:block}
+.stage{position:fixed;left:0;top:0;width:100%;height:calc(var(--vh,1vh)*100);overflow:hidden;contain:paint}
+.stage img{position:absolute;left:50%;top:50%;width:max(100vw,calc(var(--vh)*100*1248/704));aspect-ratio:1248/704;transform:translate(-50%,-50%) scale(1.05);display:block}
 
 .brand{position:fixed;z-index:15;left:clamp(16px,2.4vw,44px);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
 .brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;letter-spacing:0;margin-bottom:10px}

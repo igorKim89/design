@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="theme-color" content="#f8f7f3"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"><script>(function(){var d=document.documentElement;function s(){var h=(window.visualViewport&&visualViewport.height)||innerHeight;d.style.setProperty('--vh',(h*0.01).toFixed(3)+'px')}s();addEventListener('resize',s);addEventListener('orientationchange',function(){setTimeout(s,150)});if(window.visualViewport)visualViewport.addEventListener('resize',s)})();</script><meta name="theme-color" content="#f8f7f3"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>About — Kim Product Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--orange:#fea831;--ink:#3b3224;--bgc:#f8f7f3;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;--fs:min(clamp(44px,6.8vw,130px),15vh)}
-*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--bgc);font-family:var(--round);color:var(--ink)}
+html{--vh:1vh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+:root{--orange:#fea831;--ink:#3b3224;--bgc:#f8f7f3;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;--fs:min(clamp(44px,6.8vw,130px),15vh)}
+*{box-sizing:border-box}html,body{height:calc(var(--vh,1vh)*100);margin:0;overflow:hidden;background:var(--bgc);font-family:var(--round);color:var(--ink)}
 button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .brand{position:fixed;z-index:15;left:clamp(16px,2.4vw,44px);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
 .brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;letter-spacing:0;margin-bottom:10px}
@@ -36,7 +38,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 .ab-hint{margin:0;max-width:min(92vw,440px);font-weight:500;font-size:clamp(14px,1.05vw,19px);line-height:1.6;animation-delay:5.3s;padding:10px 16px;border-radius:18px;cursor:none}
 @media (hover:none){.ab-hint{cursor:pointer}}
 /* "View Detail" circle: same size and behaviour as the "Hey!" circle on the home page */
-.hi{position:fixed;left:0;top:0;z-index:20;--d:max(92px,calc(max(100vw,100vh*1248/704)*.095));width:var(--d);height:var(--d);margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;text-align:center;padding:0 calc(var(--d)*.08);font-weight:600;font-size:calc(var(--d)*.125);line-height:1.15;pointer-events:none;box-shadow:0 10px 30px rgba(150,80,0,.25);transform:translate3d(-300px,-300px,0);opacity:0;scale:.9;transition:opacity .35s ease,scale .35s ease}
+.hi{position:fixed;left:0;top:0;z-index:20;--d:max(92px,calc(max(100vw,var(--vh)*100*1248/704)*.095));width:var(--d);height:var(--d);margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;text-align:center;padding:0 calc(var(--d)*.08);font-weight:600;font-size:calc(var(--d)*.125);line-height:1.15;pointer-events:none;box-shadow:0 10px 30px rgba(150,80,0,.25);transform:translate3d(-300px,-300px,0);opacity:0;scale:.9;transition:opacity .35s ease,scale .35s ease}
 .hi.on{opacity:1;scale:1}
 @media (max-width:900px){:root{--fs:min(clamp(56px,12.5vw,110px),15vh)}}
 @media (max-width:700px){:root{--fs:min(clamp(48px,15vw,90px),15vh)}.ab-title{font-size:clamp(32px,9vw,48px)}.ab-hint{font-size:14.5px}.side{display:none}}

@@ -63,7 +63,7 @@
 .lg-row.open .lc{transform:none;opacity:1}
 .list .lc:hover{text-decoration:none;transform:translateY(-3px) scale(1.08);transition-delay:0s}
 .list .lc.sel{box-shadow:0 0 0 3px rgba(255,255,255,.95),0 0 0 6px rgba(255,255,255,.35)}
-html[lang=ru] .ring text{font-size:17px}html[lang=de] .ring text{font-size:19px}html[lang=zh] .ring text{font-size:24px}
+html[lang=ru] .ring text{font-size:17px}html[lang=de] .ring text{font-size:19px}html[lang=ko] .ring text{font-size:20px}
 /* text swap animation when language changes */
 .sw{animation:sw .55s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--d,0)*35ms)}
 @keyframes sw{from{opacity:0;transform:translateY(10px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
