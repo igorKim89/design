@@ -46,7 +46,16 @@ zh:{b1:'UX/UI 设计',b2:'服务设计',b3:'设计管理',hello:'你好，朋友
  mail_t:'给我留言',ph_n:'你的名字',ph_e:'你的邮箱',ph_m:'你的留言',send:'通过邮件发送',copy:'复制地址',copied:'已复制',subj:'来自'}
 };
 let LANG='en';const t=k=>(I[LANG]&&I[LANG][k])||I.en[k]||'';
-const store=(()=>{try{return localStorage.getItem('lang')}catch(e){return null}})();
+/* language memory: URL ?lang=  >  localStorage  >  sessionStorage  >  window.name  >  English. Works even when the browser isolates file:// pages. */
+const VALID=['en','ru','de','zh'];
+function readLang(){let l=null;
+ try{l=new URLSearchParams(location.search).get('lang')}catch(e){}
+ if(!VALID.includes(l)){try{l=localStorage.getItem('lang')}catch(e){l=null}}
+ if(!VALID.includes(l)){try{l=sessionStorage.getItem('lang')}catch(e){l=null}}
+ if(!VALID.includes(l)){const m=/(?:^|;)lang=(\w+)/.exec(window.name||'');l=m?m[1]:null}
+ return VALID.includes(l)?l:'en'}
+function saveLang(l){try{localStorage.setItem('lang',l)}catch(e){}try{sessionStorage.setItem('lang',l)}catch(e){}window.name='lang='+l;
+ try{const u=new URL(location.href);u.searchParams.set('lang',l);history.replaceState(null,'',u.href)}catch(e){}}
 
 /* ---------- kid-style icons: globe + round flags ---------- */
 let uid=0;
@@ -70,36 +79,26 @@ function setIcon(l,anim){ico.innerHTML=l?FLAG[l]():GLOBE;ico.classList.toggle('g
 /* ---------- apply language ---------- */
 function applyLang(l,anim){LANG=l;document.documentElement.lang=l;
  document.querySelectorAll('[data-i]').forEach((el,n)=>{el.innerHTML=t(el.dataset.i);
-  if(anim&&!el.classList.contains('hi')){el.classList.remove('sw');el.style.setProperty('--d',n%14);void el.offsetWidth;el.classList.add('sw');el.addEventListener('animationend',()=>el.classList.remove('sw'),{once:true})}});
+  if(anim&&!el.classList.contains('hi')){el.classList.remove('sw');el.style.setProperty('--d',n%14);void el.offsetWidth;el.classList.add('sw')}});
  const rt=E('rt');if(rt)rt.textContent=t('ring');
  const ar=document.querySelector('.arrow');if(ar)ar.setAttribute('aria-label',t('arrow'));
  if(window.buildHeading)window.buildHeading(anim);if(typeof fit==='function')fit()}
-function setLang(l){try{localStorage.setItem('lang',l)}catch(e){}applyLang(l,true);setIcon(l,true);setTimeout(()=>toggleRow(false),650)}
+function setLang(l){saveLang(l);applyLang(l,true);setIcon(l,true);setTimeout(()=>toggleRow(false),650)}
 function toggleRow(o){const open=o===undefined?!row.classList.contains('open'):o;row.classList.toggle('open',open);E('lgBtn').setAttribute('aria-expanded',open);setMenu(nav.classList.contains('open'))}
 
 /* ---------- menu + sheets ---------- */
-const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
-[...list.children].forEach((el,i)=>el.style.setProperty('--k',i));
-function setMenu(o){nav.classList.toggle('open',o);scrim.classList.toggle('on',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu');nav.style.height=o?list.offsetHeight+'px':'56px';if(!o)row.classList.remove('open')}
-function fit(){if(nav.classList.contains('open'))nav.style.height=list.offsetHeight+'px'}
-addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,250));if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)
+function setMenu(o){nav.classList.toggle('open',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu');nav.style.height=o?menuH()+'px':'56px';if(!o)row.classList.remove('open')}
+function menuH(){const top=nav.getBoundingClientRect().top;return Math.min(list.scrollHeight,Math.max(160,innerHeight-top-14))}
+function fit(){if(nav.classList.contains('open'))nav.style.height=menuH()+'px'}
+addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)
 tog.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
-const box=sheet.querySelector('.box'),grab=document.createElement('span');grab.className='grab';box.prepend(grab);box.setAttribute('tabindex','-1');
-/* bottom sheet on phones: drag the handle down to dismiss */
-let dragY=null,dragD=0;
-grab.addEventListener('pointerdown',e=>{dragY=e.clientY;dragD=0;box.classList.add('drag');grab.setPointerCapture(e.pointerId)});
-grab.addEventListener('pointermove',e=>{if(dragY===null)return;dragD=Math.max(0,e.clientY-dragY);box.style.setProperty('--dy',dragD+'px')});
-function dragEnd(){if(dragY===null)return;const close=dragD>90;dragY=null;box.classList.remove('drag');box.style.removeProperty('--dy');if(close)sheet.classList.remove('on')}
-grab.addEventListener('pointerup',dragEnd);grab.addEventListener('pointercancel',dragEnd);
-/* lift the sheet above the on-screen keyboard (iOS keeps the layout viewport under it) */
-if(window.visualViewport){const vv=visualViewport,upd=()=>document.documentElement.style.setProperty('--kb',Math.max(0,Math.round(innerHeight-vv.height-vv.offsetTop))+'px');vv.addEventListener('resize',upd);vv.addEventListener('scroll',upd)}
 function openSheet(k){E('sh').textContent=t(k+'_t');
  E('sb').innerHTML=k==='mail'?'<input id="mn" placeholder="'+t('ph_n')+'" autocomplete="name"><input id="mf" type="email" placeholder="'+t('ph_e')+'" autocomplete="email"><textarea id="mm" rows="4" placeholder="'+t('ph_m')+'"></textarea><div class="row2"><button class="go" id="send">'+t('send')+'</button><button class="go ghost" id="copy">'+t('copy')+'</button></div>':t(k+'_b');
- sheet.classList.add('on');setMenu(false);
- setTimeout(()=>{const fine=matchMedia('(hover:hover) and (pointer:fine)').matches,f=fine?(E('mm')||E('cl')):box;f&&f.focus({preventScroll:true})},50)}
+ sheet.classList.add('on');setMenu(false);setTimeout(()=>{const f=E('mm')||E('cl');f&&f.focus()},50)}
 const wipe=document.createElement('div');wipe.className='wipe';document.body.appendChild(wipe);
-function go(u){wipe.classList.add('on');setTimeout(()=>{location.href=u},900)}
-addEventListener('pageshow',e=>{if(e.persisted)wipe.classList.remove('on')});
+function go(u){wipe.classList.add('on');setTimeout(()=>{location.href=u+(u.includes('?')?'&':'?')+'lang='+LANG},900)}
+addEventListener('pageshow',e=>{if(e.persisted){wipe.classList.remove('on');const l=readLang();if(l!==LANG){applyLang(l,false);setIcon(l,false)}}});
+addEventListener('storage',e=>{if(e.key==='lang'&&VALID.includes(e.newValue)&&e.newValue!==LANG){applyLang(e.newValue,true);setIcon(e.newValue,true)}});
 function route(k){
  if(k==='home'){PAGE==='home'?setMenu(false):go('index.html');return}
  if(k==='contact'){PAGE==='contact'?setMenu(false):go('contact.html');return}
@@ -108,7 +107,6 @@ const cur=list.querySelector('[data-k="'+PAGE+'"]');cur&&cur.classList.add('dim'
 document.addEventListener('click',e=>{
  const g=e.target.closest('[data-go]');if(g){e.preventDefault();go(g.getAttribute('href'));return}
  if(e.target.closest('#lgBtn')){toggleRow();return}
- if(e.target===scrim){setMenu(false);return}
  const lc=e.target.closest('[data-l]');if(lc){setLang(lc.dataset.l);return}
  const k=e.target.closest('[data-k]');if(k){route(k.dataset.k);return}
  if(e.target.id==='send'){const m=E('mm').value.trim();if(!m){E('mm').focus();return}const n=E('mn').value.trim(),f=E('mf').value.trim();
@@ -119,4 +117,4 @@ addEventListener('keydown',e=>{if(e.key==='Escape'){sheet.classList.remove('on')
 setTimeout(()=>{const l=E('loader');l&&l.remove()},5100);
 
 /* start */
-applyLang(store&&I[store]?store:'en',false);setIcon(store&&I[store]?store:null,false);
+const START=readLang();applyLang(START,false);setIcon(START,false);saveLang(START);
