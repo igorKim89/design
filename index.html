@@ -20,7 +20,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 .hot{position:absolute;inset:0;cursor:none;z-index:5;clip-path:polygon(41.83% 43.32%,43.91% 37.22%,46.88% 33.81%,50.08% 34.09%,53.69% 36.65%,56.49% 41.19%,58.25% 49.01%,58.17% 56.82%,57.05% 61.36%,58.89% 66.76%,60.10% 73.86%,59.94% 80.26%,59.13% 86.65%,56.09% 90.91%,49.68% 92.61%,43.27% 91.19%,39.90% 85.94%,39.10% 77.41%,40.06% 70.31%,42.87% 65.62%,42.63% 61.08%,41.51% 54.69%,41.27% 48.30%)}
 
 /* "Hey!" circle, only while the cursor is over the character */
-.hi{position:fixed;left:0;top:0;z-index:20;--d:max(92px,calc(max(100vw,var(--vh)*100*1248/704)*.095));width:var(--d);height:var(--d);margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);border-radius:50%;background:var(--orange);display:grid;place-items:center;font-weight:600;font-size:calc(var(--d)*.25);letter-spacing:-.01em;pointer-events:none;transform:translate3d(-300px,-300px,0);opacity:0;scale:.9;transition:opacity .35s ease,scale .35s ease}
+.hi{position:fixed;left:0;top:0;z-index:20;--d:max(92px,calc(max(100vw,var(--vh)*100*1248/704)*.095));width:var(--d);height:var(--d);margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);border-radius:50%;background:var(--orange);display:grid;place-items:center;font-weight:600;font-size:calc(var(--d)*.21);text-align:center;line-height:1.1;letter-spacing:-.01em;pointer-events:none;transform:translate3d(-300px,-300px,0);opacity:0;scale:.9;transition:opacity .35s ease,scale .35s ease}
 .hi.on{opacity:1;scale:1}
 
 /* top-left labels on orange highlight */
@@ -39,10 +39,10 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 @media (hover:none){body[data-page=home] .hot,body[data-page=home] .hi{display:none!important}}
 </style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head><body data-page="home">
 <div class="clip"><div class="stage" id="st"><img class="bgd" src="bg.gif" alt="Designer character working at his desk"><img class="bgn" alt="" aria-hidden="true"><div class="hot" id="hot"></div></div></div>
-<div class="hi" id="hi" aria-hidden="true" data-i="hey">Hey!</div>
+<div class="hi" id="hi" aria-hidden="true" data-i="hey">Hi there!</div>
 
 <div class="shade"></div>
-<div class="brand"><span class="t">Kim Product Design</span><span data-i="b1">UX/UI Design</span><span data-i="b2">Service Design</span><span data-i="b3">Design Management</span></div>
+<div class="brand"><span class="t">Designer Kim</span><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
 
 <div class="card"><h1 data-i="hello">Hello, mate 👋🏻</h1><p data-i="idea">Got an Idea? Let’s Make It Come Alive!</p>
 <div class="links"><a href="mailto:kimerchiwe1989@gmail.com" data-i="email">Email me</a><a class="g" href="https://t.me/BUSD_BOSS" target="_blank" rel="noopener">Telegram</a><a class="g" href="https://dribbble.com/kimmmy" target="_blank" rel="noopener">Dribbble</a></div></div>
@@ -63,7 +63,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 
 <div class="loader" id="loader" aria-hidden="true"><div class="bgfade"></div>
  <svg class="ring" viewBox="-30 -30 360 360"><defs><path id="c" d="M150,150 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
- <text><textPath id="rt" href="#c" textLength="868" lengthAdjust="spacing">Welcome to my room. Click me! Welcome to my room. Click me!</textPath></text></svg><div class="inside"><small data-i="ld_s">Don’t be shy.<br>Feel free to say</small><b data-i="ld_b">“Hey!”</b></div></div>
+ <text><textPath id="rt" href="#c" textLength="868" lengthAdjust="spacing">Moving pixels since 2016. Still not done. Moving pixels since 2016. Still not done.</textPath></text></svg><div class="inside"><small data-i="ld_s">Your idea +<br>my obsession =</small><b data-i="ld_b">“Magic”</b></div></div>
 <script>
 const $=id=>document.getElementById(id),hot=$('hot'),hi=$('hi');
 /* "Hey!" follows the cursor only over the character */
@@ -77,7 +77,7 @@ hot.addEventListener('click',e=>{show(e);clearTimeout(hideT);if(e.pointerType===
 /* day / night background by the visitor's local time (their country's clock): night 19:00-07:00, day 07:00-19:00. Preview: ?time=night or ?time=day */
 (function(){
  const st=document.getElementById('st'),hotEl=document.getElementById('hot'),nImg=st.querySelector('.bgn'),meta=document.querySelector('meta[name=theme-color]');
- const DAY_CLIP="polygon(41.83% 43.32%,43.91% 37.22%,46.88% 33.81%,50.08% 34.09%,53.69% 36.65%,56.49% 41.19%,58.25% 49.01%,58.17% 56.82%,57.05% 61.36%,58.89% 66.76%,60.10% 73.86%,59.94% 80.26%,59.13% 86.65%,56.09% 90.91%,49.68% 92.61%,43.27% 91.19%,39.90% 85.94%,39.10% 77.41%,40.06% 70.31%,42.87% 65.62%,42.63% 61.08%,41.51% 54.69%,41.27% 48.30%)",NIGHT_CLIP="polygon(37.7% 66.8%,39.2% 62.5%,43.2% 59.7%,44.9% 51.1%,48.1% 47.6%,52.9% 46.9%,57.3% 49%,58.9% 59.7%,61.3% 66.8%,61% 71.2%,48.1% 71.8%,37.7% 70.7%)";
+ const DAY_CLIP="polygon(41.83% 43.32%,43.91% 37.22%,46.88% 33.81%,50.08% 34.09%,53.69% 36.65%,56.49% 41.19%,58.25% 49.01%,58.17% 56.82%,57.05% 61.36%,58.89% 66.76%,60.10% 73.86%,59.94% 80.26%,59.13% 86.65%,56.09% 90.91%,49.68% 92.61%,43.27% 91.19%,39.90% 85.94%,39.10% 77.41%,40.06% 70.31%,42.87% 65.62%,42.63% 61.08%,41.51% 54.69%,41.27% 48.30%)",NIGHT_CLIP="polygon(0 0,0 0,0 0)";
  let cur=null;
  function force(){try{return new URLSearchParams(location.search).get('time')}catch(e){return null}}
  function isNight(){const f=force();if(f==='night')return true;if(f==='day')return false;const h=new Date().getHours();return h>=19||h<7}

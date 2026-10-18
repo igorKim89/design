@@ -26,9 +26,9 @@
 .loader .bgfade{position:absolute;inset:0;background:var(--orange);animation:fade 5s cubic-bezier(.45,0,.6,1) forwards}
 .loader{--r:clamp(230px,18vw,340px)}
 .ring{grid-area:1/1;position:relative;overflow:visible;width:var(--r);aspect-ratio:1;animation:spin 5s linear forwards,txt 5s ease-in forwards}
-.ring text{font-family:var(--round);font-weight:500;font-size:24px;fill:#fff}
+.ring text{font-family:var(--round);font-weight:500;font-size:19px;fill:#fff}
 @keyframes fade{0%,15%{opacity:1}100%{opacity:0}}
-@keyframes spin{to{transform:rotate(660deg)}}
+@keyframes spin{to{transform:rotate(450deg)}}
 @keyframes txt{0%,70%{opacity:1}100%{opacity:0}}
 
 /* page transition: orange fills the screen from the bottom */
@@ -43,8 +43,8 @@
 
 /* text inside the spinning ring: appears, stays, fades out with the loader */
 .inside{grid-area:1/1;position:relative;width:calc(var(--r)*.62);text-align:center;color:#fff;font-family:var(--round);opacity:0;animation:ins 5s ease-in-out forwards}
-.inside small{display:block;font-size:calc(var(--r)*.068);line-height:1.25;font-weight:500}
-.inside b{display:block;margin-top:calc(var(--r)*.05);font-size:calc(var(--r)*.19);line-height:1;font-weight:500;letter-spacing:-.01em}
+.inside small{display:block;white-space:nowrap;font-size:calc(var(--r)*.058);line-height:1.25;font-weight:500}
+.inside b{display:block;margin-top:calc(var(--r)*.05);font-size:calc(var(--r)*.165);line-height:1;font-weight:500;letter-spacing:-.01em}
 @keyframes ins{0%,6%{opacity:0;transform:translateY(12px) scale(.92)}16%{opacity:1;transform:none}70%{opacity:1;transform:none}100%{opacity:0}}
 
 /* language switcher */
@@ -63,7 +63,7 @@
 .lg-row.open .lc{transform:none;opacity:1}
 .list .lc:hover{text-decoration:none;transform:translateY(-3px) scale(1.08);transition-delay:0s}
 .list .lc.sel{box-shadow:0 0 0 3px rgba(255,255,255,.95),0 0 0 6px rgba(255,255,255,.35)}
-html[lang=ru] .ring text{font-size:17px}html[lang=de] .ring text{font-size:19px}html[lang=ko] .ring text{font-size:20px}
+
 /* text swap animation when language changes */
 .sw{animation:sw .55s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--d,0)*35ms)}
 @keyframes sw{from{opacity:0;transform:translateY(10px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
