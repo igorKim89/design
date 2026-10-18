@@ -13,7 +13,7 @@ body{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
 /* contact: the character is shown whole (feet included) on every screen */
 body[data-page=contact]{--ih:calc(var(--vh)*96)}
-body[data-page=contact] .stage img{top:auto;bottom:0;left:50%;width:calc(var(--ih)*1248/704);height:var(--ih);aspect-ratio:auto;transform:translateX(-50%);transform-origin:50% 100%}
+body[data-page=contact] .stage img,body[data-page=contact] .stage video{top:auto;bottom:0;left:50%;width:calc(var(--ih)*1248/704);height:var(--ih);aspect-ratio:auto;transform:translateX(-50%);transform-origin:50% 100%}
 body[data-page=contact] .hero{top:calc((12px + (var(--vh)*100 - .78*var(--ih)))/2);transform:translateY(-50%)}
 
 /* ---------- tablets ---------- */
@@ -43,7 +43,7 @@ body[data-page=contact] .hero{top:calc((12px + (var(--vh)*100 - .78*var(--ih)))/
  body[data-page=home] .hi{--d:clamp(84px,26vw,130px)}
  /* contact: character stands lower, the heading sits between the brand and his head */
  body[data-page=contact]{--ih:calc(var(--vh)*70)}
- body[data-page=contact] .stage img{top:auto;bottom:calc(var(--vh)*6);width:calc(var(--ih)*1248/704);height:var(--ih);aspect-ratio:auto;transform:translateX(-50%) scale(1.05);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;}
+ body[data-page=contact] .stage img,body[data-page=contact] .stage video{top:auto;bottom:calc(var(--vh)*6);width:calc(var(--ih)*1248/704);height:var(--ih);aspect-ratio:auto;transform:translateX(-50%) scale(1.05);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;}
  body[data-page=contact] .hero{top:calc((clamp(100px,16*var(--vh),160px) + (var(--vh)*94 - .78*var(--ih)))/2);transform:translateY(-50%);padding:0 18px}
  body[data-page=contact] .hero h1{font-size:clamp(30px,8vw,62px)}
  body[data-page=contact] .hero p{font-size:clamp(15px,3.4vw,24px);max-width:30em;margin-left:auto;margin-right:auto}
@@ -63,7 +63,7 @@ body[data-page=contact] .hero{top:calc((12px + (var(--vh)*100 - .78*var(--ih)))/
  body .list .grp{margin:6px 0 0}
  body .list .lg-btn{margin-top:10px}
  body[data-page=contact]{--ih:calc(var(--vh)*86)}
- body[data-page=contact] .stage img{top:auto;bottom:0;width:calc(var(--ih)*1248/704);height:var(--ih);aspect-ratio:auto;transform:translateX(-50%) scale(1.05);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;}
+ body[data-page=contact] .stage img,body[data-page=contact] .stage video{top:auto;bottom:0;width:calc(var(--ih)*1248/704);height:var(--ih);aspect-ratio:auto;transform:translateX(-50%) scale(1.05);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;}
  body[data-page=contact] .hero{top:calc((12px + (var(--vh)*100 - .78*var(--ih)))/2);transform:translateY(-50%);padding:0 clamp(150px,24vw,220px)}
  body[data-page=contact] .hero h1{font-size:clamp(24px,6.4*var(--vh),40px)}
  body[data-page=contact] .hero p{font-size:clamp(12.5px,3.2*var(--vh),18px);margin-top:4px}
@@ -89,4 +89,4 @@ html{overflow:hidden;width:100%;position:fixed;inset:0}
 body{position:fixed;left:0;top:0;width:100%;overflow:hidden;contain:paint}
 
 /* contact: the animation is stretched over the whole screen. Its edges melt into a matching background, so no rectangle is visible */
-body[data-page=contact] .stage img{transform:translateX(-50%) scale(1.06);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 97%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 97%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+body[data-page=contact] .stage img,body[data-page=contact] .stage video{transform:translateX(-50%) scale(1.06);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 97%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 97%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
