@@ -77,3 +77,11 @@
 /* the menu looks identical on every page: explicit colours, never inherited from the page */
 .nav,.nav .list,.nav .list button,.nav .list .grp{color:#fff}
 .nav .list{font-family:var(--round)}
+
+/* emoji life: the hand waves and the eyes look around for ~2.5s, then everything rests for 3s */
+.wave,.eyes{display:inline-block;will-change:transform}
+.wave{transform-origin:72% 82%;animation:wave 5.5s ease-in-out 5.6s infinite}
+.eyes{animation:look 5.5s ease-in-out 6.2s infinite}
+@keyframes wave{0%{transform:rotate(0)}5%{transform:rotate(16deg)}10%{transform:rotate(-10deg)}15%{transform:rotate(16deg)}20%{transform:rotate(-10deg)}25%{transform:rotate(16deg)}30%{transform:rotate(-8deg)}36%{transform:rotate(10deg)}42%,100%{transform:rotate(0)}}
+@keyframes look{0%{transform:translate(0,0)}7%,15%{transform:translate(-.14em,0)}24%,32%{transform:translate(.14em,0)}38%{transform:translate(0,-.1em)}45%,100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){.wave,.eyes{animation:none}}
