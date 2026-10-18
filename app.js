@@ -4,7 +4,7 @@ const MAIL='kimerchiwe1989@gmail.com';
 
 /* ---------- translations ---------- */
 const I={
-en:{b1:'UX/UI Design',b2:'Service Design',b3:'Design Management',hello:'Hello, mate 👋🏻',idea:'Got an Idea? Let’s Make It Come Alive!',email:'Email me',hey:'Hey!',
+en:{ab_title:'About',ab_mq:'Hey, I’m here! ✨ Come say hi, get to know me, and let’s create something that makes people smile.',ab_hint:'Go on, click me! 👀 Let’s see if you can figure out who Kim is.',vd:'View Detail ↗',b1:'UX/UI Design',b2:'Service Design',b3:'Design Management',hello:'Hello, mate 👋🏻',idea:'Got an Idea? Let’s Make It Come Alive!',email:'Email me',hey:'Hey!',
  m_home:'Home',m_about:'About',m_case:'Case',m_c1:'Case 1',m_c2:'Case 2',m_c3:'Case 3',m_c4:'Case 4',m_contact:'Contact',lang:'Language',
  ring:'Welcome to my room. Click me! Welcome to my room. Click me!',ld_s:'Don’t be shy.<br>Feel free to say',ld_b:'“Hey!”',
  say:'Say “Hey!”',sub:'Send me a DM or reply on Email, okay?',arrow:'Write me an email',
@@ -14,7 +14,7 @@ en:{b1:'UX/UI Design',b2:'Service Design',b3:'Design Management',hello:'Hello, m
  c3_t:'Case 3: Web3 gaming platform',c3_b:'<p>Lobby, personal account, wallet and transaction views, plus an internal moderation dashboard. Gameless.one, 2022–2025.</p>',
  c4_t:'Case 4: B2B platform',c4_b:'<p>Redesign of a data-heavy product: clearer navigation, powerful tables and real-time dashboards. Roobinium, 2019–2021.</p>',
  mail_t:'Write me a message',ph_n:'Your name',ph_e:'Your email',ph_m:'Your message',send:'Send via email',copy:'Copy address',copied:'Copied',subj:'Hello from'},
-ru:{b1:'UX/UI-дизайн',b2:'Сервис-дизайн',b3:'Управление дизайном',hello:'Привет, друг 👋🏻',idea:'Есть идея? Давай оживим её!',email:'Написать',hey:'Хей!',
+ru:{ab_title:'Обо мне',ab_mq:'Эй, я здесь! ✨ Заходи поздороваться, познакомимся и создадим что-нибудь, что заставит людей улыбаться.',ab_hint:'Ну же, нажми на меня! 👀 Посмотрим, сможешь ли ты догадаться, кто такой Ким.',vd:'Подробнее ↗',b1:'UX/UI-дизайн',b2:'Сервис-дизайн',b3:'Управление дизайном',hello:'Привет, друг 👋🏻',idea:'Есть идея? Давай оживим её!',email:'Написать',hey:'Хей!',
  m_home:'Главная',m_about:'Обо мне',m_case:'Кейсы',m_c1:'Кейс 1',m_c2:'Кейс 2',m_c3:'Кейс 3',m_c4:'Кейс 4',m_contact:'Контакты',lang:'Язык',
  ring:'Добро пожаловать в мою комнату! Нажми на меня! Добро пожаловать в мою комнату! Нажми на меня!',ld_s:'Не стесняйся.<br>Просто скажи',ld_b:'«Хей!»',
  say:'Скажи «Хей!»',sub:'Напиши мне в личку или ответь по почте, окей?',arrow:'Написать мне письмо',
@@ -24,7 +24,7 @@ ru:{b1:'UX/UI-дизайн',b2:'Сервис-дизайн',b3:'Управлен�
  c3_t:'Кейс 3: Web3-игровая платформа',c3_b:'<p>Лобби, личный кабинет, кошелёк и история транзакций, а также внутренняя панель модерации. Gameless.one, 2022–2025.</p>',
  c4_t:'Кейс 4: B2B-платформа',c4_b:'<p>Редизайн продукта с большим объёмом данных: понятная навигация, мощные таблицы и дашборды в реальном времени. Roobinium, 2019–2021.</p>',
  mail_t:'Напиши мне сообщение',ph_n:'Ваше имя',ph_e:'Ваша почта',ph_m:'Ваше сообщение',send:'Отправить по почте',copy:'Скопировать адрес',copied:'Скопировано',subj:'Привет от'},
-de:{b1:'UX/UI-Design',b2:'Service Design',b3:'Design-Management',hello:'Hallo, Freund 👋🏻',idea:'Du hast eine Idee? Erwecken wir sie zum Leben!',email:'E-Mail',hey:'Hey!',
+de:{ab_title:'Über mich',ab_mq:'Hey, ich bin hier! ✨ Sag Hallo, lerne mich kennen und lass uns etwas erschaffen, das Menschen zum Lächeln bringt.',ab_hint:'Los, klick mich! 👀 Mal sehen, ob du herausfindest, wer Kim ist.',vd:'Details ↗',b1:'UX/UI-Design',b2:'Service Design',b3:'Design-Management',hello:'Hallo, Freund 👋🏻',idea:'Du hast eine Idee? Erwecken wir sie zum Leben!',email:'E-Mail',hey:'Hey!',
  m_home:'Start',m_about:'Über mich',m_case:'Cases',m_c1:'Case 1',m_c2:'Case 2',m_c3:'Case 3',m_c4:'Case 4',m_contact:'Kontakt',lang:'Sprache',
  ring:'Willkommen in meinem Zimmer. Klick mich! Willkommen in meinem Zimmer. Klick mich!',ld_s:'Sei nicht schüchtern.<br>Sag einfach',ld_b:'„Hey!“',
  say:'Sag „Hey!“',sub:'Schick mir eine DM oder antworte per E-Mail, okay?',arrow:'Schreib mir eine E-Mail',
@@ -34,7 +34,7 @@ de:{b1:'UX/UI-Design',b2:'Service Design',b3:'Design-Management',hello:'Hallo, F
  c3_t:'Case 3: Web3-Gaming-Plattform',c3_b:'<p>Lobby, persönliches Konto, Wallet- und Transaktionsansichten sowie ein internes Moderations-Dashboard. Gameless.one, 2022–2025.</p>',
  c4_t:'Case 4: B2B-Plattform',c4_b:'<p>Redesign eines datenintensiven Produkts: klarere Navigation, leistungsstarke Tabellen und Echtzeit-Dashboards. Roobinium, 2019–2021.</p>',
  mail_t:'Schreib mir eine Nachricht',ph_n:'Dein Name',ph_e:'Deine E-Mail',ph_m:'Deine Nachricht',send:'Per E-Mail senden',copy:'Adresse kopieren',copied:'Kopiert',subj:'Hallo von'},
-zh:{b1:'UX/UI 设计',b2:'服务设计',b3:'设计管理',hello:'你好，朋友 👋🏻',idea:'有好点子？让我们把它变成现实！',email:'发邮件',hey:'嗨！',
+zh:{ab_title:'关于我',ab_mq:'嘿，我在这儿！✨ 来打个招呼，认识一下，让我们一起创造让人微笑的作品。',ab_hint:'来吧，点我！👀 看看你能不能猜出 Kim 是谁。',vd:'查看详情 ↗',b1:'UX/UI 设计',b2:'服务设计',b3:'设计管理',hello:'你好，朋友 👋🏻',idea:'有好点子？让我们把它变成现实！',email:'发邮件',hey:'嗨！',
  m_home:'首页',m_about:'关于我',m_case:'案例',m_c1:'案例 1',m_c2:'案例 2',m_c3:'案例 3',m_c4:'案例 4',m_contact:'联系',lang:'语言',
  ring:'欢迎来到我的房间。点我！欢迎来到我的房间。点我！欢迎来到我的房间。点我！',ld_s:'别害羞，<br>随时跟我说',ld_b:'“嗨！”',
  say:'说声“嗨！”',sub:'给我发私信或回邮件吧，好吗？',arrow:'给我写邮件',
@@ -102,6 +102,7 @@ addEventListener('storage',e=>{if(e.key==='lang'&&VALID.includes(e.newValue)&&e.
 function route(k){
  if(k==='home'){PAGE==='home'?setMenu(false):go('index.html');return}
  if(k==='contact'){PAGE==='contact'?setMenu(false):go('contact.html');return}
+ if(k==='about'){PAGE==='about'?setMenu(false):go('about.html');return}
  openSheet(k)}
 const cur=list.querySelector('[data-k="'+PAGE+'"]');cur&&cur.classList.add('dim');
 document.addEventListener('click',e=>{

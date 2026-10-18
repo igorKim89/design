@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Igor Prakopchyk — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--orange:#fea831;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
-*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--orange);font-family:var(--round);color:#fff}
+*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:#fff;font-family:var(--round);color:#fff}
 button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
 /* background GIF, loops forever */
@@ -25,12 +25,13 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 
 .shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(120deg,rgba(60,30,0,.4),transparent 36%)}
 /* bottom-left greeting */
-.card{position:fixed;left:clamp(14px,2.4vw,36px);bottom:clamp(14px,2.4vw,32px);z-index:10;max-width:min(88vw,310px);padding:14px 16px 15px;border-radius:20px;background:rgba(43,26,5,.5);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(255,255,255,.2);animation:rise .95s cubic-bezier(.2,.9,.3,1.12) 4.7s both}
+.card{position:fixed;left:clamp(14px,2.4vw,36px);bottom:clamp(14px,2.4vw,32px);z-index:10;max-width:min(88vw,310px);padding:14px 16px 15px;border-radius:20px;background:rgba(43,26,5,.5);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(255,255,255,.2);animation:rise .95s cubic-bezier(.2,.9,.3,1.12) 4.7s both}
 @keyframes rise{from{transform:translateY(calc(100% + 60px));opacity:0}to{transform:none;opacity:1}}
 .card h1{margin:0;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.01em;line-height:1.1}
 .card p{margin:5px 0 11px;font-size:clamp(12.5px,1vw,14.5px);font-weight:400;line-height:1.35;color:#fff3df}
 .links{display:flex;gap:6px;flex-wrap:wrap}.links a{background:var(--orange);color:#fff;text-decoration:none;font-weight:500;font-size:12.5px;padding:6px 13px;border-radius:99px;transition:transform .2s}.links a.g{background:rgba(255,255,255,.2)}.links a:hover{transform:translateY(-2px)}
 
+@media (hover:none){body[data-page=home] .hot,body[data-page=home] .hi{display:none!important}}
 </style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head><body data-page="home">
 <div class="stage" id="st"><img src="bg.gif" alt="Designer character working at his desk"><div class="hot" id="hot"></div></div>
 <div class="hi" id="hi" aria-hidden="true" data-i="hey">Hey!</div>
