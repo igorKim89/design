@@ -20,13 +20,14 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 .hero{position:fixed;left:0;right:0;z-index:12;top:calc(50vh - var(--sh)/2 + var(--sh)*.135);transform:translateY(-50%);text-align:center;padding:0 16px;pointer-events:none}
 .hero h1{margin:0;display:inline-flex;align-items:center;gap:.28em;font-weight:500;font-size:clamp(32px,4.4vw,64px);letter-spacing:-.02em;line-height:1.1}
 .hero .w{display:inline-block;white-space:pre}
-.ch{display:inline-block;opacity:0;transform:translateY(70%);animation:chr .8s cubic-bezier(.2,.9,.3,1.25) forwards;animation-delay:calc(var(--base,4.7s) + var(--i)*55ms)}
+.ch{display:inline-block;opacity:0;transform:translateY(70%);animation:chr .8s cubic-bezier(.2,.9,.3,1.25) forwards;animation-delay:calc(var(--base,0s) + var(--i)*55ms)}
+body:not(.go) .ch,body:not(.go) .arrow,body:not(.go) .hero p{animation-play-state:paused}
 @keyframes chr{to{opacity:1;transform:none}}
-.arrow{pointer-events:auto;display:inline-grid;place-items:center;width:.62em;height:.62em;border:0;background:none;padding:0;cursor:pointer;opacity:0;transform:scale(.3) rotate(-40deg);animation:pop .7s cubic-bezier(.3,1.7,.5,1) var(--abase,5.45s) forwards}
+.arrow{pointer-events:auto;display:inline-grid;place-items:center;width:.62em;height:.62em;border:0;background:none;padding:0;cursor:pointer;opacity:0;transform:scale(.3) rotate(-40deg);animation:pop .7s cubic-bezier(.3,1.7,.5,1) var(--abase,.45s) forwards}
 @keyframes pop{to{opacity:1;transform:none}}
 .arrow svg{width:100%;height:100%;overflow:visible;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
 .arrow:hover svg{transform:translate(4px,-4px) scale(1.1)}
-.hero p{margin:8px 0 0;font-weight:400;font-size:clamp(15px,1.5vw,22px);opacity:0;transform:translateY(12px);animation:fu .8s ease-out 5.2s forwards}
+.hero p{margin:8px 0 0;font-weight:400;font-size:clamp(15px,1.5vw,22px);opacity:0;transform:translateY(12px);animation:fu .8s ease-out .5s forwards}
 @keyframes fu{to{opacity:1;transform:none}}
 
 .side{position:fixed;z-index:15;right:clamp(16px,2.2vw,40px);bottom:clamp(16px,2.4vw,30px);display:flex;flex-direction:column;align-items:flex-end;gap:5px}
@@ -41,13 +42,13 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 @media (max-width:700px){.nav{right:16px}.side{display:none}}
 </style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head>
 <body data-page="contact">
-<div class="stage"><video id="cv" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-label="Designer character standing"><source src="contact.webm" type="video/webm"><source src="contact.mp4" type="video/mp4"></video></div>
+<div class="stage"><video id="cv" muted playsinline preload="auto" disablepictureinpicture aria-label="Designer character standing"><source src="contact.webm" type="video/webm"><source src="contact.mp4" type="video/mp4"></video></div>
 
 <div class="brand"><a href="index.html" data-go>Designer Kim</a><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
 
 <div class="hero"><h1 id="hd"></h1><p data-i="sub">Send me a DM or reply on Email, okay?</p></div>
 
-<div class="side" aria-label="Sections"><button data-k="home" data-i="m_home">Home</button><button data-k="about" data-i="m_about">About</button><button data-k="c1" data-i="m_c1">Case 1</button><button data-k="c2" data-i="m_c2">Case 2</button><button data-k="c3" data-i="m_c3">Case 3</button><button data-k="c4" data-i="m_c4">Case 4</button><button class="cur" data-k="contact" data-i="m_contact">Contact</button></div>
+<div class="side" aria-label="Sections"><button data-k="home" data-i="m_home">Home</button><button data-k="about" data-i="m_about">About</button><button data-k="c1" data-i="m_c1">Tixxe App</button><button data-k="c2" data-i="m_c2">Case 2</button><button data-k="c3" data-i="m_c3">Case 3</button><button data-k="c4" data-i="m_c4">Case 4</button><button class="cur" data-k="contact" data-i="m_contact">Contact</button></div>
 <div class="copy">@designer kim 2026</div>
 
 <nav class="nav" id="nav" aria-label="Main menu">
@@ -56,7 +57,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
   <button data-k="home" data-i="m_home">Home</button>
   <button data-k="about" data-i="m_about">About</button>
   <div class="grp" data-i="m_case">Case</div>
-  <button class="sub" data-k="c1" data-i="m_c1">Case 1</button><button class="sub" data-k="c2" data-i="m_c2">Case 2</button><button class="sub" data-k="c3" data-i="m_c3">Case 3</button><button class="sub" data-k="c4" data-i="m_c4">Case 4</button>
+  <button class="sub" data-k="c1" data-i="m_c1">Tixxe App</button><button class="sub" data-k="c2" data-i="m_c2">Case 2</button><button class="sub" data-k="c3" data-i="m_c3">Case 3</button><button class="sub" data-k="c4" data-i="m_c4">Case 4</button>
   <button data-k="contact" style="margin-top:8px" data-i="m_contact">Contact</button>
   <button class="lg-btn" id="lgBtn" aria-expanded="false" aria-controls="lgRow"><span class="lg-ico globe" id="lgIco"></span><span data-i="lang">Language</span></button>
   <div class="lg-row" id="lgRow"></div>
@@ -70,11 +71,22 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 <script>
 /* heading: letters rise one by one, then the arrow pops in (rebuilt on every language change) */
 window.buildHeading=function(fast){const h=document.getElementById('hd');h.innerHTML='';let i=0;
- const base=fast?'0s':'4.7s',ab=fast?'.45s':'5.45s';
+ const base='0s',ab='.45s';
  t('say').split(' ').forEach(word=>{const w=document.createElement('span');w.className='w';
   [...word].forEach(c=>{const s=document.createElement('span');s.className='ch';s.style.setProperty('--i',i++);s.style.setProperty('--base',base);s.textContent=c;w.appendChild(s)});h.appendChild(w)});
  const b=document.createElement('button');b.className='arrow';b.dataset.k='mail';b.setAttribute('aria-label',t('arrow'));b.style.setProperty('--abase',ab);
  b.innerHTML='<svg viewBox="0 0 40 40" fill="none" stroke="#fea831" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 30 30 10"/><path d="M13 10h17v17"/></svg>';h.appendChild(b)};
 </script>
 <script src="app.js"></script>
-<script>(function(){var v=document.getElementById("cv");if(!v)return;v.muted=true;function go(){var p=v.play();if(p&&p.catch)p.catch(function(){})}go();document.addEventListener("visibilitychange",function(){if(!document.hidden)go()});["touchstart","click","pointerdown"].forEach(function(e){document.addEventListener(e,go,{once:true,passive:true})})})();</script></body></html>
+<script>(function(){var v=document.getElementById("cv"),b=document.body,done=false;
+ function show(){if(done)return;done=true;b.classList.add("go")}
+ if(!v){show();return}
+ v.muted=true;v.loop=false;
+ v.addEventListener("ended",function(){v.pause();show()});
+ v.addEventListener("error",show);
+ /* the animation plays once, right after the loader; the headline appears when the finger is raised at the end */
+ function start(){var p=v.play();if(p&&p.then){p.then(function(){},show)}}
+ setTimeout(start,5100);
+ /* safety: if the video never gets going, still show the text */
+ setTimeout(function(){if(v.paused&&!done)show()},7600);
+})();</script></body></html>

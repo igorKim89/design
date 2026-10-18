@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll"><head>
+<meta charset="utf-8"><script>(function(){var d=document.documentElement;function s(){var h=(window.visualViewport&&visualViewport.height)||innerHeight;d.style.setProperty('--vh',(h*0.01).toFixed(3)+'px')}s();addEventListener('resize',s);addEventListener('orientationchange',function(){setTimeout(s,150)});if(window.visualViewport)visualViewport.addEventListener('resize',s)})();</script><meta name="theme-color" content="#f8f7f3"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designer Kim - Your Idea+My Obsession=Magic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{--vh:1vh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--padr:max(var(--pad),160px);--orange:#fea831;--ink:#3b3224;--bgc:#f8f7f3;--mut:#8d8a6c;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;--pad:clamp(20px,5vw,84px);--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html.scroll{height:auto;max-height:none;position:static;overflow-x:hidden;overflow-y:auto;overscroll-behavior:auto;scroll-behavior:smooth}
+html.scroll body{height:auto;max-height:none;position:static;overflow:visible;contain:none;margin:0;background:var(--bgc);font-family:var(--round);color:var(--ink);touch-action:auto}
+button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.brand{position:absolute;z-index:15;left:var(--pad);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
+.brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;margin-bottom:10px}
+.brand span{display:block;font-weight:400;font-size:clamp(13px,.95vw,16px);letter-spacing:.02em}
+.side{position:fixed;z-index:15;right:clamp(16px,2.2vw,40px);bottom:clamp(16px,2.4vw,30px);display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.side button{display:flex;align-items:center;gap:8px;background:none;border:0;padding:1px 0;cursor:pointer;font-size:13px;color:#9a9578;transition:color .2s}
+.side button::after{content:"";width:8px;height:8px;border-radius:50%;background:#fed9a6;transition:background .2s}
+.side button:hover{color:#000}.side button:hover::after{background:var(--orange)}
+.side button.cur{color:#000;font-weight:500}.side button.cur::after{background:var(--orange)}
+
+/* ---------- headline reveal: words slide up out of a mask ---------- */
+.rv .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.rv .w>i{display:inline-block;font-style:normal;transform:translateY(112%) rotate(4deg);transform-origin:0 100%;transition:transform 1s var(--ease);transition-delay:calc(var(--n)*70ms + var(--d,0ms))}
+.rv.in .w>i{transform:none}
+.rv em{font-style:normal;background:linear-gradient(var(--orange),var(--orange)) 0 92%/0% .12em no-repeat;transition:background-size 1.1s var(--ease) .7s}
+.rv.in em{background-size:100% .12em}
+.fade{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.fade.in{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(130px,21vh,220px) var(--padr) 0 var(--pad)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:clamp(13px,1vw,16px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.eyebrow::before{content:"";width:46px;height:2px;background:var(--orange);transform-origin:0 50%;animation:line 1s var(--ease) 5.2s both}
+@keyframes line{from{transform:scaleX(0)}}
+.h1{margin:.28em 0 0;font-weight:600;letter-spacing:-.035em;line-height:.96;font-size:clamp(38px,6.6vw,118px);max-width:12em}
+.h1 .sub{display:block;margin-top:.5em;font-size:clamp(15px,.2em,34px);letter-spacing:0;font-weight:400;line-height:1.3;color:var(--mut);max-width:24em}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.4vw,40px);margin-top:clamp(30px,6vh,70px);padding-top:22px;border-top:1px solid rgba(59,50,36,.18)}
+.meta b{display:block;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.meta span{font-size:clamp(15px,1.15vw,19px);font-weight:500}
+
+/* ---------- placeholders ---------- */
+.ph{position:relative;overflow:hidden;border-radius:clamp(18px,2.2vw,34px);background:linear-gradient(135deg,#ffe2b5,#ffd0a0 45%,#e6dcff);isolation:isolate}
+.ph::before{content:"";position:absolute;inset:0;background:
+ linear-gradient(to top right,transparent calc(50% - 1px),rgba(59,50,36,.14) 50%,transparent calc(50% + 1px)),
+ linear-gradient(to bottom right,transparent calc(50% - 1px),rgba(59,50,36,.14) 50%,transparent calc(50% + 1px));z-index:-1}
+.ph .tag{position:absolute;left:18px;bottom:16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;background:rgba(255,255,255,.72);backdrop-filter:blur(6px);padding:7px 12px;border-radius:99px}
+.ph .ico{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.7);display:grid;place-items:center}
+.ph .ico::after{content:"";width:24px;height:18px;border:2.5px solid var(--ink);border-radius:5px;background:linear-gradient(135deg,transparent 55%,var(--ink) 56%) no-repeat 6px 4px/10px 10px}
+
+/* big image */
+.big{margin:clamp(50px,10vh,110px) var(--padr) 0 var(--pad)}
+.big .ph{aspect-ratio:16/8.2;clip-path:inset(100% 0 0 0 round 34px);transition:clip-path 1.3s var(--ease)}
+.big.in .ph{clip-path:inset(0 0 0 0 round 34px)}
+.big .ph .in-img{position:absolute;inset:-9% 0;background:radial-gradient(circle at 70% 30%,rgba(254,168,49,.55),transparent 45%),radial-gradient(circle at 20% 80%,rgba(160,140,255,.45),transparent 50%);transform:translateY(var(--py,0px)) scale(1.04);will-change:transform;z-index:-1}
+
+/* ---------- intro ---------- */
+.intro{position:relative;display:grid;grid-template-columns:1fr minmax(0,1.6fr);gap:var(--pad);padding:clamp(100px,20vh,230px) var(--padr) clamp(70px,12vh,140px) var(--pad);align-items:start}
+.kicker{font-size:clamp(14px,1.05vw,17px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding-top:.7em}
+.lead{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.2;font-size:clamp(22px,2.6vw,44px)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- three columns, staggered ---------- */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,56px);padding:0 var(--padr) clamp(90px,16vh,190px) var(--pad)}
+.col{position:relative;padding-top:clamp(10px,2vh,24px)}
+.col:nth-child(2){margin-top:clamp(40px,9vh,110px)}
+.col:nth-child(3){margin-top:clamp(80px,18vh,220px)}
+.num{display:block;font-weight:700;font-size:clamp(56px,7.4vw,124px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--orange);transition:color .5s ease,transform .6s var(--ease)}
+.col:hover .num{color:var(--orange);transform:translateX(8px)}
+.col h3{margin:.6em 0 .45em;font-size:clamp(20px,1.7vw,29px);font-weight:600;letter-spacing:-.02em}
+.col p{margin:0;font-size:clamp(15px,1.15vw,19px);line-height:1.6;color:#5a5240;max-width:26em}
+
+/* ---------- carousel ---------- */
+.gal{padding:clamp(60px,11vh,130px) 0 clamp(80px,14vh,160px);background:#fff;border-radius:clamp(26px,4vw,64px) clamp(26px,4vw,64px) 0 0}
+.gal-h{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:0 var(--padr) 0 var(--pad);margin-bottom:clamp(30px,6vh,64px)}
+.h2{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1;font-size:clamp(30px,4.2vw,72px)}
+.ctrl{display:flex;align-items:center;gap:12px;flex:none}
+.ctrl button{width:56px;height:56px;border-radius:50%;border:2px solid var(--ink);background:none;cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s,transform .3s var(--ease),border-color .25s}
+.ctrl button:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:scale(1.07)}
+.ctrl button:disabled{opacity:.3;pointer-events:none}
+.ctrl svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.track{--gap:clamp(12px,1.6vw,26px);display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:60px var(--padr) 70px var(--pad);scroll-padding-left:var(--pad);cursor:grab;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.slide{flex:none;width:calc((100vw - var(--pad) - var(--padr) - var(--gap)*3)/4);scroll-snap-align:start;position:relative;transform-origin:50% 100%;
+ opacity:0;translate:0 90px;rotate:5deg;transition:opacity .8s ease,translate .9s var(--ease),rotate .9s var(--ease),scale .5s var(--ease),filter .4s ease;transition-delay:calc(var(--i)*90ms),calc(var(--i)*90ms),calc(var(--i)*90ms),0s,0s}
+.gal.in .slide{opacity:1;translate:0 calc((var(--i) % 2)*34px);rotate:0deg}
+.slide .ph::before{display:none}
+.slide .ph{aspect-ratio:3/4.1;transform:skewX(var(--sk,0deg));transition:transform .25s ease-out,box-shadow .5s ease}
+.slide:nth-child(5n+1) .ph{background:linear-gradient(160deg,#ffe2b5,#ffc28a)}
+.slide:nth-child(5n+2) .ph{background:linear-gradient(160deg,#e6dcff,#cbbcff)}
+.slide:nth-child(5n+3) .ph{background:linear-gradient(160deg,#d7f1e4,#aee3c9)}
+.slide:nth-child(5n+4) .ph{background:linear-gradient(160deg,#ffdede,#ffb9b9)}
+.slide:nth-child(5n+5) .ph{background:linear-gradient(160deg,#dbe9ff,#b4cfff)}
+.slide cap,.slide .cap{display:block;margin-top:14px;font-size:clamp(14px,1.05vw,17px);font-weight:500}
+.slide .cap small{display:block;margin-top:2px;font-weight:400;color:var(--mut);font-size:.88em}
+@media (hover:hover){
+ .track:hover .slide{filter:saturate(.7) opacity(.72)}
+ .track .slide:hover{filter:none;scale:1.05;z-index:2}
+ .slide:hover .ph{box-shadow:0 30px 50px -20px rgba(80,50,10,.35)}
+}
+.prog{margin:0 var(--padr) 0 var(--pad);height:3px;background:rgba(59,50,36,.12);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;width:25%;background:var(--orange);border-radius:3px;transform-origin:0 50%;transition:transform .15s linear}
+
+/* ---------- outro ---------- */
+.outro{padding:clamp(90px,17vh,200px) var(--padr) clamp(50px,10vh,110px) var(--pad);display:flex;flex-direction:column;align-items:flex-start;gap:26px;background:#fff}
+.nextbtn{display:inline-flex;align-items:center;gap:18px;background:none;border:0;padding:0;cursor:pointer;font-weight:600;letter-spacing:-.03em;line-height:1;font-size:clamp(30px,4.6vw,80px)}
+.nextbtn .arr{flex:none;width:1.05em;height:1.05em;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.8em;line-height:0;transition:transform .5s var(--ease)}
+.nextbtn .arr svg{width:46%;height:46%;display:block;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nextbtn:hover .arr{transform:rotate(-45deg) scale(1.08)}
+.nextbtn span.t{background:linear-gradient(var(--ink),var(--ink)) 0 100%/0 .06em no-repeat;transition:background-size .6s var(--ease)}
+.nextbtn:hover span.t{background-size:100% .06em}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:30px var(--padr) 36px var(--pad);background:#fff;font-size:13px;color:var(--mut)}
+.foot a{text-decoration:none}.foot a:hover{color:var(--ink)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){.slide{width:calc((100vw - var(--pad) - var(--padr) - var(--gap)*2)/3)}}
+@media (max-width:820px){
+ :root{--padr:var(--pad)}
+ .slide{width:min(74vw,340px)}
+ .meta{grid-template-columns:repeat(2,1fr);row-gap:20px}
+ .intro{grid-template-columns:1fr;gap:18px}
+  .trio{grid-template-columns:1fr;gap:34px}.col:nth-child(2),.col:nth-child(3){margin-top:0}
+ .side{display:none}
+ .ctrl button{width:46px;height:46px}
+ .big .ph{aspect-ratio:4/3.6}
+ .gal-h{align-items:flex-start;flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){.rv .w>i,.fade,.slide,.big .ph{transition:none!important;animation:none!important}}
+</style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head>
+<body data-page="c1">
+<div class="brand"><a href="index.html" data-go>Designer Kim</a><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
+<main>
+ <header class="hero">
+  <div class="eyebrow fade in" style="animation:none;--d:0ms">Case 01 · Tixxe App · 2026</div>
+  <h1 class="h1 rv" id="h1" data-start="5200">Tixxe App: work that <em>flows.</em><span class="sub fade" style="--d:1500ms">TaskFlow Business and WorkHub Pro, a mobile app for iOS and Android, designed from the first sketch to the final screen.</span></h1>
+  <div class="meta fade" style="--d:1700ms" data-start="5200">
+   <div><b>Role</b><span>Senior Interface Designer</span></div>
+   <div><b>Scope</b><span>UI/UX, Mobile App</span></div>
+   <div><b>Year</b><span>2026</span></div>
+   <div><b>Platform</b><span>iOS &amp; Android</span></div>
+  </div>
+ </header>
+
+ <section class="big" id="big"><div class="ph"><div class="in-img"></div><div class="ico"></div><span class="tag">Hero image · 16:8</span></div></section>
+
+ <section class="intro">
+  <div class="kicker fade">The story</div>
+  <p class="lead rv" id="lead">Business tools are usually powerful and tiring. Tixxe makes the daily flow of tasks feel <em>light</em>: clear screens, calm colour and interactions that stay out of the way.</p>
+ </section>
+
+ <section class="trio">
+  <article class="col fade"><span class="num">01</span><h3 class="rv">Challenge</h3><p>Task apps for business tend to be heavy: too many screens, too much noise. People open them because they have to, not because they want to.</p></article>
+  <article class="col fade" style="--d:120ms"><span class="num">02</span><h3 class="rv">Approach</h3><p>A clean interface built around one question per screen. Clear hierarchy, a consistent component system and a visual language that works on both iOS and Android.</p></article>
+  <article class="col fade" style="--d:240ms"><span class="num">03</span><h3 class="rv">Outcome</h3><p>A mobile app that feels fast and friendly. Teams plan, track and finish work in fewer taps, and the product looks like one family on every screen.</p></article>
+ </section>
+
+ <section class="gal" id="gal">
+  <div class="gal-h">
+   <h2 class="h2 rv" id="gh">Inside the <em>app</em></h2>
+   <div class="ctrl fade"><button id="prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  </div>
+  <div class="track" id="track" tabindex="0" aria-label="Screens carousel">
+   <figure class="slide" style="--i:0;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:1;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:2;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:3;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:4;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:5;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:6;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:7;margin:0"><div class="ph"></div></figure>
+  </div>
+  <div class="prog"><i id="prog"></i></div>
+ </section>
+
+ <section class="outro">
+  <div class="kicker fade">Next up</div>
+  <button class="nextbtn fade" data-k="c2" style="--d:100ms"><span class="t">Crypto academy</span><span class="arr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12h15M13 5.5 19.5 12 13 18.5"/></svg></span></button>
+ </section>
+ <footer class="foot"><span>@designer kim 2026</span><a href="index.html" data-go>← Back home</a></footer>
+</main>
+<div class="side" aria-label="Sections"><button data-k="home" data-i="m_home">Home</button><button data-k="about" data-i="m_about">About</button><button class="cur" data-k="c1" data-i="m_c1">Tixxe App</button><button data-k="c2" data-i="m_c2">Case 2</button><button data-k="c3" data-i="m_c3">Case 3</button><button data-k="c4" data-i="m_c4">Case 4</button><button data-k="contact" data-i="m_contact">Contact</button></div>
+<nav class="nav" id="nav" aria-label="Main menu">
+ <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
+ <div class="list" id="list">
+  <button data-k="home" data-i="m_home">Home</button>
+  <button data-k="about" data-i="m_about">About</button>
+  <div class="grp" data-i="m_case">Case</div>
+  <button class="sub" data-k="c1" data-i="m_c1">Tixxe App</button><button class="sub" data-k="c2" data-i="m_c2">Case 2</button><button class="sub" data-k="c3" data-i="m_c3">Case 3</button><button class="sub" data-k="c4" data-i="m_c4">Case 4</button>
+  <button data-k="contact" style="margin-top:8px" data-i="m_contact">Contact</button>
+  <button class="lg-btn" id="lgBtn" aria-expanded="false" aria-controls="lgRow"><span class="lg-ico globe" id="lgIco"></span><span data-i="lang">Language</span></button>
+  <div class="lg-row" id="lgRow"></div>
+ </div>
+</nav>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh"><div class="box"><button class="cl" id="cl" aria-label="Close">×</button><h2 id="sh"></h2><div id="sb"></div></div></div>
+
+<div class="loader" id="loader" aria-hidden="true"><div class="bgfade"></div>
+ <svg class="ring" viewBox="-30 -30 360 360"><defs><path id="c" d="M150,150 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
+ <text><textPath id="rt" href="#c" textLength="868" lengthAdjust="spacing">Moving pixels since 2016. Still not done. Moving pixels since 2016. Still not done.</textPath></text></svg><div class="inside"><small data-i="ld_s">Your idea +<br>my obsession =</small><b data-i="ld_b">“Magic”</b></div></div>
+<script src="app.js"></script>
+<script>
+(function(){
+ /* split headlines into words for the mask reveal */
+ function split(el){if(el.dataset.s)return;el.dataset.s=1;let n=0;
+  (function walk(node){[...node.childNodes].forEach(c=>{
+   if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+     const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=p;i.style.setProperty('--n',n++);w.appendChild(i);f.appendChild(w)});c.replaceWith(f)}
+   else if(c.nodeType===1&&!c.classList.contains('sub')&&c.tagName!=='EM'){walk(c)}
+   else if(c.tagName==='EM'){const t=c.textContent;c.textContent='';const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=t;i.style.setProperty('--n',n++);w.appendChild(i);c.appendChild(w)}
+  })})(el)}
+ document.querySelectorAll('.rv').forEach(split);
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+ const start=performance.now();
+ function arm(el){const d=+el.dataset.start||0;const wait=Math.max(0,d-(performance.now()-start));setTimeout(()=>io.observe(el),wait)}
+ const hero=document.querySelector('.hero');
+ /* hero children wait for the loader to finish */
+ hero.querySelectorAll('.rv,.fade').forEach(el=>{if(!el.dataset.start)el.dataset.start=5200});
+ document.querySelectorAll('.rv,.fade,.big,.gal').forEach(el=>{if(el.classList.contains('in'))return;el.dataset.start?arm(el):io.observe(el)});
+
+ /* parallax on the big image */
+ const bigIn=document.querySelector('.big .in-img'),bigEl=document.getElementById('big');
+ function par(){const r=bigEl.getBoundingClientRect(),vh=innerHeight;if(r.bottom<0||r.top>vh)return;const p=(r.top+r.height/2-vh/2)/vh;bigIn.style.setProperty('--py',(p*-60).toFixed(1)+'px')}
+ addEventListener('scroll',par,{passive:true});addEventListener('resize',par);par();
+
+ /* carousel: arrows, drag, progress, velocity skew */
+ const tr=document.getElementById('track'),pr=document.getElementById('prog'),pv=document.getElementById('prev'),nx=document.getElementById('next');
+ const slides=[...tr.querySelectorAll('.slide')];
+ function step(){const s=slides[1]?slides[1].offsetLeft-slides[0].offsetLeft:300;return s}
+ function upd(){const max=tr.scrollWidth-tr.clientWidth,p=max>0?tr.scrollLeft/max:0,vis=tr.clientWidth/tr.scrollWidth;
+  pr.style.width=(Math.max(vis,.1)*100)+'%';pr.style.transform='translateX('+(p*(1/Math.max(vis,.1)-1)*100)+'%)';
+  pv.disabled=tr.scrollLeft<=4;nx.disabled=tr.scrollLeft>=max-4}
+ tr.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+ pv.addEventListener('click',()=>tr.scrollBy({left:-step(),behavior:'smooth'}));
+ nx.addEventListener('click',()=>tr.scrollBy({left:step(),behavior:'smooth'}));
+ tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight')nx.click();if(e.key==='ArrowLeft')pv.click()});
+ let down=false,sx=0,sl=0,moved=0;
+ tr.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=0;sx=e.clientX;sl=tr.scrollLeft;tr.classList.add('drag')});
+ addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;moved=Math.max(moved,Math.abs(dx));tr.scrollLeft=sl-dx});
+ addEventListener('pointerup',()=>{if(!down)return;down=false;tr.classList.remove('drag');const s=step();tr.scrollTo({left:Math.round(tr.scrollLeft/s)*s,behavior:'smooth'})});
+ let last=tr.scrollLeft,sk=0;
+ (function loop(){const v=tr.scrollLeft-last;last=tr.scrollLeft;sk+=(Math.max(-9,Math.min(9,v*-.35))-sk)*.18;
+  if(Math.abs(sk)>.02||Math.abs(v)>0){slides.forEach(s=>s.firstElementChild.style.setProperty('--sk',sk.toFixed(2)+'deg'))}
+  requestAnimationFrame(loop)})();
+})();
+</script>
+
+</body></html>
