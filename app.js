@@ -95,7 +95,7 @@ function toggleRow(o){const open=o===undefined?!row.classList.contains('open'):o
 
 /* ---------- menu + sheets ---------- */
 function setMenu(o){nav.classList.toggle('open',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu');nav.style.height=o?menuH()+'px':'56px';if(!o)row.classList.remove('open')}
-function contentH(){list.style.height='auto';const h=list.offsetHeight;list.style.height='';return h}
+function contentH(){const w=Math.min(212,innerWidth-28);list.style.height='auto';list.style.width=w+'px';const h=list.offsetHeight;list.style.height='';list.style.width='';return h}
 function menuH(){const top=nav.getBoundingClientRect().top;return Math.min(contentH(),Math.max(160,innerHeight-top-14))}
 function fit(){if(nav.classList.contains('open'))nav.style.height=menuH()+'px'}
 addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)
