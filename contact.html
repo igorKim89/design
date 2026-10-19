@@ -42,7 +42,7 @@ body:not(.go) .ch,body:not(.go) .arrow,body:not(.go) .hero p{animation-play-stat
 @media (max-width:700px){.nav{right:16px}.side{display:none}}
 </style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head>
 <body data-page="contact">
-<div class="stage"><video id="cv" muted playsinline preload="auto" disablepictureinpicture aria-label="Designer character standing"><source src="contact.webm" type="video/webm"><source src="contact.mp4" type="video/mp4"></video></div>
+<div class="stage"><video id="cv" autoplay loop muted playsinline preload="auto" disablepictureinpicture aria-label="Designer character standing"><source src="contact.webm" type="video/webm"><source src="contact.mp4" type="video/mp4"></video></div>
 
 <div class="brand"><a href="index.html" data-go>Designer Kim</a><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
 
@@ -78,15 +78,11 @@ window.buildHeading=function(fast){const h=document.getElementById('hd');h.inner
  b.innerHTML='<svg viewBox="0 0 40 40" fill="none" stroke="#fea831" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 30 30 10"/><path d="M13 10h17v17"/></svg>';h.appendChild(b)};
 </script>
 <script src="app.js"></script>
-<script>(function(){var v=document.getElementById("cv"),b=document.body,done=false;
- function show(){if(done)return;done=true;b.classList.add("go")}
- if(!v){show();return}
- v.muted=true;v.loop=false;
- v.addEventListener("ended",function(){v.pause();show()});
- v.addEventListener("error",show);
- /* the animation plays once, right after the loader; the headline appears when the finger is raised at the end */
- function start(){var p=v.play();if(p&&p.then){p.then(function(){},show)}}
- setTimeout(start,5100);
- /* safety: if the video never gets going, still show the text */
- setTimeout(function(){if(v.paused&&!done)show()},7600);
+<script>(function(){var v=document.getElementById("cv"),b=document.body;
+ /* the character loops smoothly (forward, then back); the headline appears when the loader is gone */
+ setTimeout(function(){b.classList.add("go")},4700);
+ if(!v)return;v.muted=true;v.loop=true;
+ function go(){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+ go();document.addEventListener("visibilitychange",function(){if(!document.hidden)go()});
+ ["touchstart","click","pointerdown"].forEach(function(e){document.addEventListener(e,go,{once:true,passive:true})});
 })();</script></body></html>

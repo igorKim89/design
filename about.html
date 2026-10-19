@@ -85,14 +85,14 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
  /* head: turns left and right while the pointer is on it */
  function swingOn(){if(!swing){t0=performance.now();swing=true}}
  function swingOff(){swing=false}
-   hd.addEventListener('click',()=>openSheet('about'));
+   hd.addEventListener('click',()=>{circleOff();go('story.html')});
  /* text under the head: "View Detail" circle */
  function circleOn(e){tx=e.clientX;ty=e.clientY;if(!circ){x=tx;y=ty;hi.style.transform='translate3d('+x+'px,'+y+'px,0)';circ=true;hi.classList.add('on')}}
  function circleOff(){circ=false;hi.classList.remove('on')}
  hint.addEventListener('pointerenter',circleOn);
  hint.addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY});
  hint.addEventListener('pointerleave',e=>{if(e.pointerType==='touch'){clearTimeout(cT);cT=setTimeout(circleOff,1400);return}circleOff()});
- hint.addEventListener('click',()=>{openSheet('about');circleOff()});
+ hint.addEventListener('click',()=>{circleOff();go('story.html')});
 })();
 </script>
 </body></html>
