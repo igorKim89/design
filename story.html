@@ -99,6 +99,14 @@ body.done .scrollcue{opacity:1}
  .stats{grid-template-columns:1fr}
  .side{display:none}
 }
+@media (max-width:900px){
+ html.scroll{scroll-behavior:auto}
+ .fade{transform:translate3d(0,14px,0);transition:opacity .8s ease,transform .8s var(--ease);transition-delay:0ms;will-change:opacity,transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+ .fade.in{transform:translate3d(0,0,0);will-change:auto}
+ mark{background-size:100% 100%;transition:none}
+ .snap{transition:none}
+ .rv .w>i{transition-duration:.8s;transition-delay:calc(var(--n)*40ms + var(--d,0ms))}
+}
 @media (max-width:520px){.ph{--k:2.5}}
 @media (prefers-reduced-motion:reduce){body.go .ph{animation-name:pinsoft}}
 @keyframes pinsoft{0%{opacity:0}14%{opacity:1}78%{opacity:1}100%{opacity:0}}

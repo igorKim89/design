@@ -32,7 +32,7 @@ body[data-page=contact] .hero{top:calc((12px + (var(--vh)*100 - .78*var(--ih)))/
  body .card p{font-size:13px;margin:4px 0 10px}
  body .links a{font-size:12.5px;padding:6px 12px}
  body .sheet .box h2{font-size:20px;padding-right:50px}
- body .sheet .box{--pt:30px;padding:var(--pt) 24px 28px;border-radius:24px}
+ body .sheet .box{--p:22px;border-radius:24px}
  body .box h2{font-size:23px}
  body .box p{font-size:15.5px}
  body .copy{left:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));font-size:12px}
