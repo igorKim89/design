@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll"><head>
+<meta charset="utf-8"><script>(function(){var d=document.documentElement;function s(){var h=(window.visualViewport&&visualViewport.height)||innerHeight;d.style.setProperty('--vh',(h*0.01).toFixed(3)+'px')}s();addEventListener('resize',s);addEventListener('orientationchange',function(){setTimeout(s,150)});if(window.visualViewport)visualViewport.addEventListener('resize',s)})();</script><meta name="theme-color" content="#f8f7f3"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designer Kim - Your Idea+My Obsession=Magic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{--vh:1vh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--padr:max(var(--pad),160px);--orange:#fea831;--ink:#3b3224;--bgc:#f8f7f3;--mut:#8d8a6c;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;--pad:clamp(20px,5vw,84px);--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html.scroll{height:auto;max-height:none;position:static;overflow-x:hidden;overflow-y:auto;overscroll-behavior:auto;scroll-behavior:smooth}
+html.scroll body{height:auto;max-height:none;position:static;overflow:visible;contain:none;margin:0;background:var(--bgc);font-family:var(--round);color:var(--ink);touch-action:auto}
+button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.brand{position:absolute;z-index:15;left:var(--pad);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
+.brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;margin-bottom:10px}
+.brand span{display:block;font-weight:400;font-size:clamp(13px,.95vw,16px);letter-spacing:.02em}
+.side{position:fixed;z-index:15;right:clamp(16px,2.2vw,40px);bottom:clamp(16px,2.4vw,30px);display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.side button{display:flex;align-items:center;gap:8px;background:none;border:0;padding:1px 0;cursor:pointer;font-size:13px;color:#9a9578;transition:color .2s}
+.side button::after{content:"";width:8px;height:8px;border-radius:50%;background:#fed9a6;transition:background .2s}
+.side button:hover{color:#000}.side button:hover::after{background:var(--orange)}
+.side button.cur{color:#000;font-weight:500}.side button.cur::after{background:var(--orange)}
+.bar{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;z-index:60;pointer-events:none}
+
+/* ---------- reveal helpers ---------- */
+.rv .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.16em;margin-bottom:-.16em}
+.rv .w>i{display:inline-block;font-style:normal;transform:translateY(112%) rotate(4deg);transform-origin:0 100%;transition:transform 1s var(--ease);transition-delay:calc(var(--n)*70ms + var(--d,0ms))}
+.rv.in .w>i{transform:none}
+.fade{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.fade.in{opacity:1;transform:none}
+mark{background:linear-gradient(transparent 56%,rgba(254,168,49,.5) 56%) no-repeat 0 0/0% 100%;color:inherit;padding:0 .08em;margin:0 -.08em;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size 1.2s var(--ease) .55s}
+.in mark,mark.in{background-size:100% 100%}
+
+/* ---------- intro: chaotic photos appear and vanish one after another ---------- */
+.stage{position:relative;height:calc(var(--vh,1vh)*100);min-height:520px;overflow:hidden}
+.ph{--k:1;position:absolute;left:min(var(--l),calc(100% - var(--w)*var(--k)*1vw - 3%));top:min(var(--t),calc(100% - var(--w)*var(--k)*1vw*var(--ar) - 6%));width:calc(var(--w)*var(--k)*1vw);aspect-ratio:1/var(--ar);rotate:var(--r);border-radius:var(--br,14px);overflow:hidden;opacity:0;box-shadow:0 30px 60px -28px rgba(70,45,10,.45);will-change:transform,opacity,clip-path}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);animation:kb 3.4s ease-out both;animation-delay:inherit;animation-play-state:inherit}
+@keyframes kb{to{transform:scale(1)}}
+body.go .ph{animation:pin 2.5s var(--ease) both;animation-delay:calc(var(--i)*.45s + .1s)}
+@keyframes pin{
+ 0%{opacity:0;clip-path:inset(100% 0 0 0);scale:.9;translate:0 34px}
+ 14%{opacity:1;clip-path:inset(0 0 0 0);scale:1;translate:0 0}
+ 78%{opacity:1;clip-path:inset(0 0 0 0);scale:1.01;translate:0 -8px;filter:blur(0)}
+ 100%{opacity:0;clip-path:inset(0 0 100% 0);scale:1.05;translate:0 -26px;filter:blur(5px)}}
+.cap{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:0 var(--pad);pointer-events:none}
+.cap h1{margin:0;font-weight:600;letter-spacing:-.035em;line-height:.98;font-size:clamp(40px,8vw,140px)}
+.cap p{margin:.9em 0 0;font-size:clamp(14px,1.1vw,18px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.scrollcue{position:absolute;left:50%;bottom:clamp(22px,5vh,48px);translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);opacity:0;transition:opacity 1s ease 0s}
+.scrollcue i{width:1px;height:38px;background:linear-gradient(var(--orange),transparent);transform-origin:50% 0;animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+body.done .scrollcue{opacity:1}
+
+/* ---------- chapters ---------- */
+.chap{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,6vw,120px);padding:clamp(70px,14vh,170px) var(--padr) clamp(30px,6vh,80px) var(--pad)}
+.side-l{position:relative}
+.sticky{position:sticky;top:clamp(90px,14vh,150px)}
+.num{display:block;font-weight:700;font-size:clamp(70px,9vw,150px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--orange)}
+.chap h2{margin:.35em 0 0;font-weight:600;letter-spacing:-.03em;line-height:1.02;font-size:clamp(30px,3.9vw,66px)}
+.snap{margin-top:clamp(22px,4vh,46px);width:min(100%,300px);aspect-ratio:4/5;border-radius:16px;overflow:hidden;rotate:var(--r,-4deg);box-shadow:0 26px 50px -26px rgba(70,45,10,.5);transition:rotate .6s var(--ease),transform .6s var(--ease)}
+.snap img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08)}
+.snap:hover{rotate:0deg;transform:scale(1.03)}
+.txt{max-width:40em}
+.txt p{margin:0 0 1.15em;font-size:clamp(17px,1.32vw,22px);line-height:1.72;color:#4a4130}
+.txt p.lede{font-size:clamp(22px,2vw,34px);line-height:1.3;font-weight:500;color:var(--ink);letter-spacing:-.015em;margin-bottom:1.1em}
+.txt p b{font-weight:600;color:var(--ink)}
+.txt a.lnk{color:var(--ink);font-weight:600;text-decoration:none;background:linear-gradient(var(--orange),var(--orange)) 0 100%/100% .12em no-repeat;transition:background-size .4s var(--ease),color .3s}
+.txt a.lnk:hover{background-size:100% 100%;color:#fff}
+.quote{position:relative;margin:clamp(26px,5vh,56px) 0 clamp(26px,5vh,56px) 0;padding-left:clamp(22px,2.4vw,38px);border-left:3px solid var(--orange)}
+.quote q{display:block;quotes:none;font-weight:600;letter-spacing:-.025em;line-height:1.14;font-size:clamp(24px,2.9vw,48px)}
+.quote.big{border:0;padding:0;margin-top:clamp(40px,7vh,80px)}
+.quote.big q::before,.quote.big q::after{color:var(--orange);font-weight:700;font-size:1.25em;line-height:0;display:inline-block;vertical-align:-.16em}
+.quote.big q::before{content:"“";margin-right:.08em}
+.quote.big q::after{content:"”";margin-left:.04em}
+.sig{margin-top:clamp(56px,10vh,110px);font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(28px,4.2vw,72px)}
+.sig small{display:block;margin-top:.7em;font-size:max(.34em,15px);letter-spacing:0;font-weight:400;color:var(--mut)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,28px);margin:clamp(30px,6vh,56px) 0 clamp(36px,7vh,64px)}
+.stat{padding:clamp(16px,1.8vw,26px);border-radius:22px;background:#fff;box-shadow:0 20px 40px -30px rgba(70,45,10,.4);transition:transform .5s var(--ease),background .4s}
+.stat:hover{transform:translateY(-6px);background:#fff4e2}
+.stat b{display:block;font-weight:700;font-size:clamp(34px,4vw,68px);line-height:1;letter-spacing:-.03em;color:var(--orange)}
+.stat span{display:block;margin-top:.5em;font-size:clamp(13px,1vw,16px);line-height:1.35;color:#5a5240}
+
+/* cta */
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:clamp(26px,4vh,40px) 0 clamp(36px,6vh,64px)}
+.pill{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--ink);background:none;border-radius:99px;padding:14px 26px;font-weight:500;font-size:clamp(15px,1.1vw,18px);cursor:pointer;text-decoration:none;transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease)}
+.pill:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-3px)}
+.pill.solid{background:var(--orange);border-color:var(--orange);color:#fff}
+.pill.solid:hover{background:var(--ink);border-color:var(--ink)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:clamp(60px,12vh,140px) var(--padr) 36px var(--pad);font-size:13px;color:var(--mut)}
+.foot a{text-decoration:none}.foot a:hover{color:var(--ink)}
+
+@media (max-width:900px){
+ :root{--padr:var(--pad)}
+ .ph{--k:2.1}
+ .chap{grid-template-columns:1fr;gap:26px}
+ .sticky{position:relative;top:auto;display:grid;grid-template-columns:1fr minmax(0,150px);gap:14px 20px;align-items:end}
+ .num{grid-column:1/2}.chap h2{grid-column:1/2;margin-top:0}
+ .snap{grid-column:2/3;grid-row:1/3;margin:0;width:100%}
+ .stats{grid-template-columns:1fr}
+ .side{display:none}
+}
+@media (max-width:520px){.ph{--k:2.5}}
+@media (prefers-reduced-motion:reduce){body.go .ph{animation-name:pinsoft}}
+@keyframes pinsoft{0%{opacity:0}14%{opacity:1}78%{opacity:1}100%{opacity:0}}
+</style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head>
+<body data-page="story">
+<div class="bar" id="bar"></div>
+<div class="brand"><a href="index.html" data-go>Designer Kim</a><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
+<main>
+ <section class="stage" id="stage">
+  <div class="ph" style="--l:9%;--t:20%;--w:24;--ar:1;--r:-4deg;--i:0;--br:18px"><img src="p1.jpg" alt="Kim sitting on an old wooden pier at sunset"></div>
+  <div class="ph" style="--l:62%;--t:6%;--w:15;--ar:1.075;--r:5deg;--i:1;--br:120px 120px 16px 16px"><img src="p2.jpg" alt="Kim in a monkey costume under palm trees"></div>
+  <div class="ph" style="--l:37%;--t:42%;--w:19;--ar:.99;--r:-2deg;--i:2;--br:10px"><img src="p3.jpg" alt="Kim standing on a turquoise pier"></div>
+  <div class="ph" style="--l:77%;--t:48%;--w:13;--ar:1.034;--r:6deg;--i:3;--br:999px"><img src="p4.jpg" alt="Kim on the beach"></div>
+  <div class="ph" style="--l:18%;--t:52%;--w:22;--ar:.96;--r:3deg;--i:4;--br:22px"><img src="p5.jpg" alt="Portrait of Kim among branches"></div>
+  <div class="ph" style="--l:52%;--t:3%;--w:17;--ar:.98;--r:-5deg;--i:5;--br:16px"><img src="p6.jpg" alt="Kim in a straw hat"></div>
+  <div class="ph" style="--l:66%;--t:30%;--w:26;--ar:.99;--r:2deg;--i:6;--br:12px"><img src="p7.jpg" alt="Kim looking up through white tree branches"></div>
+  <div class="ph" style="--l:3%;--t:58%;--w:14;--ar:1;--r:-6deg;--i:7;--br:999px"><img src="p8.jpg" alt="Kim sitting by a pool"></div>
+  <div class="ph" style="--l:40%;--t:20%;--w:18;--ar:1.24;--r:4deg;--i:8;--br:100px 100px 14px 14px"><img src="p9.jpg" alt="Kim at a temple"></div>
+  <div class="cap"><h1 class="rv" id="t0"></h1><p class="fade" id="t0s" style="--d:900ms"></p></div>
+  <div class="scrollcue"><span id="sc">Scroll</span><i></i></div>
+ </section>
+ <div id="chapters"></div>
+ <footer class="foot"><span>@designer kim 2026</span><a href="about.html" data-go id="back">← Back to About</a></footer>
+</main>
+<div class="side" aria-label="Sections"><button data-k="home" data-i="m_home">Home</button><button class="cur" data-k="about" data-i="m_about">About</button><button data-k="c1" data-i="m_c1">Tixxe App</button><button data-k="c2" data-i="m_c2">Case 2</button><button data-k="c3" data-i="m_c3">Case 3</button><button data-k="c4" data-i="m_c4">Case 4</button><button data-k="contact" data-i="m_contact">Contact</button></div>
+<nav class="nav" id="nav" aria-label="Main menu">
+ <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
+ <div class="list" id="list">
+  <button data-k="home" data-i="m_home">Home</button>
+  <button data-k="about" data-i="m_about">About</button>
+  <div class="grp" data-i="m_case">Case</div>
+  <button class="sub" data-k="c1" data-i="m_c1">Tixxe App</button><button class="sub" data-k="c2" data-i="m_c2">Case 2</button><button class="sub" data-k="c3" data-i="m_c3">Case 3</button><button class="sub" data-k="c4" data-i="m_c4">Case 4</button>
+  <button data-k="contact" style="margin-top:8px" data-i="m_contact">Contact</button>
+  <button class="lg-btn" id="lgBtn" aria-expanded="false" aria-controls="lgRow"><span class="lg-ico globe" id="lgIco"></span><span data-i="lang">Language</span></button>
+  <div class="lg-row" id="lgRow"></div>
+ </div>
+</nav>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh"><div class="box"><button class="cl" id="cl" aria-label="Close">×</button><h2 id="sh"></h2><div id="sb"></div></div></div>
+
+<div class="loader" id="loader" aria-hidden="true"><div class="bgfade"></div>
+ <svg class="ring" viewBox="-30 -30 360 360"><defs><path id="c" d="M150,150 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
+ <text><textPath id="rt" href="#c" textLength="868" lengthAdjust="spacing">Moving pixels since 2016. Still not done. Moving pixels since 2016. Still not done.</textPath></text></svg><div class="inside"><small data-i="ld_s">Your idea +<br>my obsession =</small><b data-i="ld_b">“Magic”</b></div></div>
+<script src="app.js"></script>
+<script>
+(function(){
+const D={
+en:{
+ title:'My story',sub:'The long version',scroll:'Scroll',back:'← Back to About',
+ ch:[
+ {t:'How it all began',img:1,b:[
+  ['lede','Sometimes, to find your place in life, you first have to dare to go the wrong way.'],
+  ['p','In **2016** I worked in an **auto parts warehouse**. A stable job, a decent salary, good colleagues and friends. Everything seemed fine. But every day I caught myself thinking that I was living somehow wrong. As if I were taking **someone else’s place in my own life**.'],
+  ['p','I had always liked creating something beautiful. Something that stirs emotion, catches the eye, is useful and stays in memory. I didn’t want to work just for a paycheck. I wanted to do something that truly mattered to me. To leave a mark. A small one, but my own.'],
+  ['p','And then I remembered that as a kid I had tried to **build websites**. I was curious, I experimented and came up with things of my own. But I was very young and never saw it as a possible future. I remember my dad once asked me:'],
+  ['q','“Are you going to make money from this? Is this going to be your life?”'],
+  ['p','In the end I dropped the hobby.'],
+  ['p','Years passed, and I came back to that thought.'],
+  ['p','I started watching **YouTube tutorials**, studying design and trying myself in a completely new field. I had no clear plan, no guarantees, no certainty it would work out. Only a feeling that I was finally moving in the right direction.'],
+  ['p','But it wasn’t only about design.'],
+  ['p','Once I visited **Thailand**. That trip changed my idea of what life can be. Different places, people, culture, atmosphere: everything felt incredibly alive and interesting. And above all, I felt that inner calm that is hard to put into words.'],
+  ['p','I wanted to go back. But not as a tourist who eventually flies home. As a person who can choose where to live and what to do.'],
+  ['p','So I set a goal: master a profession that would let me **work remotely**, and one day buy a one-way ticket.'],
+  ['p','I didn’t know how long it would take. But the decision had already been made.']]},
+ {t:'A one-way ticket',img:3,b:[
+  ['p','Leaving the warehouse wasn’t easy. I was leaving not a bad job but a perfectly good, stable life. There were people I talked to every day, a familiar rhythm and a clear future.'],
+  ['p','But sometimes the hardest part is admitting to yourself that the familiar no longer makes you happy.'],
+  ['p','I left and started learning. Day by day, month by month. I figured out the tools, studied interfaces, looked for my own approach, made mistakes and tried again. Little by little an interest in building websites turned into a profession, and a dream into a concrete goal that I came closer to with every new project.'],
+  ['p','It didn’t happen in a few weeks. It took me about **three years** to go from the first lessons to the moment I could make my dream real.'],
+  ['p','And then one day I bought a **one-way ticket** and flew to Thailand.'],
+  ['p','No return ticket. Without full certainty about what was waiting. But knowing that I had brought myself to that point.'],
+  ['q','For some people it’s just a move to another country. For me it was proof that life really can change if you stop putting it off.']]},
+ {t:'Ten years later',img:7,b:[
+  ['p','Ten years have passed since 2016.'],
+  ['stats',[['2016','Where it started'],['10','Years in design'],['500+','Projects, and maybe already 700']]],
+  ['p','In that time design became much more than a profession. I grew, gained huge experience and worked on hundreds of projects: **more than 500, and maybe already 700**. I built interfaces, looked for solutions to complex problems, experimented, learned from others and kept discovering something new.'],
+  ['p','Some of my work can be seen on <a class="lnk" href="https://dribbble.com/kimmmy" target="_blank" rel="noopener">Dribbble</a>.'],
+  ['p','But I never saw my path as a story about how many projects I managed to do or what heights I reached. What matters far more to me is that I’m still interested. That after all these years I can still get excited about an idea, light up for a new project and want to make something better than yesterday.'],
+  ['p','I keep growing, trying new things and moving forward. Because good design to me is not just beautiful screens. It’s **emotion, logic, attention to detail** and solutions that truly help people.'],
+  ['p','And yet for a long time I lacked one thing: a website of my own.'],
+  ['p','A place that would be entirely mine. Where I could gather my work, show my approach, share my thoughts and tell a little about the person on the other side of the interfaces.'],
+  ['p','And so I finally decided to create it.']]},
+ {t:'What’s next?',img:5,b:[
+  ['p','You know, sometimes I think about that guy who in 2016 worked in a warehouse and simply felt he wanted something different.'],
+  ['p','He didn’t yet know who he would become. He couldn’t imagine how many projects were waiting for him, what he would have to learn and where the decision to change everything would one day lead him.'],
+  ['p','But he tried anyway.'],
+  ['p','And that, I think, is the most important thing in my whole story. Not that everything turned out perfectly. Not that every step was right. But that I **didn’t stay in place** just because it was more familiar and comfortable.'],
+  ['p','This site is not the end of my path. It’s just **another chapter**.'],
+  ['p','I still want to make interesting things, meet people whose eyes light up, work on projects I believe in, and one day look back and think: “Damn, I’m glad I finally dared.”'],
+  ['p','If my approach resonates with you, if you have an interesting idea, a project, or simply want to get to know me, write to me. I’m open to conversation, new connections and collaboration.'],
+  ['p','And if you’re standing on the edge of change yourself and don’t know whether to try something new, maybe my story will remind you of one simple thing.'],
+  ['bq','You don’t have to know the whole route. Sometimes it’s enough to realise you no longer want to stay where you are.'],
+  ['sig','Thank you for reading to the end.','See you in the next chapter.']]}
+ ]},
+ru:{
+ title:'Моя история',sub:'Подробная версия',scroll:'Листай',back:'← Назад к «Обо мне»',
+ ch:[
+ {t:'С чего всё начиналось',img:1,b:[
+  ['lede','Иногда, чтобы найти своё место в жизни, нужно сначала решиться уйти не туда.'],
+  ['p','В **2016 году** я работал на **складе автозапчастей**. У меня была стабильная работа, неплохая зарплата, хорошие коллеги и друзья. Всё вроде бы было нормально. Но каждый день я ловил себя на мысли, что живу как-то не так. Будто занимаю **чужое место в собственной жизни**.'],
+  ['p','Мне всегда нравилось создавать что-то красивое. Что-то, что вызывает эмоции, цепляет взгляд, приносит пользу и остаётся в памяти. Мне хотелось не просто работать ради зарплаты, а делать то, что действительно имеет для меня значение. Оставить свой след. Пусть небольшой, но свой.'],
+  ['p','И однажды я вспомнил, что ещё в детстве пытался **создавать сайты**. Мне было интересно разбираться в этом, экспериментировать, придумывать что-то своё. Но тогда я был совсем маленьким и не воспринимал это как возможное будущее. Помню, папа однажды спросил меня:'],
+  ['q','«Ты что, будешь этим зарабатывать? Это будет твоей жизнью?»'],
+  ['p','В итоге я забросил своё увлечение.'],
+  ['p','Прошли годы, и я снова вернулся к этой мысли.'],
+  ['p','Я начал смотреть **уроки на YouTube**, изучать дизайн и пробовать себя в совершенно новой сфере. У меня не было чёткого плана, гарантий или уверенности, что всё получится. Было только ощущение, что я наконец-то двигаюсь в правильном направлении.'],
+  ['p','Но дело было не только в дизайне.'],
+  ['p','Однажды я побывал в **Таиланде**. Эта поездка изменила моё представление о том, какой может быть жизнь. Другие места, люди, культура, атмосфера — всё казалось невероятно живым и интересным. А главное, я почувствовал то самое внутреннее спокойствие, которое сложно объяснить словами.'],
+  ['p','Мне захотелось вернуться. Но уже не в качестве туриста, который однажды уедет домой, а человека, который может сам выбирать, где ему жить и чем заниматься.'],
+  ['p','Тогда я поставил перед собой цель: освоить профессию, которая позволит мне **работать удалённо**, и однажды купить билет в один конец.'],
+  ['p','Я ещё не знал, сколько времени это займёт. Но решение уже было принято.']]},
+ {t:'Билет в один конец',img:3,b:[
+  ['p','Уйти со склада было непросто. Я оставлял не плохую работу, а вполне хорошую и стабильную жизнь. Там были люди, с которыми я общался каждый день, привычный ритм и понятное будущее.'],
+  ['p','Но иногда самое сложное — признаться самому себе, что привычное больше не делает тебя счастливым.'],
+  ['p','Я ушёл и начал учиться. День за днём, месяц за месяцем. Разбирался в инструментах, изучал интерфейсы, искал свой подход, ошибался и пробовал снова. Постепенно интерес к созданию сайтов превратился в профессию, а мечта — в конкретную цель, к которой я приближался с каждым новым проектом.'],
+  ['p','Это не случилось за несколько недель. Мне понадобилось около **трёх лет**, чтобы пройти путь от первых уроков до момента, когда я смог осуществить свою мечту.'],
+  ['p','И вот однажды я купил **билет в один конец** и улетел в Таиланд.'],
+  ['p','Без обратного билета. Без полной уверенности в том, что ждёт впереди. Зато с пониманием, что я сам привёл себя в эту точку.'],
+  ['q','Для кого-то это просто переезд в другую страну. Для меня — доказательство того, что жизнь действительно может измениться, если перестать откладывать её на потом.']]},
+ {t:'Десять лет спустя',img:7,b:[
+  ['p','С 2016 года прошло десять лет.'],
+  ['stats',[['2016','С чего всё началось'],['10','лет в дизайне'],['500+','проектов, а возможно, уже 700']]],
+  ['p','За это время дизайн стал гораздо большим, чем просто профессией. Я вырос, получил огромный опыт и поработал над сотнями проектов — **более 500, а возможно, уже и 700**. Я создавал интерфейсы, искал решения для сложных задач, экспериментировал, учился у других и постоянно открывал для себя что-то новое.'],
+  ['p','Часть моих работ можно посмотреть на <a class="lnk" href="https://dribbble.com/kimmmy" target="_blank" rel="noopener">Dribbble</a>.'],
+  ['p','Но я никогда не воспринимал свой путь как историю о том, сколько проектов удалось сделать или каких высот получилось достичь. Для меня гораздо важнее то, что мне до сих пор интересно. Что спустя столько лет я всё ещё могу увлечься идеей, загореться новым проектом и захотеть сделать что-то лучше, чем вчера.'],
+  ['p','Я продолжаю развиваться, пробовать новое и двигаться дальше. Потому что хороший дизайн для меня — это не просто красивые экраны. Это **эмоции, логика, внимание к деталям** и решения, которые действительно помогают людям.'],
+  ['p','И всё же долгое время у меня не было одной вещи — собственного сайта.'],
+  ['p','Места, которое было бы полностью моим. Где я мог бы собрать свои работы, показать свой подход, поделиться мыслями и рассказать немного о человеке по ту сторону интерфейсов.'],
+  ['p','И вот я наконец решил его создать.']]},
+ {t:'А что дальше?',img:5,b:[
+  ['p','Знаешь, иногда я думаю о том парне, который в 2016 году работал на складе и просто чувствовал, что хочет чего-то другого.'],
+  ['p','Он ещё не знал, кем станет. Не представлял, сколько проектов его ждёт, чему ему предстоит научиться и куда однажды приведёт его решение всё изменить.'],
+  ['p','Но он всё-таки попробовал.'],
+  ['p','И, пожалуй, именно это я считаю самым важным во всей своей истории. Не то, что всё получилось идеально. Не то, что каждый шаг был правильным. А то, что я **не остался на месте** только потому, что так было привычнее и спокойнее.'],
+  ['p','Этот сайт — не итог моего пути. Это просто **ещё одна его глава**.'],
+  ['p','Мне по-прежнему хочется создавать интересные вещи, встречать людей, у которых горят глаза, работать над проектами, в которые веришь, и однажды оглянуться назад с мыслью: «Чёрт, как же здорово, что тогда я всё-таки решился».'],
+  ['p','Если тебе близок мой подход, если у тебя есть интересная идея, проект или просто желание познакомиться — напиши мне. Я открыт к общению, новым знакомствам и сотрудничеству.'],
+  ['p','А если ты сейчас сам стоишь на пороге перемен и не знаешь, стоит ли пробовать что-то новое, то, возможно, моя история напомнит тебе об одной простой вещи.'],
+  ['bq','Необязательно знать весь маршрут. Иногда достаточно понять, что ты больше не хочешь оставаться там, где находишься.'],
+  ['sig','Спасибо, что дочитал до конца.','Увидимся в следующей главе.']]}
+ ]}
+};
+const $=id=>document.getElementById(id);
+const mk=s=>s.replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>');
+let io=null,cnt=null;
+function split(el){let n=0;(function walk(node){[...node.childNodes].forEach(c=>{
+ if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+  const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=p;i.style.setProperty('--n',n++);w.appendChild(i);f.appendChild(w)});c.replaceWith(f)}
+ else if(c.nodeType===1)walk(c)})})(el)}
+function render(){
+ const L=(document.documentElement.lang==='ru')?'ru':'en',d=D[L];
+ const t0=$('t0');t0.textContent=d.title;t0.classList.remove('in');split(t0);
+ $('t0s').textContent=d.sub;$('sc').textContent=d.scroll;$('back').textContent=d.back;
+ const box=$('chapters');box.innerHTML='';
+ d.ch.forEach((c,k)=>{
+  const sec=document.createElement('section');sec.className='chap';
+  let h='<div class="side-l"><div class="sticky"><span class="num fade">0'+(k+1)+'</span><h2 class="rv">'+c.t+'</h2><div class="snap fade" style="--r:'+(k%2?3:-4)+'deg;--d:150ms"><img src="p'+c.img+'.jpg" alt="" loading="lazy"></div></div></div><div class="txt">';
+  c.b.forEach(b=>{
+   if(b[0]==='p')h+='<p class="fade">'+mk(b[1])+'</p>';
+   else if(b[0]==='lede')h+='<p class="lede fade">'+mk(b[1])+'</p>';
+   else if(b[0]==='q')h+='<div class="quote fade"><q class="rv">'+b[1]+'</q></div>';
+   else if(b[0]==='bq')h+='<div class="quote big fade"><q class="rv">'+b[1]+'</q></div>';
+   else if(b[0]==='stats')h+='<div class="stats">'+b[1].map((s,i)=>'<div class="stat fade" style="--d:'+i*120+'ms"><b data-c="'+s[0]+'">'+s[0]+'</b><span>'+s[1]+'</span></div>').join('')+'</div>';
+   else if(b[0]==='cta')h+='<div class="cta fade"><button class="pill solid" data-k="mail">'+b[1][0]+' <span>→</span></button><a class="pill" href="https://t.me/BUSD_BOSS" target="_blank" rel="noopener">'+b[1][1]+'</a><a class="pill" href="https://dribbble.com/kimmmy" target="_blank" rel="noopener">'+b[1][2]+'</a></div>';
+   else if(b[0]==='sig')h+='<div class="sig rv fade">'+b[1]+'<small>'+b[2]+'</small></div>';
+  });
+  h+='</div>';sec.innerHTML=h;box.appendChild(sec)});
+ box.querySelectorAll('.rv').forEach(split);
+ observe(box);
+}
+function observe(root){
+ if(io)io.disconnect();
+ io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');io.unobserve(el);
+  if(el.classList.contains('stat'))count(el.querySelector('b'))}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+ root.querySelectorAll('.rv,.fade').forEach(el=>io.observe(el));
+}
+function count(b){const raw=b.dataset.c,m=raw.match(/^(\d+)(.*)$/);if(!m)return;const to=+m[1],suf=m[2];if(to<20){return}
+ const t0=performance.now(),dur=1400;(function f(n){const p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,3);b.textContent=Math.round(to*e)+suf;if(p<1)requestAnimationFrame(f)})(t0)}
+window.buildHeading=function(){render();startTitle()};
+/* intro title appears when the photos are done */
+let tT=null;
+function startTitle(){const t0=$('t0'),t0s=$('t0s');clearTimeout(tT);t0.classList.remove('in');t0s.classList.remove('in');
+ const show=()=>{t0.classList.add('in');t0s.classList.add('in');document.body.classList.add('done')};
+ if(document.body.classList.contains('done'))show()}
+render();
+const total=4700+8*450+1800;
+setTimeout(()=>document.body.classList.add('go'),4700);
+setTimeout(()=>{document.body.classList.add('done');$('t0').classList.add('in');$('t0s').classList.add('in')},total);
+/* progress bar */
+const bar=$('bar');function prog(){const h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'}
+addEventListener('scroll',prog,{passive:true});addEventListener('resize',prog);prog();
+})();
+</script>
+
+</body></html>
