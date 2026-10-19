@@ -169,14 +169,14 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 
  <section class="intro">
   <div class="kicker fade" data-t="story">The story</div>
-  <div><p class="lead rv" id="lead" data-t="lead">x</p><div class="chips fade" data-c="chips"></div></div>
+  <div><p class="lead rv" id="lead" data-t="lead">x</p><div class="chips fade" data-chp="chips"></div></div>
  </section>
 
  <section class="secs">
-  <article class="sec"><div class="sec-l"><span class="num">02</span><span class="lab" data-t="s0_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s0_h">x</h3><p class="st fade" data-t="s0_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-l="s0_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-l="s0_l"></ul></div></div></div></article>
-  <article class="sec"><div class="sec-l"><span class="num">03</span><span class="lab" data-t="s1_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s1_h">x</h3><p class="st fade" data-t="s1_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-l="s1_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-l="s1_l"></ul></div></div></div></article>
-  <article class="sec"><div class="sec-l"><span class="num">04</span><span class="lab" data-t="s2_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s2_h">x</h3><p class="st fade" data-t="s2_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-l="s2_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-l="s2_l"></ul></div></div></div></article>
-  <article class="sec"><div class="sec-l"><span class="num">05</span><span class="lab" data-t="s3_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s3_h">x</h3><p class="st fade" data-t="s3_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-l="s3_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-l="s3_l"></ul></div></div></div></article>
+  <article class="sec"><div class="sec-l"><span class="num">02</span><span class="lab" data-t="s0_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s0_h">x</h3><p class="st fade" data-t="s0_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-ls="s0_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-ls="s0_l"></ul></div></div></div></article>
+  <article class="sec"><div class="sec-l"><span class="num">03</span><span class="lab" data-t="s1_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s1_h">x</h3><p class="st fade" data-t="s1_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-ls="s1_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-ls="s1_l"></ul></div></div></div></article>
+  <article class="sec"><div class="sec-l"><span class="num">04</span><span class="lab" data-t="s2_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s2_h">x</h3><p class="st fade" data-t="s2_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-ls="s2_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-ls="s2_l"></ul></div></div></div></article>
+  <article class="sec"><div class="sec-l"><span class="num">05</span><span class="lab" data-t="s3_k">x</span></div><div class="sec-r"><h3 class="sh rv" data-t="s3_h">x</h3><p class="st fade" data-t="s3_t">x</p><div class="cols"><div class="card pr fade"><h4 data-t="lp">x</h4><ul data-ls="s3_p"></ul></div><div class="card hl fade" style="--d:120ms"><h4 data-t="lh">x</h4><ul data-ls="s3_l"></ul></div></div></div></article>
  </section>
 
  <section class="deck" id="deck">
@@ -235,8 +235,8 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
    const rv=el.classList.contains('rv')||el.classList.contains('ht');
    el.innerHTML=v;
    if(rv){delete el.dataset.s;split(el);if(el.classList.contains('ht')&&el.closest('.rv.in'))el.classList.add('in')}});
-  document.querySelectorAll('[data-l]').forEach(ul=>{const a=d[ul.dataset.l]||[];ul.innerHTML=a.map((x,i)=>'<li style="--k:'+i+'">'+x+'</li>').join('');ul.classList.toggle('one',a.length===1)});
-  document.querySelectorAll('[data-c]').forEach(el=>{el.innerHTML=(d[el.dataset.c]||[]).map((x,i)=>'<span style="--k:'+i+'">'+x+'</span>').join('')});
+  document.querySelectorAll('[data-ls]').forEach(ul=>{const a=d[ul.dataset.ls]||[];ul.innerHTML=a.map((x,i)=>'<li style="--k:'+i+'">'+x+'</li>').join('');ul.classList.toggle('one',a.length===1)});
+  document.querySelectorAll('[data-chp]').forEach(el=>{el.innerHTML=(d[el.dataset.chp]||[]).map((x,i)=>'<span style="--k:'+i+'">'+x+'</span>').join('')});
   if(idx>=0)setCap(idx,false)}
  window.buildHeading=render;
 
