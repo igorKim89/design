@@ -51,9 +51,11 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 
 /* big image */
 .big{margin:clamp(50px,10vh,110px) var(--padr) 0 var(--pad)}
-.big .ph{aspect-ratio:16/8.2;clip-path:inset(100% 0 0 0 round 34px);transition:clip-path 1.3s var(--ease)}
+.big .ph{aspect-ratio:2/1;background:#69d0d0;clip-path:inset(100% 0 0 0 round 34px);transition:clip-path 1.3s var(--ease)}
 .big.in .ph{clip-path:inset(0 0 0 0 round 34px)}
-.big .ph .in-img{position:absolute;inset:-9% 0;background:radial-gradient(circle at 70% 30%,rgba(254,168,49,.55),transparent 45%),radial-gradient(circle at 20% 80%,rgba(160,140,255,.45),transparent 50%);transform:translateY(var(--py,0px)) scale(1.04);will-change:transform;z-index:-1}
+.big .ph::before{display:none}
+.big .ph .in-img{position:absolute;inset:-4% 0;transform:translateY(var(--py,0px));will-change:transform;z-index:-1}
+.big .ph .in-img img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 
 /* ---------- intro ---------- */
 .intro{position:relative;display:grid;grid-template-columns:1fr minmax(0,1.6fr);gap:var(--pad);padding:clamp(100px,20vh,230px) var(--padr) clamp(70px,12vh,140px) var(--pad);align-items:start}
@@ -87,12 +89,8 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
  opacity:0;translate:0 90px;rotate:5deg;transition:opacity .8s ease,translate .9s var(--ease),rotate .9s var(--ease),scale .5s var(--ease),filter .4s ease;transition-delay:calc(var(--i)*90ms),calc(var(--i)*90ms),calc(var(--i)*90ms),0s,0s}
 .gal.in .slide{opacity:1;translate:0 calc((var(--i) % 2)*34px);rotate:0deg}
 .slide .ph::before{display:none}
-.slide .ph{aspect-ratio:3/4.1;transform:skewX(var(--sk,0deg));transition:transform .25s ease-out,box-shadow .5s ease}
-.slide:nth-child(5n+1) .ph{background:linear-gradient(160deg,#ffe2b5,#ffc28a)}
-.slide:nth-child(5n+2) .ph{background:linear-gradient(160deg,#e6dcff,#cbbcff)}
-.slide:nth-child(5n+3) .ph{background:linear-gradient(160deg,#d7f1e4,#aee3c9)}
-.slide:nth-child(5n+4) .ph{background:linear-gradient(160deg,#ffdede,#ffb9b9)}
-.slide:nth-child(5n+5) .ph{background:linear-gradient(160deg,#dbe9ff,#b4cfff)}
+.slide .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;user-select:none;transform:scale(1.16)}
+.slide .ph{background:#01AEB0;aspect-ratio:3/4.1;transform:skewX(var(--sk,0deg));transition:transform .25s ease-out,box-shadow .5s ease}
 .slide cap,.slide .cap{display:block;margin-top:14px;font-size:clamp(14px,1.05vw,17px);font-weight:500}
 .slide .cap small{display:block;margin-top:2px;font-weight:400;color:var(--mut);font-size:.88em}
 @media (hover:hover){
@@ -124,7 +122,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
   .trio{grid-template-columns:1fr;gap:34px}.col:nth-child(2),.col:nth-child(3){margin-top:0}
  .side{display:none}
  .ctrl button{width:46px;height:46px}
- .big .ph{aspect-ratio:4/3.6}
+ .big .ph{aspect-ratio:16/10}
  .gal-h{align-items:flex-start;flex-direction:column}
 }
 @media (prefers-reduced-motion:reduce){.rv .w>i,.fade,.slide,.big .ph{transition:none!important;animation:none!important}}
@@ -143,7 +141,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
   </div>
  </header>
 
- <section class="big" id="big"><div class="ph"><div class="in-img"></div><div class="ico"></div><span class="tag" data-t="tag">Hero image · 16:8</span></div></section>
+ <section class="big" id="big"><div class="ph"><div class="in-img"><img src="tixxe-hero.jpg" alt="Tixxe App screens: business calendar, welcome screen and statistics" width="1920" height="960"></div></div></section>
 
  <section class="intro">
   <div class="kicker fade" data-t="story">The story</div>
@@ -162,14 +160,14 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
    <div class="ctrl fade"><button id="prev" aria-label="Previous" data-ta="prev"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button id="next" aria-label="Next" data-ta="nxt"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
   </div>
   <div class="track" id="track" tabindex="0" aria-label="Screens carousel">
-   <figure class="slide" style="--i:0;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:1;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:2;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:3;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:4;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:5;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:6;margin:0"><div class="ph"></div></figure>
-   <figure class="slide" style="--i:7;margin:0"><div class="ph"></div></figure>
+   <figure class="slide" style="--i:0;margin:0"><div class="ph"><img src="tixxe-1.png" alt="Today screen with task list" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:1;margin:0"><div class="ph"><img src="tixxe-2.png" alt="Choose how you plan to use Tixxe" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:2;margin:0"><div class="ph"><img src="tixxe-3.png" alt="Calendar screen" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:3;margin:0"><div class="ph"><img src="tixxe-4.png" alt="Fines and rewards, team summary" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:4;margin:0"><div class="ph"><img src="tixxe-5.png" alt="Team members list" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:5;margin:0"><div class="ph"><img src="tixxe-6.png" alt="Settings screen" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:6;margin:0"><div class="ph"><img src="tixxe-7.png" alt="Fines and rewards screen" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
+   <figure class="slide" style="--i:7;margin:0"><div class="ph"><img src="tixxe-8.png" alt="Calendar with fines and rewards shortcut" width="1191" height="1635" draggable="false" loading="lazy"></div></figure>
   </div>
   <div class="prog"><i id="prog"></i></div>
  </section>
@@ -237,7 +235,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
 
  /* parallax on the big image */
  const bigIn=document.querySelector('.big .in-img'),bigEl=document.getElementById('big');
- function par(){const r=bigEl.getBoundingClientRect(),vh=innerHeight;if(r.bottom<0||r.top>vh)return;const p=(r.top+r.height/2-vh/2)/vh;bigIn.style.setProperty('--py',(p*-60).toFixed(1)+'px')}
+ function par(){const r=bigEl.getBoundingClientRect(),vh=innerHeight;if(r.bottom<0||r.top>vh)return;const p=(r.top+r.height/2-vh/2)/vh;bigIn.style.setProperty('--py',(p*-24).toFixed(1)+'px')}
  addEventListener('scroll',par,{passive:true});addEventListener('resize',par);par();
 
  /* carousel: arrows, drag, progress, velocity skew */
