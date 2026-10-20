@@ -4,18 +4,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#eceee6"><meta name="robots" content="noindex">
 <title>404 - Designer Kim</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
 <style>
 html{--vh:1vh}
 :root{--orange:#fea831;--ink:#3b3224;--bg:#eceee6;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
 *{box-sizing:border-box}
 html,body{height:calc(var(--vh)*100);margin:0;overflow:hidden;background:var(--bg);font-family:var(--round);color:var(--ink)}
 .stage{position:fixed;inset:0;overflow:hidden;background:var(--bg)}
-.stage video,.stage img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100vw,calc(var(--vh)*100*1248/704));aspect-ratio:1248/704;display:block;object-fit:cover}
+.stage img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100vw,calc(var(--vh)*100*1248/704));aspect-ratio:1248/704;display:block;object-fit:cover}
 @media (max-aspect-ratio:1/1){
- .stage video,.stage img{width:100vw;top:46%;transform:translate(-50%,-50%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent),linear-gradient(transparent,#000 22%,#000 78%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent),linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-composite:intersect}
+ .stage img{width:100vw;top:46%;transform:translate(-50%,-50%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent),linear-gradient(transparent,#000 22%,#000 78%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent),linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-composite:intersect}
 }
-.back{position:fixed;z-index:5;left:50%;bottom:calc(clamp(28px,5.5vh,56px) + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:inline-flex;align-items:center;gap:.5em;white-space:nowrap;text-decoration:none;font-weight:500;font-size:clamp(20px,1.7vw,28px);letter-spacing:-.01em;color:var(--ink);padding:.3em .2em;-webkit-tap-highlight-color:transparent}
+.back{position:fixed;z-index:5;left:50%;bottom:calc(clamp(14px,2.4vh,26px) + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:inline-flex;align-items:center;gap:.4em;white-space:nowrap;text-decoration:none;font-weight:400;font-size:clamp(14px,1.05vw,17px);letter-spacing:-.01em;color:var(--ink);padding:.3em .2em;-webkit-tap-highlight-color:transparent}
 .back svg{width:1em;height:1em;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
 .back::after{content:"";position:absolute;left:.2em;right:.2em;bottom:.05em;height:2px;border-radius:2px;background:var(--orange);transform:scaleX(.25);transform-origin:left;transition:transform .4s cubic-bezier(.7,0,.2,1)}
 .back:hover::after,.back:focus-visible::after{transform:none}
@@ -24,7 +24,7 @@ html,body{height:calc(var(--vh)*100);margin:0;overflow:hidden;background:var(--b
 .wipe{position:fixed;inset:0;z-index:200;background:var(--orange);transform:translateY(101%);transition:transform .8s cubic-bezier(.7,0,.2,1);pointer-events:none}
 .wipe.on{transform:none;pointer-events:auto}
 </style></head><body>
-<div class="stage"><video id="v" autoplay loop muted playsinline preload="auto" poster="404-poster.jpg" aria-hidden="true"><source src="404-bg.webm" type="video/webm"><source src="404-bg.mp4" type="video/mp4"></video></div>
+<div class="stage"><img id="v" src="404-bg.gif" alt="" aria-hidden="true" decoding="async"></div>
 <a class="back" id="b" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span id="t">Back home</span></a>
 <div class="wipe" id="w"></div>
 <script>
@@ -33,9 +33,6 @@ var T={en:'Back home',ru:'На главную',de:'Zurück zur Startseite',ko:'�
 try{var q=new URLSearchParams(location.search).get('lang');var s=null;try{s=localStorage.getItem('lang')}catch(e){}
  L=V.indexOf(q)>-1?q:V.indexOf(s)>-1?s:V.indexOf((window.name||'').slice(-2))>-1?(window.name||'').slice(-2):(V.indexOf((navigator.language||'en').slice(0,2))>-1?(navigator.language||'en').slice(0,2):'en')}catch(e){}
 document.documentElement.lang=L;document.getElementById('t').textContent=T[L];
-var v=document.getElementById('v');
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause()}
-else{var p=v.play();if(p&&p.catch)p.catch(function(){})}
 document.getElementById('b').addEventListener('click',function(e){
  if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();
  document.getElementById('w').classList.add('on');
