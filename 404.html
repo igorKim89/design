@@ -11,7 +11,7 @@ html{--vh:1vh}
 *{box-sizing:border-box}
 html,body{height:calc(var(--vh)*100);margin:0;overflow:hidden;background:var(--bg);font-family:var(--round);color:var(--ink)}
 .stage{position:fixed;inset:0;overflow:hidden;background:var(--bg);display:grid;place-items:center}
-.stage img{display:block;width:min(960px,100vw,calc(var(--vh)*100*.86*1248/704));height:auto;aspect-ratio:1248/704;margin-top:calc(var(--vh)*-3);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),linear-gradient(transparent,#000 14%,#000 86%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-composite:intersect}
+.stage video{display:block;width:min(960px,100vw,calc(var(--vh)*100*.86*1248/704));height:auto;aspect-ratio:1248/704;margin-top:calc(var(--vh)*-3);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),linear-gradient(transparent,#000 14%,#000 86%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-composite:intersect}
 .back{position:fixed;z-index:5;left:50%;bottom:calc(clamp(14px,2.4vh,26px) + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:inline-flex;align-items:center;gap:.4em;white-space:nowrap;text-decoration:none;font-weight:400;font-size:clamp(14px,1.05vw,17px);letter-spacing:-.01em;color:var(--ink);padding:.3em .2em;-webkit-tap-highlight-color:transparent}
 .back svg{width:1em;height:1em;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
 .back::after{content:"";position:absolute;left:.2em;right:.2em;bottom:.05em;height:2px;border-radius:2px;background:var(--orange);transform:scaleX(.25);transform-origin:left;transition:transform .4s cubic-bezier(.7,0,.2,1)}
@@ -21,11 +21,12 @@ html,body{height:calc(var(--vh)*100);margin:0;overflow:hidden;background:var(--b
 .wipe{position:fixed;inset:0;z-index:200;background:var(--orange);transform:translateY(101%);transition:transform .8s cubic-bezier(.7,0,.2,1);pointer-events:none}
 .wipe.on{transform:none;pointer-events:auto}
 </style></head><body>
-<div class="stage"><img id="v" src="404-bg.gif" alt="" aria-hidden="true" decoding="async"></div>
+<div class="stage"><video id="v" autoplay muted playsinline preload="auto" poster="404-poster.jpg" aria-hidden="true"><source src="404-bg.webm" type="video/webm"><source src="404-bg.mp4" type="video/mp4"></video></div>
 <a class="back" id="b" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span id="t">Back home</span></a>
 <div class="wipe" id="w"></div>
 <script>
 (function(){
+var v=document.getElementById('v');v.loop=false;var pp=v.play();if(pp&&pp.catch)pp.catch(function(){});
 var T={en:'Back home',ru:'На главную',de:'Zurück zur Startseite',ko:'홈으로'},V=['en','ru','de','ko'],L='en';
 try{var q=new URLSearchParams(location.search).get('lang');var s=null;try{s=localStorage.getItem('lang')}catch(e){}
  L=V.indexOf(q)>-1?q:V.indexOf(s)>-1?s:V.indexOf((window.name||'').slice(-2))>-1?(window.name||'').slice(-2):(V.indexOf((navigator.language||'en').slice(0,2))>-1?(navigator.language||'en').slice(0,2):'en')}catch(e){}
