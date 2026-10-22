@@ -5,7 +5,7 @@ const MAIL='kimerchiwe1989@gmail.com';
 /* ---------- translations ---------- */
 const I={
 en:{ab_title:'About Me',ab_mq:'Hey, I’m here! ✨ Come say hi, get to know me, and let’s create something that makes people smile.',ab_hint:'Go on, click me! <span class="eyes">👀</span> Let’s see if you can figure out who Kim is.',vd:'Let’s See ↗',b1:'UI/UX Design',b2:'Mobile App',b3:'Web Design',hello:'Hello, mate <span class="wave">👋🏻</span>',idea:'Got an Idea? Let’s Make It Come Alive!',email:'Email me',hey:'Hi there!',
- m_home:'Home',m_about:'About',m_case:'Case',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Case 3',m_c4:'Case 4',m_contact:'Contact',lang:'Language',
+ m_home:'Home',m_about:'About',m_case:'Case',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Postavkin',m_c4:'Case 4',m_contact:'Contact',lang:'Language',
  ring:'Moving pixels since 2016. Still not done. Moving pixels since 2016. Still not done.',ld_s:'Your idea +<br>my obsession =',ld_b:'“Magic”',
  say:'Don’t Ghost Me!',sub:'Send me a DM or reply on Email, okay?',arrow:'Write me an email',
  about_t:'About',about_b:'<p>Senior Product &amp; UI/UX Designer with eight years of experience in FinTech, Crypto and Web3. I take products from first research to launch and build the design systems that keep them consistent.</p>',
@@ -15,7 +15,7 @@ en:{ab_title:'About Me',ab_mq:'Hey, I’m here! ✨ Come say hi, get to know me,
  c4_t:'Case 4: B2B platform',c4_b:'<p>Redesign of a data-heavy product: clearer navigation, powerful tables and real-time dashboards. Roobinium, 2019–2021.</p>',
  mail_t:'Write me a message',ph_n:'Your name',ph_e:'Your email',ph_m:'Your message',send:'Send via email',copy:'Copy address',copied:'Copied',subj:'Hello from'},
 ru:{ab_title:'Обо мне',ab_mq:'Эй, я здесь! ✨ Заходи поздороваться, познакомимся и создадим что-нибудь, что заставит людей улыбаться.',ab_hint:'Ну же, нажми на меня! <span class="eyes">👀</span> Посмотрим, сможешь ли ты догадаться, кто такой Ким.',vd:'Смотри ↗',b1:'UI/UX-дизайн',b2:'Мобильные приложения',b3:'Веб-дизайн',hello:'Привет, друг <span class="wave">👋🏻</span>',idea:'Есть идея? Давай оживим её!',email:'Написать',hey:'Привет!',
- m_home:'Главная',m_about:'Обо мне',m_case:'Кейсы',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Кейс 3',m_c4:'Кейс 4',m_contact:'Контакты',lang:'Язык',
+ m_home:'Главная',m_about:'Обо мне',m_case:'Кейсы',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Postavkin',m_c4:'Кейс 4',m_contact:'Контакты',lang:'Язык',
  ring:'Двигаю пиксели с 2016 года. Всё ещё не закончил. Двигаю пиксели с 2016 года. Всё ещё не закончил.',ld_s:'Твоя идея +<br>моя одержимость =',ld_b:'«Магия»',
  say:'Не пропадай!',sub:'Напиши мне в личку или ответь по почте, окей?',arrow:'Написать мне письмо',
  about_t:'Обо мне',about_b:'<p>Senior Product- и UI/UX-дизайнер с восьмилетним опытом в FinTech, Crypto и Web3. Веду продукты от первых исследований до запуска и создаю дизайн-системы, которые сохраняют их целостность.</p>',
@@ -25,7 +25,7 @@ ru:{ab_title:'Обо мне',ab_mq:'Эй, я здесь! ✨ Заходи поз
  c4_t:'Кейс 4: B2B-платформа',c4_b:'<p>Редизайн продукта с большим объёмом данных: понятная навигация, мощные таблицы и дашборды в реальном времени. Roobinium, 2019–2021.</p>',
  mail_t:'Напиши мне сообщение',ph_n:'Ваше имя',ph_e:'Ваша почта',ph_m:'Ваше сообщение',send:'Отправить по почте',copy:'Скопировать адрес',copied:'Скопировано',subj:'Привет от'},
 de:{ab_title:'Über mich',ab_mq:'Hey, ich bin hier! ✨ Sag Hallo, lerne mich kennen und lass uns etwas erschaffen, das Menschen zum Lächeln bringt.',ab_hint:'Los, klick mich! <span class="eyes">👀</span> Mal sehen, ob du herausfindest, wer Kim ist.',vd:'Mal sehen ↗',b1:'UI/UX-Design',b2:'Mobile App',b3:'Webdesign',hello:'Hallo, Freund <span class="wave">👋🏻</span>',idea:'Du hast eine Idee? Erwecken wir sie zum Leben!',email:'E-Mail',hey:'Hallo!',
- m_home:'Start',m_about:'Über mich',m_case:'Cases',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Case 3',m_c4:'Case 4',m_contact:'Kontakt',lang:'Sprache',
+ m_home:'Start',m_about:'Über mich',m_case:'Cases',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Postavkin',m_c4:'Case 4',m_contact:'Kontakt',lang:'Sprache',
  ring:'Pixel bewegen seit 2016. Noch nicht fertig. Pixel bewegen seit 2016. Noch nicht fertig.',ld_s:'Deine Idee +<br>meine Besessenheit =',ld_b:'„Magie“',
  say:'Ghost mich nicht!',sub:'Schick mir eine DM oder antworte per E-Mail, okay?',arrow:'Schreib mir eine E-Mail',
  about_t:'Über mich',about_b:'<p>Senior Product- und UI/UX-Designer mit acht Jahren Erfahrung in FinTech, Crypto und Web3. Ich begleite Produkte von der ersten Recherche bis zum Launch und baue Designsysteme, die sie konsistent halten.</p>',
@@ -36,7 +36,7 @@ de:{ab_title:'Über mich',ab_mq:'Hey, ich bin hier! ✨ Sag Hallo, lerne mich ke
  mail_t:'Schreib mir eine Nachricht',ph_n:'Dein Name',ph_e:'Deine E-Mail',ph_m:'Deine Nachricht',send:'Per E-Mail senden',copy:'Adresse kopieren',copied:'Kopiert',subj:'Hallo von'},
 ko:{ab_title:'소개',ab_mq:'안녕, 나 여기 있어요! ✨ 인사하러 와서 저를 알아가고, 사람들을 미소 짓게 만들 무언가를 함께 만들어요.',ab_hint:'어서, 눌러 보세요! <span class="eyes">👀</span> Kim이 누구인지 맞힐 수 있는지 볼까요?',vd:'보러 가기 ↗',
  b1:'UI/UX 디자인',b2:'모바일 앱',b3:'웹 디자인',hello:'안녕, 친구 <span class="wave">👋🏻</span>',idea:'아이디어가 있나요? 함께 현실로 만들어 봐요!',email:'메일 보내기',hey:'안녕!',
- m_home:'홈',m_about:'소개',m_case:'케이스',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'케이스 3',m_c4:'케이스 4',m_contact:'연락처',lang:'언어',
+ m_home:'홈',m_about:'소개',m_case:'케이스',m_c1:'Tixxe App',m_c2:'Boost-Hero',m_c3:'Postavkin',m_c4:'케이스 4',m_contact:'연락처',lang:'언어',
  ring:'2016년부터 픽셀을 움직이는 중. 아직 끝나지 않았어요. 2016년부터 픽셀을 움직이는 중. 아직 끝나지 않았어요.',ld_s:'당신의 아이디어 +<br>나의 집념 =',ld_b:'“마법”',
  say:'잠수 타지 마요!',sub:'DM을 보내거나 이메일로 답장해 주세요, 알겠죠?',arrow:'이메일 쓰기',
  about_t:'소개',about_b:'<p>핀테크, 크립토, Web3 분야에서 8년의 경험을 가진 시니어 프로덕트·UI/UX 디자이너입니다. 첫 리서치부터 출시까지 제품을 이끌고, 일관성을 유지하는 디자인 시스템을 만듭니다.</p>',
@@ -113,6 +113,7 @@ function route(k){
  if(k==='about'){PAGE==='about'?setMenu(false):go('about.html');return}
  if(k==='c1'){PAGE==='c1'?setMenu(false):go('case1.html');return}
  if(k==='c2'){PAGE==='c2'?setMenu(false):go('case2.html');return}
+ if(k==='c3'){PAGE==='c3'?setMenu(false):go('case3.html');return}
  openSheet(k)}
 const cur=list.querySelector('[data-k="'+PAGE+'"]');cur&&cur.classList.add('dim');
 document.addEventListener('click',e=>{

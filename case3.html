@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll"><head>
+<meta charset="utf-8"><script>(function(){var d=document.documentElement;function s(){var h=(window.visualViewport&&visualViewport.height)||innerHeight;d.style.setProperty('--vh',(h*0.01).toFixed(3)+'px')}s();addEventListener('resize',s);addEventListener('orientationchange',function(){setTimeout(s,150)});if(window.visualViewport)visualViewport.addEventListener('resize',s)})();</script><meta name="theme-color" content="#f8f7f3"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designer Kim - Postavkin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{--vh:1vh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--padr:max(var(--pad),160px);--orange:#fea831;--ink:#3b3224;--bgc:#f8f7f3;--mut:#8d8a6c;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;--pad:clamp(20px,5vw,84px);--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html.scroll{height:auto;max-height:none;position:static;overflow-x:hidden;overflow-y:auto;overscroll-behavior:auto;scroll-behavior:smooth}
+html.scroll body{height:auto;max-height:none;position:static;overflow:visible;contain:none;margin:0;background:var(--bgc);font-family:var(--round);color:var(--ink);touch-action:auto}
+button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.brand{position:absolute;z-index:15;left:var(--pad);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
+.brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;margin-bottom:10px}
+.brand span{display:block;font-weight:400;font-size:clamp(13px,.95vw,16px);letter-spacing:.02em}
+.side{position:fixed;z-index:15;right:clamp(16px,2.2vw,40px);bottom:clamp(16px,2.4vw,30px);display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.side button{display:flex;align-items:center;gap:8px;background:none;border:0;padding:1px 0;cursor:pointer;font-size:13px;color:#9a9578;transition:color .2s}
+.side button::after{content:"";width:8px;height:8px;border-radius:50%;background:#fed9a6;transition:background .2s}
+.side button:hover{color:#000}.side button:hover::after{background:var(--orange)}
+.side button.cur{color:#000;font-weight:500}.side button.cur::after{background:var(--orange)}
+
+/* ---------- headline reveal: words slide up out of a mask ---------- */
+.rv .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.rv .w>i{display:inline-block;font-style:normal;transform:translateY(112%) rotate(4deg);transform-origin:0 100%;transition:transform 1s var(--ease);transition-delay:calc(var(--n)*70ms + var(--d,0ms))}
+.rv.in .w>i{transform:none}
+.rv em{font-style:normal;background:linear-gradient(var(--orange),var(--orange)) 0 92%/0% .12em no-repeat;transition:background-size 1.1s var(--ease) .7s}
+.rv.in em{background-size:100% .12em}
+.fade{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.fade.in{opacity:1;transform:none}
+
+
+/* ---------- hero: title left, facts column right ---------- */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,2.3fr) minmax(220px,.62fr);gap:var(--pad);align-items:end;padding:clamp(130px,21vh,220px) var(--padr) 0 var(--pad)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:clamp(13px,1vw,16px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.eyebrow::before{content:"";width:46px;height:2px;background:var(--orange);transform-origin:0 50%;animation:line 1s var(--ease) 5.2s both}
+@keyframes line{from{transform:scaleX(0)}}
+.h1{margin:.28em 0 0;font-weight:600;letter-spacing:-.035em;line-height:.96;font-size:clamp(32px,4vw,80px)}
+.h1 .sub{display:block;margin-top:clamp(20px,2.4vw,36px);font-size:clamp(15px,.2em,34px);letter-spacing:0;font-weight:400;line-height:1.3;color:var(--mut);max-width:24em}
+.meta{display:flex;flex-direction:column;padding-bottom:.6em}
+.meta>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid rgba(59,50,36,.18);position:relative}
+.meta>div::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.meta>div:hover::after{transform:scaleX(1)}
+.meta b{font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.meta span{font-size:clamp(15px,1.15vw,19px);font-weight:500;text-align:right}
+
+/* ---------- big image: opens from the centre ---------- */
+.ph{position:relative;overflow:hidden;border-radius:clamp(18px,2.2vw,34px);isolation:isolate}
+.big{margin:clamp(50px,10vh,110px) var(--padr) 0 var(--pad)}
+.big .ph{aspect-ratio:2/1;background:linear-gradient(120deg,#2b2115,#5a3a12 55%,#fea831);clip-path:inset(0 50% 0 50% round 34px);transition:clip-path 1.5s var(--ease)}
+.big.in .ph{clip-path:inset(0 0 0 0 round 34px)}
+.hph{position:absolute;inset:0;z-index:-2;display:grid;place-items:center;font-weight:700;letter-spacing:-.04em;font-size:clamp(40px,9vw,160px);color:rgba(255,255,255,.16)}
+.big .ph .in-img{position:absolute;inset:0;transform-origin:50% 0;transform:scale(var(--sc,1));will-change:transform;z-index:-1}
+.big .ph .in-img img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ---------- intro: lead left, kicker right ---------- */
+.intro{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(120px,.5fr);gap:var(--pad);padding:clamp(100px,20vh,230px) var(--padr) clamp(60px,10vh,120px) var(--pad);align-items:start}
+.kicker{font-size:clamp(14px,1.05vw,17px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding-top:.7em;text-align:right;order:2}
+.lead{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.2;font-size:clamp(22px,2.6vw,44px)}
+
+/* ---------- chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,4.5vh,46px)}
+.chips span{padding:9px 18px;border:1px solid rgba(59,50,36,.25);border-radius:99px;font-size:clamp(13px,1vw,15px);font-weight:500;opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .7s var(--ease),background .3s,color .3s,border-color .3s;transition-delay:calc(var(--k,0)*90ms + 300ms)}
+.chips.in span{opacity:1;transform:none}
+.chips span:hover{background:var(--orange);border-color:var(--orange);color:#fff;transition-delay:0s}
+
+/* ---------- live project link ---------- */
+.live{background:#fff;padding:0 var(--padr) 0 var(--pad)}
+.livecard{position:relative;display:flex;justify-content:space-between;align-items:center;gap:clamp(18px,3vw,40px);flex-wrap:wrap;padding:clamp(26px,3.4vw,54px);border-radius:clamp(22px,2.6vw,40px);background:#1f1a12;color:#fff;text-decoration:none;overflow:hidden;isolation:isolate;transition:transform .6s var(--ease),box-shadow .6s ease}
+.livecard::before{content:"";position:absolute;right:-8%;top:50%;width:min(60%,640px);aspect-ratio:1;translate:0 -50%;border-radius:50%;background:radial-gradient(circle,rgba(254,168,49,.42),transparent 64%);z-index:-1;transition:transform .8s var(--ease),opacity .6s;opacity:.8}
+.livecard:hover{transform:translateY(-6px);box-shadow:0 40px 60px -34px rgba(80,50,10,.55)}
+.livecard:hover::before{transform:scale(1.25)}
+.lv-k{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500}
+.lv-k b{font-weight:500}
+.pulse{position:relative;width:9px;height:9px;border-radius:50%;background:#3ddc84}
+.pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:#3ddc84;animation:pl 1.8s ease-out infinite}
+@keyframes pl{from{transform:scale(1);opacity:.7}to{transform:scale(3.2);opacity:0}}
+.lv-l p{margin:.9em 0 0;font-size:clamp(17px,1.7vw,27px);line-height:1.35;font-weight:500;letter-spacing:-.01em;max-width:21em;color:rgba(255,255,255,.88)}
+.lv-r{display:flex;align-items:center;gap:clamp(14px,1.8vw,26px)}
+.lv-url{font-weight:600;letter-spacing:-.03em;line-height:1.1;font-size:clamp(26px,3.6vw,60px)}
+.lv-url .u{background:linear-gradient(var(--orange),var(--orange)) 0 100%/100% .07em no-repeat;transition:background-size .6s var(--ease);padding-bottom:.08em}
+.livecard:hover .lv-url .u{background-size:0 .07em;background-position:100% 100%}
+.livecard .arr{flex:none;width:clamp(48px,5vw,76px);aspect-ratio:1;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;transition:transform .5s var(--ease)}
+.livecard .arr svg{width:42%;height:42%;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.livecard:hover .arr{transform:rotate(45deg) scale(1.08)}
+.livecard:focus-visible{outline-offset:6px}
+.live+.outro{padding-top:clamp(60px,11vh,130px)}
+.outro .kicker{order:0;text-align:left;padding-top:0}
+
+/* ---------- outro ---------- */
+.outro{padding:clamp(90px,17vh,200px) var(--padr) clamp(50px,10vh,110px) var(--pad);display:flex;flex-direction:column;align-items:flex-start;gap:26px;background:#fff}
+.nextbtn{display:inline-flex;align-items:center;gap:18px;background:none;border:0;padding:0;cursor:pointer;font-weight:600;letter-spacing:-.03em;line-height:1;font-size:clamp(30px,4.6vw,80px)}
+.nextbtn .arr{flex:none;width:1.05em;height:1.05em;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.8em;line-height:0;transition:transform .5s var(--ease)}
+.nextbtn .arr svg{width:46%;height:46%;display:block;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nextbtn:hover .arr{transform:rotate(-45deg) scale(1.08)}
+.nextbtn span.t{background:linear-gradient(var(--ink),var(--ink)) 0 100%/0 .06em no-repeat;transition:background-size .6s var(--ease)}
+.nextbtn:hover span.t{background-size:100% .06em}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:30px var(--padr) 36px var(--pad);background:#fff;font-size:13px;color:var(--mut)}
+.foot a{text-decoration:none}.foot a:hover{color:var(--ink)}
+
+/* ---------- responsive ---------- */
+@media (min-width:821px) and (max-width:1280px){.h1{font-size:3.55vw}}
+@media (max-width:820px){
+ :root{--padr:var(--pad)}
+ .hero{grid-template-columns:1fr;gap:34px}
+ .meta{padding-bottom:0}
+ .intro{grid-template-columns:1fr;gap:18px}.kicker{order:0;text-align:left}
+ .sec{grid-template-columns:1fr;gap:18px}.sec-l{position:static;display:flex;align-items:baseline;gap:18px}.sec-l .lab{margin:0}.sec .num{font-size:60px}.cols{grid-template-columns:1fr}
+ .side{display:none}
+ .lv-r{width:100%;justify-content:space-between}
+ .big .ph{aspect-ratio:16/10}
+ .deck-in{grid-template-columns:1fr;grid-template-areas:"head" "stack" "cap" "ctl"}
+ .deck-r{margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){.rv .w>i,.fade,.big .ph,.sec::before,.card li,.chips span{transition:none!important;animation:none!important}.c3{transition:none}}
+
+/* ================= case 3 : Postavkin ================= */
+.hero3{padding:clamp(130px,21vh,220px) var(--padr) 0 var(--pad)}
+.hero3 .h1{font-size:clamp(38px,4.9vw,96px);max-width:16em;margin-top:.3em}
+.lede{margin:clamp(20px,3vh,34px) 0 0;max-width:27em;font-size:clamp(16px,1.35vw,23px);line-height:1.45;color:#5a5240}
+.route{display:flex;align-items:center;gap:18px;margin-top:clamp(40px,8vh,90px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:500}
+.route .pt{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.route .pt::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--orange);background:var(--bgc)}
+.lane{position:relative;flex:1;height:2px;background:repeating-linear-gradient(90deg,rgba(59,50,36,.38) 0 7px,transparent 7px 15px)}
+.lane .box{position:absolute;top:50%;left:0;width:20px;height:20px;border-radius:5px;background:var(--orange);translate:0 -50%;opacity:0;box-shadow:inset 0 -6px 0 rgba(150,70,0,.22),inset 0 6px 0 rgba(255,255,255,.25);animation:ship 5s cubic-bezier(.65,0,.25,1) 5.7s infinite}
+@keyframes ship{0%{left:0;rotate:0deg;opacity:0}8%{opacity:1}72%{left:calc(100% - 20px);rotate:180deg;opacity:1}86%{left:calc(100% - 20px);rotate:180deg;opacity:0}100%{left:calc(100% - 20px);opacity:0}}
+.facts{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));margin-top:clamp(26px,4vh,44px);border-top:1px solid rgba(59,50,36,.22)}
+.facts>div{padding:clamp(18px,2.4vh,28px) clamp(12px,1.6vw,26px) 0 0;display:flex;flex-direction:column;gap:10px}
+.facts b{font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.facts span{font-size:clamp(17px,1.4vw,24px);font-weight:500;line-height:1.25}
+.facts .yr span{font-weight:700;font-size:clamp(56px,8.4vw,150px);line-height:.88;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--orange);transition:color .5s}
+.facts .yr:hover span{color:var(--orange)}
+
+.big .ph{aspect-ratio:21/9;clip-path:inset(100% 0 0 0 round 34px)}
+.big.in .ph{clip-path:inset(0 0 0 0 round 34px)}
+
+.intro3{display:grid;grid-template-columns:minmax(120px,.4fr) minmax(0,2fr);gap:var(--pad);padding:clamp(90px,16vh,190px) var(--padr) clamp(50px,8vh,100px) var(--pad);align-items:start}
+.intro3 .kicker{order:0;text-align:left;padding-top:.7em}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(34px,6vh,64px)}
+.svc>div{position:relative;padding-top:20px;border-top:2px solid var(--ink)}
+.svc>div::before{content:"";position:absolute;left:0;top:-2px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.svc>div:hover::before{transform:scaleX(1)}
+.svc .sn{display:block;font-weight:700;font-size:clamp(40px,4.4vw,72px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.4px var(--orange)}
+.svc h4{margin:.9em 0 .4em;font-size:clamp(19px,1.6vw,26px);font-weight:600;letter-spacing:-.02em}
+.svc p{margin:0;font-size:clamp(14px,1.1vw,17px);line-height:1.55;color:#5a5240}
+
+.h2{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1;font-size:clamp(30px,4.2vw,72px)}
+.pairs{padding:clamp(80px,14vh,170px) var(--padr) clamp(60px,10vh,120px) var(--pad)}
+.pr-grid{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.6fr);gap:var(--pad);margin-top:clamp(32px,6vh,70px);align-items:start}
+.pr-list{display:flex;flex-direction:column}
+.ptab{display:grid;grid-template-columns:auto 1fr;gap:0 18px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-top:1px solid rgba(59,50,36,.22);padding:clamp(18px,3vh,30px) 0;cursor:pointer;position:relative;opacity:.5;transition:opacity .4s,padding .5s var(--ease)}
+.ptab:last-child{border-bottom:1px solid rgba(59,50,36,.22)}
+.ptab .tn2{font-weight:700;font-size:clamp(22px,2.2vw,36px);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.3px var(--orange)}
+.ptab .pt{font-weight:600;font-size:clamp(26px,3.2vw,54px);letter-spacing:-.03em;line-height:1}
+.ptab .bar{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%}
+.ptab:hover{opacity:.9}
+.ptab.on{opacity:1;padding-left:16px}
+.ptab.on .bar{animation:fill 7s linear forwards}
+.pr-list.manual .ptab.on .bar{animation:none;transform:none}
+.pr-list.paused .ptab.on .bar{animation-play-state:paused}
+@keyframes fill{to{transform:scaleX(1)}}
+.pr-panel{display:grid;gap:clamp(14px,1.6vw,22px)}
+.pp-p,.pp-s{border-radius:clamp(18px,2vw,28px);padding:clamp(22px,2.6vw,42px)}
+.pp-p{background:#fff;border:1px solid rgba(59,50,36,.12)}
+.pp-s{background:#1f1a12;color:#fff}
+.pr-panel h4{margin:0 0 1em;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--mut)}
+.pp-s h4{color:var(--orange)}
+.pp-p h5{margin:0 0 .7em;font-size:clamp(20px,2vw,32px);line-height:1.15;font-weight:600;letter-spacing:-.025em}
+.pp-p p{margin:0;font-size:clamp(16px,1.3vw,20px);line-height:1.6;color:#5a5240}
+.pp-s p{margin:0;font-size:clamp(17px,1.5vw,24px);line-height:1.5;font-weight:500;letter-spacing:-.01em}
+.pp-s ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px}
+.pp-s li{position:relative;padding-left:32px;font-size:clamp(15px,1.15vw,18px);line-height:1.45;font-weight:500}
+.pp-s li::before{content:"";position:absolute;left:0;top:.12em;width:20px;height:20px;border-radius:50%;background:var(--orange)}
+.pp-s li::after{content:"";position:absolute;left:7px;top:.33em;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.pr-panel.swap>div{animation:capin .7s var(--ease) both}.pr-panel.swap>div+div{animation-delay:.1s}
+.pr-panel.swap li{animation:capin .7s var(--ease) both;animation-delay:calc(var(--k)*70ms + 200ms)}
+@keyframes capin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* gallery: expanding panels on a dark ground */
+:root{--gr:clamp(26px,4vw,64px)}
+.gal3{position:relative;z-index:2;background:#1f1a12;color:#fff;border-radius:var(--gr);padding:clamp(60px,11vh,120px) var(--padr) clamp(46px,8vh,90px) var(--pad)}
+.g3-h{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.gal3 .h2{color:#fff}
+.g3-ctl{display:flex;align-items:center;gap:12px}
+.g3-ctl .cnt{font-variant-numeric:tabular-nums;font-size:15px;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-right:8px}
+.g3-ctl .b{width:54px;height:54px;border-radius:50%;border:2px solid rgba(255,255,255,.45);background:none;color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .25s,border-color .25s,transform .3s var(--ease)}
+.g3-ctl .b:hover{background:var(--orange);border-color:var(--orange);transform:scale(1.07)}
+.g3-ctl svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.acc{display:flex;gap:12px;height:clamp(380px,64vh,660px);margin-top:clamp(28px,5vh,56px)}
+.pn{margin:0;position:relative;flex:1 1 0;min-width:0;border-radius:clamp(16px,2vw,28px);overflow:hidden;cursor:pointer;background:#2c251a;transition:flex-grow .9s var(--ease);outline:none;isolation:isolate}
+.pn.on{flex-grow:6.5}
+.pn:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.ph3{position:absolute;inset:0;background:linear-gradient(160deg,hsl(var(--h) 88% 58%),hsl(calc(var(--h) + 30) 78% 40%));z-index:-1}
+.ph3 .mk{position:absolute;inset:7% 6% 9%;display:block}
+.ph3 .mk i{position:absolute;inset:0;border-radius:clamp(12px,1.4vw,20px);background:rgba(255,255,255,.34);display:grid;place-items:center}
+.ph3 .mk i::before{content:"";width:clamp(34px,5vw,72px);aspect-ratio:1;background:radial-gradient(circle at 70% 32%,rgba(255,255,255,.9) 0 11%,transparent 12%),linear-gradient(135deg,transparent 46%,rgba(255,255,255,.75) 47% 100%) 0 100%/60% 55% no-repeat,linear-gradient(225deg,transparent 46%,rgba(255,255,255,.55) 47% 100%) 100% 100%/60% 40% no-repeat;border:3px solid rgba(255,255,255,.85);border-radius:12px}
+.ph3 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;display:block;pointer-events:none;user-select:none}
+.pn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,26,18,.12),rgba(31,26,18,.6));transition:opacity .7s;pointer-events:none}
+.pn.on::after{opacity:0}
+.tn{position:absolute;top:20px;left:50%;translate:-50% 0;font-weight:700;font-size:15px;letter-spacing:.06em;color:#fff;z-index:2;transition:opacity .4s}
+.vt{position:absolute;left:50%;bottom:22px;translate:-50% 0;writing-mode:vertical-rl;rotate:180deg;white-space:nowrap;font-weight:600;font-size:clamp(16px,1.4vw,22px);letter-spacing:-.01em;color:#fff;z-index:2;transition:opacity .4s}
+.pn.on .tn,.pn.on .vt{opacity:0}
+.cap3{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:clamp(40px,6vw,90px) clamp(18px,2.4vw,36px) clamp(18px,2.4vw,34px);background:linear-gradient(0deg,rgba(20,15,8,.86),rgba(20,15,8,0));opacity:0;transform:translateY(16px);transition:opacity .4s,transform .5s var(--ease)}
+.pn.on .cap3{opacity:1;transform:none;transition:opacity .6s .35s,transform .8s var(--ease) .35s}
+.cap3 .n{display:block;font-weight:700;font-size:clamp(34px,4vw,64px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.4px var(--orange)}
+.cap3 h3{margin:.45em 0 .25em;font-size:clamp(20px,1.9vw,32px);font-weight:600;letter-spacing:-.02em}
+.cap3 p{margin:0;font-size:clamp(14px,1.1vw,18px);line-height:1.5;color:rgba(255,255,255,.82);max-width:28em}
+.g3-prog{height:2px;margin-top:26px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+.g3-prog i{display:block;height:100%;width:0;background:var(--orange);transition:width .8s var(--ease)}
+
+
+@media (max-width:820px){
+ .hero3 .h1{font-size:clamp(36px,10.5vw,64px)}
+ .route{margin-top:34px}
+ .facts{grid-template-columns:1fr 1fr}.facts .yr{grid-column:1/-1}
+ .intro3{grid-template-columns:1fr;gap:18px}.intro3 .kicker{padding-top:0}
+ .svc{grid-template-columns:1fr}
+ .pr-grid{grid-template-columns:1fr;gap:26px}
+ .pp-s ul{grid-template-columns:1fr}
+ .big .ph{aspect-ratio:16/10}
+ .acc{flex-direction:column;height:clamp(460px,128vw,620px);gap:10px}
+ .pn.on{flex-grow:7}
+ .vt{writing-mode:horizontal-tb;rotate:0deg;left:20px;top:50%;bottom:auto;translate:0 -50%}
+ .tn{top:50%;left:auto;right:20px;translate:0 -50%}
+}
+@media (prefers-reduced-motion:reduce){.lane .box{animation:none}.pn,.ptab .bar{transition:none!important;animation:none!important}.pr-panel.swap>div,.pr-panel.swap li{animation:none}}
+.ph3 .mk{transition:opacity .6s}.pn:not(.on) .ph3 .mk{opacity:0}
+
+.more{margin:clamp(22px,3.4vh,36px) 0 0;max-width:36em;font-size:clamp(16px,1.3vw,21px);line-height:1.6;color:#5a5240}
+
+/* task: dark statement band */
+.task{padding:clamp(40px,8vh,90px) var(--padr) clamp(60px,10vh,120px) var(--pad)}
+.task-in{position:relative;overflow:hidden;isolation:isolate;border-radius:var(--gr);background:#1f1a12;color:#fff;padding:clamp(34px,5.4vw,90px)}
+.task-in::before{content:"";position:absolute;right:-10%;top:-30%;width:min(60%,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(254,168,49,.4),transparent 64%);z-index:-1}
+.task .k2{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500;margin-bottom:1.6em}
+.task .ts{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.08;font-size:clamp(28px,4.2vw,72px);max-width:17em}
+.task .tt{margin:clamp(24px,4vh,44px) 0 0;max-width:42em;font-size:clamp(15px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.78)}
+.task .chips span{border-color:rgba(255,255,255,.3);color:#fff}
+
+/* UX solutions: 2x2 */
+.ux{padding:0 var(--padr) clamp(80px,13vh,150px) var(--pad)}
+.ux-g{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,24px);margin-top:clamp(32px,6vh,64px)}
+.uxc{position:relative;display:flex;flex-direction:column;gap:clamp(34px,6vh,70px);min-height:clamp(240px,24vw,360px);padding:clamp(24px,2.6vw,42px);border-radius:clamp(20px,2.2vw,32px);background:#fff;border:1px solid rgba(59,50,36,.12);transition:opacity .9s ease var(--d,0ms),transform .6s var(--ease),background .4s,color .4s,box-shadow .6s}
+.uxc .un{font-weight:700;font-size:clamp(40px,4.4vw,72px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.4px var(--orange);transition:-webkit-text-stroke-color .4s}
+.uxc h3{margin:auto 0 0;font-size:clamp(21px,2vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.uxc p{margin:-.6em 0 0;font-size:clamp(14px,1.1vw,17px);line-height:1.6;color:#5a5240;transition:color .4s}
+.uxc.in:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-6px);box-shadow:0 34px 50px -30px rgba(150,80,10,.55)}
+.uxc.in:hover .un{-webkit-text-stroke-color:#fff}.uxc.in:hover p{color:rgba(255,255,255,.92)}
+
+/* conveniences: ruled rows */
+.am{padding:clamp(20px,4vh,50px) var(--padr) clamp(90px,15vh,170px) var(--pad)}
+.am-l{list-style:none;margin:clamp(30px,5vh,60px) 0 0;padding:0}
+.am-l li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(14px,3vw,60px);align-items:baseline;padding:clamp(20px,3.2vh,34px) 0;border-top:1px solid rgba(59,50,36,.22);opacity:0;transform:translateX(-18px);transition:opacity .7s ease,transform .8s var(--ease),padding .5s var(--ease);transition-delay:calc(var(--k)*90ms),calc(var(--k)*90ms),0s}
+.am-l li:last-child{border-bottom:1px solid rgba(59,50,36,.22)}
+.am-l li::after{content:"";position:absolute;left:0;top:-1px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.am-l.in li{opacity:1;transform:none}
+.am-l.in li:hover::after{transform:scaleX(1)}
+.am-l.in li:hover{padding-left:14px;transition-delay:0s}
+.am-l b{position:relative;padding-left:38px;font-weight:600;font-size:clamp(19px,1.9vw,31px);letter-spacing:-.025em;line-height:1.15}
+.am-l b::before{content:"";position:absolute;left:0;top:.08em;width:24px;height:24px;border-radius:50%;background:var(--orange)}
+.am-l b::after{content:"";position:absolute;left:8px;top:.32em;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.am-l span{font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:#5a5240}
+
+/* visual approach */
+.vis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--pad);padding:clamp(100px,17vh,200px) var(--padr) clamp(80px,13vh,150px) var(--pad);align-items:start}
+.vis .chips{margin-top:clamp(24px,4vh,40px)}
+.vis .v1{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.25;font-size:clamp(20px,2.1vw,34px)}
+.vis .v2{margin:1.4em 0 0;max-width:36em;font-size:clamp(15px,1.2vw,19px);line-height:1.65;color:#5a5240}
+
+/* white block: result + approach */
+.wb{background:#fff;border-radius:var(--gr) var(--gr) 0 0;padding-top:clamp(70px,12vh,140px)}
+.res{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--pad);padding:0 var(--padr) clamp(50px,8vh,100px) var(--pad);align-items:start}
+.res-l{position:sticky;top:clamp(90px,14vh,140px)}
+.res-l p{margin:1.2em 0 0;font-size:clamp(15px,1.25vw,20px);line-height:1.6;color:#5a5240;max-width:24em}
+.steps{list-style:none;margin:0;padding:0 0 0 clamp(18px,2vw,30px);position:relative}
+.steps::before{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:rgba(59,50,36,.15)}
+.steps::after{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:var(--orange);transform:scaleY(0);transform-origin:0 0;transition:transform 2s var(--ease) .3s}
+.steps.in::after{transform:none}
+.steps li{position:relative;padding:clamp(14px,2.2vh,24px) 0 clamp(14px,2.2vh,24px) clamp(22px,2.6vw,40px);font-size:clamp(18px,1.9vw,30px);font-weight:500;letter-spacing:-.02em;line-height:1.25;opacity:0;transform:translateX(18px);transition:opacity .7s ease,transform .8s var(--ease);transition-delay:calc(var(--k)*140ms + 200ms)}
+.steps li::before{content:"";position:absolute;left:calc(-1*clamp(18px,2vw,30px) + 1px);top:calc(clamp(14px,2.2vh,24px) + .3em);width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--orange)}
+.steps.in li{opacity:1;transform:none}
+.principle{margin:0 var(--padr) clamp(80px,13vh,150px) var(--pad);padding:clamp(28px,4vw,64px);border-radius:var(--gr);background:var(--bgc);position:relative}
+.principle::before{content:"";position:absolute;left:clamp(28px,4vw,64px);top:0;width:80px;height:4px;background:var(--orange);border-radius:0 0 4px 4px}
+.principle b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:500;margin-bottom:1.4em}
+.principle p{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.18;font-size:clamp(22px,2.8vw,48px);max-width:24em}
+.appr{padding:0 var(--padr) clamp(90px,15vh,170px) var(--pad)}
+.appr .kicker{order:0;text-align:left;padding:0 0 1.4em}
+.appr .a1{margin:0;max-width:44em;font-size:clamp(15px,1.25vw,20px);line-height:1.65;color:#5a5240}
+.appr .aq{margin:clamp(34px,6vh,70px) 0 0;font-weight:600;letter-spacing:-.04em;line-height:1.02;font-size:clamp(34px,5.6vw,100px);max-width:14em}
+@media (max-width:820px){
+ .ux-g{grid-template-columns:1fr}.uxc{min-height:0}
+ .am-l li{grid-template-columns:1fr;gap:8px}
+ .vis,.res{grid-template-columns:1fr;gap:26px}.res-l{position:static}
+}
+</style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head>
+<body data-page="c3">
+<div class="brand"><a href="index.html" data-go>Designer Kim</a><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
+<main>
+ <header class="hero3">
+  <div class="eyebrow fade in" style="animation:none;--d:0ms" data-t="eb">Case 03 · Postavkin · 2023</div>
+  <h1 class="h1 rv" id="h1" data-start="5200"><span class="ht" data-t="h1">x</span></h1>
+  <p class="lede fade" data-t="sub" style="--d:1500ms">x</p>
+  <div class="route fade" style="--d:1700ms" aria-hidden="true"><span class="pt" data-t="fr">China</span><div class="lane"><i class="box"></i></div><span class="pt" data-t="to">Russia</span></div>
+  <div class="facts fade" style="--d:1900ms">
+   <div class="yr"><b data-t="year">Year</b><span>2023</span></div>
+   <div><b data-t="role">Role</b><span data-t="role_v">x</span></div>
+   <div><b data-t="scope">Scope</b><span data-t="scope_v">x</span></div>
+   <div><b data-t="plat">Industry</b><span data-t="plat_v">x</span></div>
+  </div>
+ </header>
+
+ <section class="big" id="big"><div class="ph"><div class="hph">Postavkin</div><div class="in-img"><img src="postavkin-hero.jpg" alt="Postavkin key visual" width="2100" height="900" onerror="this.remove()"></div></div></section>
+
+ <section class="intro3">
+  <div class="kicker fade" data-t="story">About the project</div>
+  <div><p class="lead rv" id="lead" data-t="lead">x</p><p class="more fade" data-t="more">x</p><div class="svc" id="svc"></div></div>
+ </section>
+
+ <section class="task"><div class="task-in"><span class="k2 fade" data-t="tk">Task</span><p class="ts rv" data-t="ts">x</p><p class="tt fade" data-t="tt">x</p><div class="chips fade" data-chp="tc"></div></div></section>
+
+ <section class="pairs">
+  <h2 class="h2 rv" id="ph" data-t="ph">x</h2>
+  <div class="pr-grid"><div class="pr-list" id="prl" role="tablist"></div><div class="pr-panel" id="prp" aria-live="polite"></div></div>
+ </section>
+
+ <section class="ux"><h2 class="h2 rv" data-t="uh">x</h2><div class="ux-g" id="uxg"></div></section>
+
+ <section class="am"><h2 class="h2 rv" data-t="ah">x</h2><ul class="am-l stag" id="aml"></ul></section>
+
+ <section class="gal3" id="gal3">
+  <div class="g3-h"><h2 class="h2 rv" id="gh" data-t="gh">x</h2>
+   <div class="g3-ctl"><span class="cnt" id="cnt">01 / 06</span><button class="b" id="prev3" aria-label="Previous" data-ta="prev"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="b" id="next3" aria-label="Next" data-ta="nxt"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+  <div class="acc" id="acc" role="list" aria-label="Screens"><figure class="pn" style="--h:28" data-n="0" tabindex="0" role="listitem"><div class="ph3"><div class="mk"><i></i></div><img src="postavkin-1.jpg" alt="" width="1600" height="1000" draggable="false" loading="lazy" onerror="this.remove()"></div><span class="tn">01</span><span class="vt"></span><figcaption class="cap3"><span class="n">01</span><h3></h3><p></p></figcaption></figure><figure class="pn" style="--h:200" data-n="1" tabindex="0" role="listitem"><div class="ph3"><div class="mk"><i></i></div><img src="postavkin-2.jpg" alt="" width="1600" height="1000" draggable="false" loading="lazy" onerror="this.remove()"></div><span class="tn">02</span><span class="vt"></span><figcaption class="cap3"><span class="n">02</span><h3></h3><p></p></figcaption></figure><figure class="pn" style="--h:262" data-n="2" tabindex="0" role="listitem"><div class="ph3"><div class="mk"><i></i></div><img src="postavkin-3.jpg" alt="" width="1600" height="1000" draggable="false" loading="lazy" onerror="this.remove()"></div><span class="tn">03</span><span class="vt"></span><figcaption class="cap3"><span class="n">03</span><h3></h3><p></p></figcaption></figure><figure class="pn" style="--h:340" data-n="3" tabindex="0" role="listitem"><div class="ph3"><div class="mk"><i></i></div><img src="postavkin-4.jpg" alt="" width="1600" height="1000" draggable="false" loading="lazy" onerror="this.remove()"></div><span class="tn">04</span><span class="vt"></span><figcaption class="cap3"><span class="n">04</span><h3></h3><p></p></figcaption></figure><figure class="pn" style="--h:152" data-n="4" tabindex="0" role="listitem"><div class="ph3"><div class="mk"><i></i></div><img src="postavkin-5.jpg" alt="" width="1600" height="1000" draggable="false" loading="lazy" onerror="this.remove()"></div><span class="tn">05</span><span class="vt"></span><figcaption class="cap3"><span class="n">05</span><h3></h3><p></p></figcaption></figure><figure class="pn" style="--h:12" data-n="5" tabindex="0" role="listitem"><div class="ph3"><div class="mk"><i></i></div><img src="postavkin-6.jpg" alt="" width="1600" height="1000" draggable="false" loading="lazy" onerror="this.remove()"></div><span class="tn">06</span><span class="vt"></span><figcaption class="cap3"><span class="n">06</span><h3></h3><p></p></figcaption></figure></div>
+  <div class="g3-prog"><i id="prog3"></i></div>
+ </section>
+
+ <section class="vis">
+  <div><h2 class="h2 rv" data-t="vh">x</h2><div class="chips fade" data-chp="vchips"></div></div>
+  <div><p class="v1 fade" data-t="vt1">x</p><p class="v2 fade" data-t="vt2" style="--d:120ms">x</p></div>
+ </section>
+
+ <div class="wb">
+  <section class="res">
+   <div class="res-l"><h2 class="h2 rv" data-t="rsh">x</h2><p class="fade" data-t="rs1">x</p></div>
+   <ul class="steps stag" data-ls="rs"></ul>
+  </section>
+  <div class="principle fade"><b data-t="rsl">x</b><p data-t="rsq">x</p></div>
+  <section class="appr"><div class="kicker fade" data-t="apk">x</div><p class="a1 fade" data-t="ap1">x</p><p class="aq rv" data-t="apq">x</p></section>
+
+  <section class="live fade"><a class="livecard" href="https://postavkin.com/" target="_blank" rel="noopener"><div class="lv-l"><span class="lv-k"><i class="pulse"></i><b data-t="live_k">Live project</b></span><p data-t="live_t">x</p></div><div class="lv-r"><span class="lv-url"><span class="u">postavkin.com</span></span><span class="arr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div></a></section>
+
+  <section class="outro">
+   <div class="kicker fade" data-t="next">Next up</div>
+   <button class="nextbtn fade" data-k="contact" style="--d:100ms"><span class="t" data-t="nx">Let's talk</span><span class="arr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12h15M13 5.5 19.5 12 13 18.5"/></svg></span></button>
+  </section>
+  <footer class="foot"><span>@designer kim 2026</span><a href="index.html" data-go data-t="back">← Back home</a></footer>
+ </div>
+</main>
+<div class="side" aria-label="Sections"><button data-k="home" data-i="m_home">Home</button><button data-k="about" data-i="m_about">About</button><button data-k="c1" data-i="m_c1">Tixxe App</button><button data-k="c2" data-i="m_c2">Boost-Hero</button><button data-k="c3" data-i="m_c3">Postavkin</button><button data-k="c4" data-i="m_c4">Case 4</button><button data-k="contact" data-i="m_contact">Contact</button></div>
+<nav class="nav" id="nav" aria-label="Main menu">
+ <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
+ <div class="list" id="list">
+  <button data-k="home" data-i="m_home">Home</button>
+  <button data-k="about" data-i="m_about">About</button>
+  <div class="grp" data-i="m_case">Case</div>
+  <button class="sub" data-k="c1" data-i="m_c1">Tixxe App</button><button class="sub" data-k="c2" data-i="m_c2">Boost-Hero</button><button class="sub" data-k="c3" data-i="m_c3">Postavkin</button><button class="sub" data-k="c4" data-i="m_c4">Case 4</button>
+  <button data-k="contact" style="margin-top:8px" data-i="m_contact">Contact</button>
+  <button class="lg-btn" id="lgBtn" aria-expanded="false" aria-controls="lgRow"><span class="lg-ico globe" id="lgIco"></span><span data-i="lang">Language</span></button>
+  <div class="lg-row" id="lgRow"></div>
+ </div>
+</nav>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh"><div class="box"><button class="cl" id="cl" aria-label="Close">×</button><h2 id="sh"></h2><div id="sb"></div></div></div>
+
+<div class="loader" id="loader" aria-hidden="true"><div class="bgfade"></div>
+ <svg class="ring" viewBox="-30 -30 360 360"><defs><path id="c" d="M150,150 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
+ <text><textPath id="rt" href="#c" textLength="868" lengthAdjust="spacing">Moving pixels since 2016. Still not done. Moving pixels since 2016. Still not done.</textPath></text></svg><div class="inside"><small data-i="ld_s">Your idea +<br>my obsession =</small><b data-i="ld_b">“Magic”</b></div></div>
+<script src="app.js"></script>
+<script>
+(function(){
+ function split(el){if(el.dataset.s)return;el.dataset.s=1;let n=0;
+  (function walk(node){[...node.childNodes].forEach(c=>{
+   if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+     const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=p;i.style.setProperty('--n',n++);w.appendChild(i);f.appendChild(w)});c.replaceWith(f)}
+   else if(c.nodeType===1&&!c.classList.contains('sub')&&c.tagName!=='EM'){walk(c)}
+   else if(c.tagName==='EM'){const t=c.textContent;c.textContent='';const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=t;i.style.setProperty('--n',n++);w.appendChild(i);c.appendChild(w)}
+  })})(el)}
+ const C={"ru": {"eb": "Кейс 03 · Postavkin · 2023", "h1": "Postavkin: упрощение оптовых<br>закупок <em>из Китая</em>", "sub": "UI/UX Design · E-commerce · B2B Platform", "fr": "Китай", "to": "Россия", "year": "Год", "role": "Роль", "role_v": "UI/UX-дизайнер", "scope": "Задачи", "scope_v": "UX/UI, информационная архитектура", "plat": "Сфера", "plat_v": "E-commerce, B2B", "story": "О проекте", "lead": "Postavkin — платформа для оптовых закупок товаров из Китая, которая объединяет каталог продукции, оформление заказов и услуги по организации выкупа, проверке качества и доставке.", "more": "Основная задача интерфейса — сделать поиск и заказ товаров понятным, последовательным и удобным для предпринимателей, которые закупают продукцию для перепродажи. Я рассматривал интерфейс как единый инструмент работы с ассортиментом: от первого знакомства с платформой до выбора товара и перехода к оформлению заказа.", "sv": [["Каталог и заказ", "Ассортимент по категориям и путь к оформлению заказа."], ["Выкуп и проверка", "Организация выкупа и проверка качества товара."], ["Доставка", "Доставка из Китая до покупателя."]], "tk": "Задача", "ts": "Сделать сложный процесс оптовых закупок более простым и прозрачным для пользователя.", "tt": "При работе с товарами из Китая покупателю нужно найти продукцию, разобраться в ассортименте, сравнить предложения, оценить условия закупки и понять, как будет организована доставка. Моя задача как UI/UX-дизайнера — структурировать пользовательский путь, упростить навигацию по каталогу и обеспечить понятное взаимодействие с ключевыми элементами платформы.", "tc": ["Информационная архитектура", "Визуальная иерархия", "Доступность основных действий", "Снижение когнитивной нагрузки"], "ph": "Какие проблемы я <em>решал</em>", "lp": "Проблема", "lh": "Моё решение", "pt": ["Навигация", "Информация", "Прозрачность", "Путь к заказу"], "pth": ["Сложная навигация по большому ассортименту", "Высокая информационная нагрузка", "Недостаточная прозрачность процесса закупки", "Сложность перехода от поиска к заказу"], "pp": ["При большом количестве категорий важно быстро находить нужное направление и переходить к релевантным предложениям без лишних действий.", "При выборе пользователь сталкивается с большим объёмом данных: названиями, изображениями, характеристиками, ценами и условиями заказа.", "Оптовая закупка из другой страны включает несколько этапов: выбор товара, заявку, выкуп у поставщика, проверку и доставку. Если процесс не объяснён заранее, пользователю сложнее оценить следующие шаги.", "Каталог должен не просто показывать ассортимент, а помогать двигаться к следующему действию: выбору товара и оформлению заказа."], "ps": ["Организовать каталог по понятным тематическим категориям и выстроить иерархию навигации, которая помогает последовательно сужать область поиска.", "Сформировать понятную визуальную иерархию, выделить ключевую информацию и организовать контент так, чтобы ассортимент было быстрее просматривать, а предложения — сравнивать.", "Сделать информацию об услугах и последовательности работы доступной на сайте, чтобы пользователь понимал роль платформы и основные этапы заказа.", "Уделить внимание понятным точкам взаимодействия, последовательности пути и заметности ключевых элементов интерфейса."], "uh": "UX-<em>решения</em>", "ux": [["Логичная информационная архитектура", "Каталог организован по категориям, а товары сгруппированы по направлениям. Это помогает ориентироваться в большом ассортименте и находить нужное, не изучая каталог целиком."], ["Визуальная иерархия контента", "Приоритет отдан изображению, названию, цене и другой информации для первичной оценки предложения. Чёткое разделение элементов облегчает сканирование страницы."], ["Понятные сценарии взаимодействия", "Ключевые сценарии выстроены как последовательный маршрут, где каждый следующий шаг логично вытекает из предыдущего. Так взаимодействие становится предсказуемым."], ["Прозрачная коммуникация услуг", "Информация о выкупе, проверке товара и доставке объясняет, что происходит после выбора продукции, и создаёт целостное представление о сотрудничестве."]], "ah": "Удобства <em>в интерфейсе</em>", "am": [["Быстрый доступ к категориям", "Поиск можно начать с нужного направления, а не с изучения всего ассортимента."], ["Удобный просмотр предложений", "Структурированные карточки помогают быстрее ориентироваться в товарах."], ["Понятная последовательность действий", "Навигация ведёт от поиска продукции к оформлению заказа."], ["Доступность информации об услугах", "Процесс закупки и доставки понятен до принятия решения."], ["Единая логика взаимодействия", "Каталог, информация о сервисе и сценарии заказа работают как одна система."]], "gh": "Экраны <em>платформы</em>", "scr": [["Каталог по категориям", "Быстрый доступ к тематическим направлениям."], ["Иерархия навигации", "Область поиска сужается шаг за шагом."], ["Карточки товаров", "Изображение, название и цена для первичной оценки."], ["Услуги платформы", "Выкуп, проверка и доставка объяснены заранее."], ["Путь к заказу", "Каждый следующий шаг вытекает из предыдущего."], ["Единая система", "Повторяемые паттерны и согласованные состояния."]], "vh": "Визуальный <em>подход</em>", "vt1": "Визуальная часть должна работать на функциональность: помогать ориентироваться в ассортименте, быстро считывать информацию и выделять основные действия.", "vt2": "В e-commerce я слежу за балансом между плотностью контента и читаемостью. Единые компоненты и повторяющиеся паттерны сохраняют целостность интерфейса даже при большом числе категорий и товаров.", "vchips": ["Баланс плотности и читаемости", "Единообразие компонентов", "Повторяемость паттернов", "Согласованные состояния"], "rsh": "<em>Результат</em>", "rs1": "В работе над UX-концепцией Postavkin главный фокус был на упрощении взаимодействия с платформой и повышении понятности пользовательского пути.", "rs": ["Более структурированная навигация по ассортименту", "Удобное восприятие информации о товарах", "Понятная коммуникация этапов закупки и доставки", "Последовательный путь от поиска к оформлению заказа", "Единая логика взаимодействия с ключевыми элементами"], "rsl": "Главный принцип", "rsq": "Не просто разместить функциональность на экране, а организовать её так, чтобы пользователь решал свои задачи с минимальными усилиями и понимал, что делать на каждом этапе.", "apk": "Мой подход как UI/UX-дизайнера", "ap1": "В B2B e-commerce дизайн решает не только визуальные задачи. Он помогает ориентироваться в сложном ассортименте, принимать решения на основе доступной информации и уверенно проходить основные сценарии. Я смотрю на опыт через практичность: понятная структура, предсказуемые действия, читаемый контент и логичная последовательность.", "apq": "Моя цель — превратить сложный процесс оптовых закупок в понятный цифровой опыт.", "live_k": "Живой проект", "live_t": "Postavkin — реальный работающий маркетплейс. Его можно посмотреть онлайн.", "prev": "Назад", "nxt": "Вперёд", "next": "Далее", "nx": "Давайте поговорим", "back": "← На главную"}, "en": {"eb": "Case 03 · Postavkin · 2023", "h1": "Postavkin: simplifying wholesale<br>purchasing <em>from China</em>", "sub": "UI/UX Design · E-commerce · B2B Platform", "fr": "China", "to": "Russia", "year": "Year", "role": "Role", "role_v": "UI/UX Designer", "scope": "Scope", "scope_v": "UX/UI, information architecture", "plat": "Industry", "plat_v": "E-commerce, B2B", "story": "About the project", "lead": "Postavkin is a platform for wholesale purchases of goods from China. It brings together a product catalog, order placement, and services for buyout, quality inspection and delivery.", "more": "The main goal of the interface is to make searching and ordering clear, consistent and convenient for entrepreneurs who buy goods for resale. I treated the interface as a single tool for working with the range: from the first acquaintance with the platform to choosing a product and moving on to checkout.", "sv": [["Catalog and order", "The range by category and the path to placing an order."], ["Buyout and inspection", "Organizing the buyout and checking product quality."], ["Delivery", "Delivery from China to the buyer."]], "tk": "The task", "ts": "Make the complex process of wholesale purchasing simpler and more transparent for the user.", "tt": "When buying goods from China, a customer has to find suitable products, understand the range, compare offers, assess the purchase terms and see how delivery will be organized. My task as a UI/UX designer was to structure the user journey, simplify catalog navigation and make the key elements of the platform clear to use.", "tc": ["Information architecture", "Visual hierarchy", "Access to key actions", "Lower cognitive load"], "ph": "The problems I <em>solved</em>", "lp": "The problem", "lh": "My solution", "pt": ["Navigation", "Information", "Transparency", "Path to order"], "pth": ["Complex navigation in a large range", "High information load", "Low transparency of the purchasing process", "A hard step from search to order"], "pp": ["With many product categories, users need to find the right direction fast and reach relevant offers without extra actions.", "When choosing, users face a lot of data: names, images, specifications, prices and order terms.", "A wholesale purchase from another country has several stages: choosing a product, submitting a request, buyout from the supplier, inspection and delivery. If the process is not explained upfront, it is harder to judge the next steps.", "A catalog should not only show the range, it should help users move on to the next action: choosing a product and placing an order."], "ps": ["I organized the catalog into clear thematic categories and built a navigation hierarchy that narrows the search step by step.", "I built a clear visual hierarchy, highlighted the key information and organized the content so the range is quicker to browse and offers are easier to compare.", "I made information about services and the order of work available on the site, so users understand the role of the platform and the main stages of an order.", "I focused on clear interaction points, a sequential user path and prominent key elements of the interface."], "uh": "UX <em>solutions</em>", "ux": [["Logical information architecture", "The catalog is organized by categories and products are grouped by direction. This helps users navigate a large range and find what they need without studying the whole catalog."], ["Visual hierarchy of content", "Priority goes to the image, name, price and other information needed for a first assessment of an offer. A clear separation of elements makes the page easier to scan."], ["Clear interaction scenarios", "Key scenarios are built as a sequential route where each next step follows logically from the previous one. This makes interaction predictable."], ["Transparent communication of services", "Information about buyout, product inspection and delivery explains what happens after choosing goods and gives a complete picture of working together."]], "ah": "Conveniences <em>in the interface</em>", "am": [["Quick access to categories", "Users can start from the product direction they need, not from the whole range."], ["Easy browsing of offers", "Structured cards help users find their way around products faster."], ["A clear order of actions", "Navigation leads from searching for products to placing an order."], ["Available information about services", "The purchase and delivery process is clear before the decision."], ["One interaction logic", "The catalog, service information and ordering scenarios work as one system."]], "gh": "Inside the <em>platform</em>", "scr": [["Catalog by category", "Quick access to thematic directions."], ["Navigation hierarchy", "The search narrows step by step."], ["Product cards", "Image, name and price for a first assessment."], ["Platform services", "Buyout, inspection and delivery explained upfront."], ["Path to order", "Each next step follows from the previous one."], ["One system", "Repeatable patterns and consistent states."]], "vh": "Visual <em>approach</em>", "vt1": "The visual side should serve functionality: help users find their way around the range, read information quickly and see the main actions.", "vt2": "In e-commerce I watch the balance between content density and readability. Consistent components and repeated patterns keep the interface coherent even with many categories and products.", "vchips": ["Density and readability balance", "Consistent components", "Repeatable patterns", "Consistent states"], "rsh": "The <em>result</em>", "rs1": "In the Postavkin UX concept, the key focus was on simplifying interaction with the platform and making the user journey clearer.", "rs": ["More structured navigation through the range", "Easier perception of product information", "Clear communication of the purchase and delivery stages", "A sequential path from search to order", "One interaction logic for the key interface elements"], "rsl": "Main principle", "rsq": "Not just to place functionality on the screen, but to organize it so users solve their tasks with minimal effort and know what to do at every step.", "apk": "My approach as a UI/UX designer", "ap1": "In B2B e-commerce, design solves more than visual tasks. It helps users find their way through a complex range, make decisions based on available information and move confidently through the main scenarios. I look at user experience through practicality: clear structure, predictable actions, readable content and a logical sequence of interaction.", "apq": "My goal is to turn the complex process of wholesale purchasing into a clear digital experience.", "live_k": "Live project", "live_t": "Postavkin is a real, working marketplace. You can explore it online.", "prev": "Previous", "nxt": "Next", "next": "Next up", "nx": "Let's talk", "back": "← Back home"}, "de": {"eb": "Case 03 · Postavkin · 2023", "h1": "Postavkin: Großeinkauf<br>aus <em>China</em> einfacher machen", "sub": "UI/UX Design · E-Commerce · B2B-Plattform", "fr": "China", "to": "Russland", "year": "Jahr", "role": "Rolle", "role_v": "UI/UX Designer", "scope": "Umfang", "scope_v": "UX/UI, Informationsarchitektur", "plat": "Branche", "plat_v": "E-Commerce, B2B", "story": "Über das Projekt", "lead": "Postavkin ist eine Plattform für den Großeinkauf von Waren aus China. Sie verbindet einen Produktkatalog, die Bestellabwicklung sowie Services für Einkauf, Qualitätsprüfung und Lieferung.", "more": "Die Hauptaufgabe der Oberfläche ist, Suche und Bestellung klar, folgerichtig und bequem zu machen – für Unternehmer, die Ware zum Weiterverkauf einkaufen. Ich habe die Oberfläche als ein Werkzeug für die Arbeit mit dem Sortiment verstanden: vom ersten Kennenlernen der Plattform über die Produktauswahl bis zum Checkout.", "sv": [["Katalog und Bestellung", "Sortiment nach Kategorien und der Weg zur Bestellung."], ["Einkauf und Prüfung", "Organisation des Einkaufs und Qualitätsprüfung der Ware."], ["Lieferung", "Lieferung aus China bis zum Käufer."]], "tk": "Die Aufgabe", "ts": "Den komplexen Prozess des Großeinkaufs für Nutzer einfacher und transparenter machen.", "tt": "Beim Kauf von Waren aus China muss der Kunde passende Produkte finden, das Sortiment verstehen, Angebote vergleichen, die Einkaufsbedingungen bewerten und nachvollziehen, wie die Lieferung organisiert wird. Meine Aufgabe als UI/UX Designer war, den Nutzerweg zu strukturieren, die Katalognavigation zu vereinfachen und die zentralen Elemente der Plattform verständlich bedienbar zu machen.", "tc": ["Informationsarchitektur", "Visuelle Hierarchie", "Zugang zu Kernaktionen", "Geringere kognitive Last"], "ph": "Welche Probleme ich <em>gelöst</em> habe", "lp": "Das Problem", "lh": "Meine Lösung", "pt": ["Navigation", "Information", "Transparenz", "Weg zur Bestellung"], "pth": ["Komplexe Navigation in einem großen Sortiment", "Hohe Informationslast", "Mangelnde Transparenz des Einkaufsprozesses", "Schwieriger Übergang von der Suche zur Bestellung"], "pp": ["Bei vielen Kategorien müssen Nutzer schnell die richtige Richtung finden und ohne Umwege zu passenden Angeboten gelangen.", "Bei der Auswahl treffen Nutzer auf viele Daten: Namen, Bilder, Merkmale, Preise und Bestellbedingungen.", "Ein Großeinkauf im Ausland umfasst mehrere Phasen: Produktwahl, Anfrage, Einkauf beim Lieferanten, Prüfung und Lieferung. Wird der Ablauf nicht vorab erklärt, fällt es schwerer, die nächsten Schritte einzuschätzen.", "Ein Katalog soll nicht nur das Sortiment zeigen, sondern zur nächsten Aktion führen: Produkt wählen und bestellen."], "ps": ["Ich habe den Katalog in klare thematische Kategorien gegliedert und eine Navigationshierarchie aufgebaut, die die Suche Schritt für Schritt eingrenzt.", "Ich habe eine klare visuelle Hierarchie geschaffen, Schlüsselinformationen hervorgehoben und Inhalte so organisiert, dass das Sortiment schneller durchsucht und Angebote leichter verglichen werden können.", "Ich habe Informationen zu Services und zum Ablauf auf der Website zugänglich gemacht, damit Nutzer die Rolle der Plattform und die wichtigsten Bestellphasen verstehen.", "Ich habe auf klare Interaktionspunkte, einen folgerichtigen Nutzerweg und gut sichtbare Schlüsselelemente der Oberfläche geachtet."], "uh": "UX-<em>Lösungen</em>", "ux": [["Logische Informationsarchitektur", "Der Katalog ist nach Kategorien organisiert, Produkte sind nach Richtungen gruppiert. So finden sich Nutzer im großen Sortiment zurecht, ohne den ganzen Katalog zu durchsuchen."], ["Visuelle Hierarchie der Inhalte", "Vorrang haben Bild, Name, Preis und weitere Informationen für die erste Einschätzung eines Angebots. Die klare Trennung der Elemente erleichtert das Überfliegen der Seite."], ["Klare Interaktionsszenarien", "Die Kernszenarien sind als folgerichtiger Weg aufgebaut, bei dem jeder Schritt logisch aus dem vorherigen folgt. Das macht die Interaktion vorhersehbar."], ["Transparente Kommunikation der Services", "Informationen zu Einkauf, Warenprüfung und Lieferung erklären, was nach der Auswahl passiert, und vermitteln ein ganzheitliches Bild der Zusammenarbeit."]], "ah": "Komfort <em>in der Oberfläche</em>", "am": [["Schneller Zugang zu Kategorien", "Die Suche beginnt bei der gewünschten Produktrichtung, nicht beim gesamten Sortiment."], ["Bequemes Durchsehen der Angebote", "Strukturierte Karten helfen, sich schneller in den Produkten zu orientieren."], ["Klare Abfolge der Aktionen", "Die Navigation führt von der Produktsuche zur Bestellung."], ["Zugängliche Informationen zu Services", "Einkaufs- und Lieferprozess sind vor der Entscheidung verständlich."], ["Eine einheitliche Interaktionslogik", "Katalog, Serviceinformationen und Bestellszenarien arbeiten als ein System."]], "gh": "Im Inneren der <em>Plattform</em>", "scr": [["Katalog nach Kategorien", "Schneller Zugang zu thematischen Richtungen."], ["Navigationshierarchie", "Die Suche wird Schritt für Schritt eingegrenzt."], ["Produktkarten", "Bild, Name und Preis für die erste Einschätzung."], ["Services der Plattform", "Einkauf, Prüfung und Lieferung vorab erklärt."], ["Weg zur Bestellung", "Jeder Schritt folgt aus dem vorherigen."], ["Ein System", "Wiederkehrende Muster und konsistente Zustände."]], "vh": "Visueller <em>Ansatz</em>", "vt1": "Die visuelle Seite soll der Funktionalität dienen: Orientierung im Sortiment geben, Informationen schnell lesbar machen und die Hauptaktionen hervorheben.", "vt2": "Im E-Commerce achte ich auf die Balance zwischen Inhaltsdichte und Lesbarkeit. Einheitliche Komponenten und wiederkehrende Muster halten die Oberfläche auch bei vielen Kategorien und Produkten stimmig.", "vchips": ["Balance aus Dichte und Lesbarkeit", "Einheitliche Komponenten", "Wiederkehrende Muster", "Konsistente Zustände"], "rsh": "Das <em>Ergebnis</em>", "rs1": "Beim UX-Konzept für Postavkin lag der Fokus darauf, die Interaktion mit der Plattform zu vereinfachen und den Nutzerweg verständlicher zu machen.", "rs": ["Strukturiertere Navigation durch das Sortiment", "Bessere Wahrnehmung der Produktinformationen", "Klare Kommunikation der Einkaufs- und Lieferphasen", "Ein folgerichtiger Weg von der Suche zur Bestellung", "Eine einheitliche Interaktionslogik für die zentralen Elemente"], "rsl": "Leitprinzip", "rsq": "Funktionen nicht nur auf den Bildschirm zu setzen, sondern so zu organisieren, dass Nutzer ihre Aufgaben mit minimalem Aufwand lösen und in jeder Phase wissen, was zu tun ist.", "apk": "Mein Ansatz als UI/UX Designer", "ap1": "Im B2B-E-Commerce löst Design mehr als visuelle Aufgaben. Es hilft Nutzern, sich in einem komplexen Sortiment zurechtzufinden, Entscheidungen auf Basis verfügbarer Informationen zu treffen und die Hauptszenarien sicher zu durchlaufen. Ich betrachte das Nutzererlebnis durch die Linse der Praktikabilität: klare Struktur, vorhersehbare Aktionen, lesbarer Inhalt und logische Abfolge.", "apq": "Mein Ziel ist, den komplexen Prozess des Großeinkaufs in ein verständliches digitales Erlebnis zu verwandeln.", "live_k": "Live-Projekt", "live_t": "Postavkin ist ein echter, funktionierender Marktplatz. Du kannst ihn online ansehen.", "prev": "Zurück", "nxt": "Weiter", "next": "Als Nächstes", "nx": "Lass uns reden", "back": "← Zur Startseite"}, "ko": {"eb": "케이스 03 · Postavkin · 2023", "h1": "Postavkin: 중국 도매 구매를<br><em>더 쉽게</em>", "sub": "UI/UX 디자인 · 이커머스 · B2B 플랫폼", "fr": "중국", "to": "러시아", "year": "연도", "role": "역할", "role_v": "UI/UX 디자이너", "scope": "범위", "scope_v": "UX/UI, 정보 구조", "plat": "분야", "plat_v": "이커머스, B2B", "story": "프로젝트 소개", "lead": "Postavkin은 중국 상품을 도매로 구매하기 위한 플랫폼으로, 상품 카탈로그와 주문 절차, 구매 대행·품질 검수·배송 서비스를 하나로 묶습니다.", "more": "인터페이스의 핵심 과제는 재판매를 위해 상품을 구매하는 사업자가 검색과 주문을 명확하고 일관되며 편리하게 할 수 있도록 만드는 것이었습니다. 저는 인터페이스를 상품 탐색을 위한 하나의 도구로 보았고, 플랫폼을 처음 접하는 순간부터 상품 선택, 주문 진행까지 이어지도록 설계했습니다.", "sv": [["카탈로그와 주문", "카테고리별 상품과 주문으로 이어지는 경로."], ["구매 대행과 검수", "구매 대행 진행과 상품 품질 확인."], ["배송", "중국에서 구매자까지의 배송."]], "tk": "과제", "ts": "복잡한 도매 구매 과정을 사용자에게 더 간단하고 투명하게 만드는 것.", "tt": "중국 상품을 구매하는 사용자는 적합한 상품을 찾고, 상품군을 이해하고, 제안을 비교하고, 구매 조건을 평가하고, 배송이 어떻게 진행되는지 파악해야 합니다. UI/UX 디자이너로서 제 과제는 사용자 경로를 구조화하고 카탈로그 탐색을 단순화하며 플랫폼의 핵심 요소를 이해하기 쉽게 만드는 것이었습니다.", "tc": ["정보 구조", "시각적 위계", "핵심 행동에 대한 접근성", "인지 부담 감소"], "ph": "제가 <em>해결한</em> 문제", "lp": "문제", "lh": "저의 해결책", "pt": ["탐색", "정보", "투명성", "주문 경로"], "pth": ["방대한 상품군에서의 복잡한 탐색", "높은 정보 부담", "구매 과정의 불충분한 투명성", "검색에서 주문으로 넘어가기 어려움"], "pp": ["카테고리가 많을수록 사용자는 원하는 방향을 빠르게 찾고 불필요한 동작 없이 관련 상품으로 이동해야 합니다.", "상품을 고를 때 사용자는 이름, 이미지, 사양, 가격, 주문 조건 등 많은 정보를 마주합니다.", "해외 도매 구매는 상품 선택, 신청, 공급업체 구매, 검수, 배송의 여러 단계로 이루어집니다. 과정이 미리 설명되지 않으면 다음 단계를 가늠하기 어렵습니다.", "카탈로그는 상품을 보여 주는 데 그치지 않고, 상품 선택과 주문이라는 다음 행동으로 이어지도록 도와야 합니다."], "ps": ["카탈로그를 이해하기 쉬운 주제별 카테고리로 구성하고, 검색 범위를 단계적으로 좁혀 주는 탐색 위계를 만들었습니다.", "명확한 시각적 위계를 만들고 핵심 정보를 강조해, 상품을 더 빨리 훑어보고 제안을 비교할 수 있도록 콘텐츠를 구성했습니다.", "서비스와 진행 순서에 대한 정보를 사이트에서 확인할 수 있게 해, 사용자가 플랫폼의 역할과 주문의 주요 단계를 이해하도록 했습니다.", "명확한 상호작용 지점, 순차적인 사용자 경로, 눈에 띄는 핵심 인터페이스 요소에 주의를 기울였습니다."], "uh": "UX <em>솔루션</em>", "ux": [["논리적인 정보 구조", "카탈로그는 카테고리별로 구성하고 상품은 방향별로 묶었습니다. 사용자는 카탈로그 전체를 살피지 않고도 큰 상품군에서 원하는 것을 찾을 수 있습니다."], ["콘텐츠의 시각적 위계", "이미지, 이름, 가격 등 제안을 처음 평가하는 데 필요한 정보를 우선시했습니다. 요소를 명확히 구분해 페이지를 훑어보기 쉽습니다."], ["명확한 상호작용 시나리오", "핵심 시나리오를 각 단계가 이전 단계에서 자연스럽게 이어지는 경로로 구성했습니다. 덕분에 상호작용을 예측할 수 있습니다."], ["투명한 서비스 안내", "구매 대행, 상품 검수, 배송에 대한 정보가 상품 선택 이후에 어떤 일이 일어나는지 설명하고 협업에 대한 전체적인 그림을 줍니다."]], "ah": "인터페이스의 <em>편의 기능</em>", "am": [["카테고리로 빠른 접근", "전체 상품군이 아니라 원하는 상품 방향에서 검색을 시작할 수 있습니다."], ["편리한 상품 둘러보기", "구조화된 카드로 상품을 더 빨리 파악할 수 있습니다."], ["명확한 행동 순서", "탐색이 상품 검색에서 주문까지 이어집니다."], ["서비스 정보 접근성", "결정하기 전에 구매와 배송 과정을 이해할 수 있습니다."], ["일관된 상호작용 논리", "카탈로그, 서비스 정보, 주문 시나리오가 하나의 시스템으로 작동합니다."]], "gh": "<em>플랫폼</em> 속으로", "scr": [["카테고리별 카탈로그", "주제별 방향으로 빠른 접근."], ["탐색 위계", "검색 범위를 단계적으로 좁힙니다."], ["상품 카드", "첫 평가를 위한 이미지, 이름, 가격."], ["플랫폼 서비스", "구매 대행, 검수, 배송을 미리 설명."], ["주문 경로", "각 단계가 이전 단계에서 이어집니다."], ["하나의 시스템", "반복되는 패턴과 일관된 상태."]], "vh": "시각적 <em>접근</em>", "vt1": "시각 요소는 기능에 기여해야 합니다. 상품군을 파악하고, 정보를 빠르게 읽고, 주요 행동을 알아보게 도와야 합니다.", "vt2": "이커머스에서는 콘텐츠 밀도와 가독성의 균형에 신경 씁니다. 일관된 컴포넌트와 반복되는 패턴 덕분에 카테고리와 상품이 많아도 인터페이스의 통일성이 유지됩니다.", "vchips": ["밀도와 가독성의 균형", "일관된 컴포넌트", "반복 가능한 패턴", "일관된 상태"], "rsh": "<em>결과</em>", "rs1": "Postavkin의 UX 컨셉에서는 플랫폼과의 상호작용을 단순화하고 사용자 경로를 더 명확하게 만드는 데 초점을 맞췄습니다.", "rs": ["상품군에 대한 더 체계적인 탐색", "상품 정보를 더 쉽게 파악", "구매와 배송 단계의 명확한 안내", "검색에서 주문까지 이어지는 순차적 경로", "핵심 요소에 대한 일관된 상호작용 논리"], "rsl": "핵심 원칙", "rsq": "기능을 화면에 놓는 데 그치지 않고, 사용자가 최소한의 노력으로 과제를 해결하고 각 단계에서 무엇을 해야 할지 알 수 있도록 구성하는 것.", "apk": "UI/UX 디자이너로서의 접근", "ap1": "B2B 이커머스에서 디자인은 시각적 과제만 해결하지 않습니다. 사용자가 복잡한 상품군 속에서 길을 찾고, 주어진 정보로 결정을 내리고, 주요 시나리오를 자신 있게 끝낼 수 있도록 돕습니다. 저는 사용자 경험을 실용성의 관점에서 바라봅니다. 명확한 구조, 예측 가능한 행동, 읽기 쉬운 콘텐츠, 논리적인 순서입니다.", "apq": "복잡한 도매 구매 과정을 이해하기 쉬운 디지털 경험으로 바꾸는 것이 제 목표입니다.", "live_k": "라이브 프로젝트", "live_t": "Postavkin은 실제로 운영 중인 마켓플레이스입니다. 온라인에서 직접 확인해 보세요.", "prev": "이전", "nxt": "다음", "next": "다음", "nx": "이야기해요", "back": "← 홈으로"}};
+ const N=6,P=4;
+ const L=()=>C[document.documentElement.lang]||C.en;
+ const E=id=>document.getElementById(id);
+ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+ /* ---- problems / solutions: tabs with a timer bar ---- */
+ const prl=E('prl'),prp=E('prp');let pi=0,pvis=false;
+ function paintPair(anim){const d=L();
+  prp.innerHTML='<div class="pp-p"><h4>'+d.lp+'</h4><h5>'+d.pth[pi]+'</h5><p>'+d.pp[pi]+'</p></div><div class="pp-s"><h4>'+d.lh+'</h4><p>'+d.ps[pi]+'</p></div>';
+  if(anim){prp.classList.remove('swap');void prp.offsetWidth;prp.classList.add('swap')}}
+ function buildTabs(){const d=L();
+  prl.innerHTML=d.pt.map((t,i)=>'<button role="tab" class="ptab'+(i===pi?' on':'')+'" aria-selected="'+(i===pi)+'" data-n="'+i+'"><span class="tn2">0'+(i+1)+'</span><span class="pt">'+t+'</span><i class="bar"></i></button>').join('');}
+ function pick(i,user){pi=(i+P)%P;if(user)prl.classList.add('manual');
+  [...prl.children].forEach((b,k)=>{b.classList.toggle('on',k===pi);b.setAttribute('aria-selected',k===pi)});
+  paintPair(true)}
+ prl.addEventListener('click',e=>{const b=e.target.closest('.ptab');if(b)pick(+b.dataset.n,true)});
+ prl.addEventListener('animationend',e=>{if(e.animationName==='fill'&&!prl.classList.contains('manual'))pick(pi+1,false)});
+ new IntersectionObserver(es=>{pvis=es[0].isIntersecting;prl.classList.toggle('paused',!pvis)},{threshold:.3}).observe(prl);
+
+ /* ---- static texts, lists, services ---- */
+ function render(){
+  const d=L();
+  document.querySelectorAll('[data-t]').forEach(el=>{const v=d[el.dataset.t];if(v==null)return;
+   const rv=el.classList.contains('rv')||el.classList.contains('ht');
+   el.innerHTML=v;
+   if(rv){delete el.dataset.s;split(el);if(el.classList.contains('ht')&&el.closest('.rv.in'))el.classList.add('in')}});
+  document.querySelectorAll('[data-ls]').forEach(ul=>{const a=d[ul.dataset.ls]||[];ul.innerHTML=a.map((x,i)=>'<li style="--k:'+i+'">'+x+'</li>').join('')});
+  document.querySelectorAll('[data-chp]').forEach(el=>{el.innerHTML=(d[el.dataset.chp]||[]).map((x,i)=>'<span style="--k:'+i+'">'+x+'</span>').join('')});
+  const ug=E('uxg');ug.innerHTML=d.ux.map((u,i)=>'<article class="uxc fade" style="--d:'+((i%2)*120)+'ms"><span class="un">0'+(i+1)+'</span><h3>'+u[0]+'</h3><p>'+u[1]+'</p></article>').join('');
+  ug.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  E('aml').innerHTML=d.am.map((a,i)=>'<li style="--k:'+i+'"><b>'+a[0]+'</b><span>'+a[1]+'</span></li>').join('');
+  const sv=E('svc');sv.innerHTML=d.sv.map((s,i)=>'<div class="fade'+(sv.classList.contains('in')?' in':'')+'" style="--d:'+(i*110)+'ms"><span class="sn">0'+(i+1)+'</span><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>').join('');
+  sv.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  buildTabs();paintPair(false);
+  caps()}
+ window.buildHeading=render;
+
+ /* ---- scroll reveals ---- */
+ document.querySelectorAll('.rv').forEach(split);
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+ const start=performance.now();
+ function arm(el){const d=+el.dataset.start||0;const wait=Math.max(0,d-(performance.now()-start));setTimeout(()=>io.observe(el),wait)}
+ document.querySelector('.hero3').querySelectorAll('.rv,.fade').forEach(el=>{if(!el.dataset.start)el.dataset.start=5200});
+ document.querySelectorAll('.rv,.fade,.big,.stag').forEach(el=>{if(el.classList.contains('in'))return;el.dataset.start?arm(el):io.observe(el)});
+
+ /* ---- big image: slow zoom ---- */
+ const bigIn=document.querySelector('.big .in-img'),bigEl=E('big');
+ function par(){const r=bigEl.getBoundingClientRect(),vh=innerHeight;if(r.bottom<0||r.top>vh)return;const p=(r.top+r.height/2-vh/2)/vh;
+  bigIn.style.setProperty('--sc',(1+Math.min(1,Math.max(0,.5-p))*.03).toFixed(3))}
+ addEventListener('scroll',par,{passive:true});addEventListener('resize',par);par();
+
+ /* ---- gallery: expanding panels ---- */
+ const gal=E('gal3'),acc=E('acc'),pns=[...acc.querySelectorAll('.pn')],cnt=E('cnt'),prog=E('prog3');
+ let ai=0,timer=0,stopped=false,gvis=false;
+ function caps(){const d=L();pns.forEach((p,i)=>{const s=d.scr[i];p.querySelector('.vt').textContent=s[0];p.querySelector('h3').textContent=s[0];p.querySelector('.cap3 p').textContent=s[1];p.setAttribute('aria-label',s[0])})}
+ function show(i){ai=((i%N)+N)%N;pns.forEach((p,k)=>{p.classList.toggle('on',k===ai);p.setAttribute('aria-current',k===ai?'true':'false')});
+  cnt.textContent='0'+(ai+1)+' / 0'+N;prog.style.width=((ai+1)/N*100)+'%'}
+ function user(){stopped=true;clearInterval(timer)}
+ function play(){clearInterval(timer);if(reduce||stopped||!gvis)return;timer=setInterval(()=>show(ai+1),4800)}
+ new IntersectionObserver(es=>{gvis=es[0].isIntersecting;play()},{threshold:.35}).observe(gal);
+ pns.forEach((p,i)=>{
+  p.addEventListener('click',()=>{user();show(i)});
+  p.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){user();show(i)}});
+  p.addEventListener('focus',()=>{user();show(i)});
+ });
+ E('prev3').addEventListener('click',()=>{user();show(ai-1)});
+ E('next3').addEventListener('click',()=>{user();show(ai+1)});
+ addEventListener('keydown',e=>{const r=gal.getBoundingClientRect();if(r.top>innerHeight*.6||r.bottom<innerHeight*.4)return;
+  if(e.key==='ArrowRight'){user();show(ai+1)}if(e.key==='ArrowLeft'){user();show(ai-1)}});
+ let sx=null;
+ acc.addEventListener('pointerdown',e=>{sx=e.clientX});
+ acc.addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx;sx=null;if(e.pointerType!=='mouse'&&Math.abs(dx)>50){user();show(ai+(dx<0?1:-1))}});
+ show(0);
+ render();
+})();
+
+</script>
+
+</body></html>
