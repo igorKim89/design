@@ -20,7 +20,8 @@ html,body{height:calc(var(--vh)*100);margin:0;overflow:hidden;background:var(--b
 .back:focus-visible{outline:3px solid var(--orange);outline-offset:4px;border-radius:6px}
 .wipe{position:fixed;inset:0;z-index:200;background:var(--orange);transform:translateY(101%);transition:transform .8s cubic-bezier(.7,0,.2,1);pointer-events:none}
 .wipe.on{transform:none;pointer-events:auto}
-</style></head><body>
+</style><link rel="icon" href="/favicon.ico" sizes="any">
+</head><body>
 <div class="stage"><video id="v" autoplay muted playsinline preload="auto" poster="404-poster.jpg" aria-hidden="true"><source src="404-bg.webm" type="video/webm"><source src="404-bg.mp4" type="video/mp4"></video></div>
 <a class="back" id="b" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span id="t">Back home</span></a>
 <div class="wipe" id="w"></div>
