@@ -126,7 +126,7 @@ document.addEventListener('click',e=>{
  if(e.target.id==='copy'){const b=e.target;(navigator.clipboard?navigator.clipboard.writeText(MAIL):Promise.reject()).then(()=>b.textContent=t('copied'),()=>b.textContent=MAIL);return}
  if(e.target.id==='cl'||e.target===sheet)sheet.classList.remove('on')});
 addEventListener('keydown',e=>{if(e.key==='Escape'){sheet.classList.remove('on');setMenu(false)}});
-setTimeout(()=>{const l=E('loader');l&&l.remove()},5100);
+setTimeout(()=>{const l=E('loader');l&&l.remove()},/^c\d/.test(PAGE||'')?4300:5100);
 
 /* start */
 const START=readLang();applyLang(START,false);setIcon(START,false);saveLang(START);
