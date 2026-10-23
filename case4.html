@@ -331,7 +331,7 @@ button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px sol
   </div>
  </header>
 
- <section class="big" id="big" data-start="5500"><div class="ph"><div class="hph">Lotti</div><div class="in-img"><img src="lotti-hero.jpg" alt="Lotti App key visual" width="3600" height="1843" onerror="this.remove()"></div></div></section>
+ <section class="big" id="big" data-start="5500"><div class="ph"><div class="hph">Lotti</div><div class="in-img"><img src="lotti-hero.jpg" alt="Lotti App key visual" width="5760" height="2880" onerror="this.remove()"></div></div></section>
 
  <section class="intro3">
   <div class="kicker fade" data-t="story">About the project</div>
@@ -548,7 +548,8 @@ window.addEventListener('scroll',chk,{passive:true});setTimeout(chk,5400);setTim
 @media (max-width:1100px){.slide{width:calc((100vw - var(--pad) - var(--padr) - var(--gap)*2)/3)}}
 @media (max-width:820px){.slide{width:min(74vw,340px)}.ctrl button{width:46px;height:46px}.gal-h{align-items:flex-start;flex-direction:column}body .gal{padding-top:64px;padding-bottom:72px}}
 
-.big .ph{background:linear-gradient(120deg,#69d0d0,#8fe0dc 55%,#e9fbf8)}
+.big .ph{background:#b5d8fa}
+@media(min-width:821px){body .big .ph{aspect-ratio:2/1}}
 .hph{color:rgba(255,255,255,.4)}
 .steps li{font-size:clamp(16px,1.35vw,22px);line-height:1.4;font-weight:400}
 .steps li b{font-weight:600;color:var(--orange)}
