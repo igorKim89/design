@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll"><head>
+<meta charset="utf-8"><script>(function(){var d=document.documentElement;function s(){var h=(window.visualViewport&&visualViewport.height)||innerHeight;d.style.setProperty('--vh',(h*0.01).toFixed(3)+'px')}s();addEventListener('resize',s);addEventListener('orientationchange',function(){setTimeout(s,150)});if(window.visualViewport)visualViewport.addEventListener('resize',s)})();</script><meta name="theme-color" content="#f8f7f3"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designer Kim - Lotti App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{--vh:1vh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--padr:max(var(--pad),160px);--orange:#fea831;--ink:#3b3224;--bgc:#f8f7f3;--mut:#8d8a6c;--round:"Outfit","Avenir Next","Segoe UI",system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;--pad:clamp(20px,5vw,84px);--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html.scroll{height:auto;max-height:none;position:static;overflow-x:hidden;overflow-y:auto;overscroll-behavior:auto;scroll-behavior:smooth}
+html.scroll body{height:auto;max-height:none;position:static;overflow:visible;contain:none;margin:0;background:var(--bgc);font-family:var(--round);color:var(--ink);touch-action:auto}
+button{font:inherit;color:inherit}a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.brand{position:absolute;z-index:15;left:var(--pad);top:calc(clamp(16px,2vw,24px) + env(safe-area-inset-top,0px));line-height:1.35}
+.brand a{display:block;text-decoration:none;font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.1;margin-bottom:10px}
+.brand span{display:block;font-weight:400;font-size:clamp(13px,.95vw,16px);letter-spacing:.02em}
+.side{position:fixed;z-index:15;right:clamp(16px,2.2vw,40px);bottom:clamp(16px,2.4vw,30px);display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.side button{display:flex;align-items:center;gap:8px;background:none;border:0;padding:1px 0;cursor:pointer;font-size:13px;color:#9a9578;transition:color .2s}
+.side button::after{content:"";width:8px;height:8px;border-radius:50%;background:#fed9a6;transition:background .2s}
+.side button:hover{color:#000}.side button:hover::after{background:var(--orange)}
+.side button.cur{color:#000;font-weight:500}.side button.cur::after{background:var(--orange)}
+
+/* ---------- headline reveal: words slide up out of a mask ---------- */
+.rv .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.rv .w>i{display:inline-block;font-style:normal;transform:translateY(112%) rotate(4deg);transform-origin:0 100%;transition:transform 1s var(--ease);transition-delay:calc(var(--n)*70ms + var(--d,0ms))}
+.rv.in .w>i{transform:none}
+.rv em{font-style:normal;background:linear-gradient(var(--orange),var(--orange)) 0 92%/0% .12em no-repeat;transition:background-size 1.1s var(--ease) .7s}
+.rv.in em{background-size:100% .12em}
+.fade{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.fade.in{opacity:1;transform:none}
+
+
+/* ---------- hero: title left, facts column right ---------- */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,2.3fr) minmax(220px,.62fr);gap:var(--pad);align-items:end;padding:clamp(130px,21vh,220px) var(--padr) 0 var(--pad)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:clamp(13px,1vw,16px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.eyebrow::before{content:"";width:46px;height:2px;background:var(--orange);transform-origin:0 50%;animation:line 1s var(--ease) 4.4s both}
+@keyframes line{from{transform:scaleX(0)}}
+.h1{margin:.28em 0 0;font-weight:600;letter-spacing:-.035em;line-height:.96;font-size:clamp(32px,4vw,80px)}
+.h1 .sub{display:block;margin-top:clamp(20px,2.4vw,36px);font-size:clamp(15px,.2em,34px);letter-spacing:0;font-weight:400;line-height:1.3;color:var(--mut);max-width:24em}
+.meta{display:flex;flex-direction:column;padding-bottom:.6em}
+.meta>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid rgba(59,50,36,.18);position:relative}
+.meta>div::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.meta>div:hover::after{transform:scaleX(1)}
+.meta b{font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.meta span{font-size:clamp(15px,1.15vw,19px);font-weight:500;text-align:right}
+
+/* ---------- big image: opens from the centre ---------- */
+.ph{position:relative;overflow:hidden;border-radius:clamp(18px,2.2vw,34px);isolation:isolate}
+.big{margin:clamp(50px,10vh,110px) var(--padr) 0 var(--pad)}
+.big .ph{aspect-ratio:2/1;background:linear-gradient(120deg,#2b2115,#5a3a12 55%,#fea831);clip-path:inset(0 50% 0 50% round 34px);transition:clip-path 1.5s var(--ease)}
+.big.in .ph{clip-path:inset(0 0 0 0 round 34px)}
+.hph{position:absolute;inset:0;z-index:-2;display:grid;place-items:center;font-weight:700;letter-spacing:-.04em;font-size:clamp(40px,9vw,160px);color:rgba(255,255,255,.16)}
+.big .ph .in-img{position:absolute;inset:0;transform-origin:50% 0;transform:scale(var(--sc,1));will-change:transform;z-index:-1}
+.big .ph .in-img img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ---------- intro: lead left, kicker right ---------- */
+.intro{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(120px,.5fr);gap:var(--pad);padding:clamp(100px,20vh,230px) var(--padr) clamp(60px,10vh,120px) var(--pad);align-items:start}
+.kicker{font-size:clamp(14px,1.05vw,17px);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding-top:.7em;text-align:right;order:2}
+.lead{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.2;font-size:clamp(22px,2.6vw,44px)}
+
+/* ---------- chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,4.5vh,46px)}
+.chips span{padding:9px 18px;border:1px solid rgba(59,50,36,.25);border-radius:99px;font-size:clamp(13px,1vw,15px);font-weight:500;opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .7s var(--ease),background .3s,color .3s,border-color .3s;transition-delay:calc(var(--k,0)*90ms + 300ms)}
+.chips.in span{opacity:1;transform:none}
+.chips span:hover{background:var(--orange);border-color:var(--orange);color:#fff;transition-delay:0s}
+
+/* ---------- live project link ---------- */
+.live{background:#fff;padding:0 var(--padr) 0 var(--pad)}
+.livecard{position:relative;display:flex;justify-content:space-between;align-items:center;gap:clamp(18px,3vw,40px);flex-wrap:wrap;padding:clamp(26px,3.4vw,54px);border-radius:clamp(22px,2.6vw,40px);background:#1f1a12;color:#fff;text-decoration:none;overflow:hidden;isolation:isolate;transition:transform .6s var(--ease),box-shadow .6s ease}
+.livecard::before{content:"";position:absolute;right:-8%;top:50%;width:min(60%,640px);aspect-ratio:1;translate:0 -50%;border-radius:50%;background:radial-gradient(circle,rgba(254,168,49,.42),transparent 64%);z-index:-1;transition:transform .8s var(--ease),opacity .6s;opacity:.8}
+.livecard:hover{transform:translateY(-6px);box-shadow:0 40px 60px -34px rgba(80,50,10,.55)}
+.livecard:hover::before{transform:scale(1.25)}
+.lv-k{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500}
+.lv-k b{font-weight:500}
+.pulse{position:relative;width:9px;height:9px;border-radius:50%;background:#3ddc84}
+.pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:#3ddc84;animation:pl 1.8s ease-out infinite}
+@keyframes pl{from{transform:scale(1);opacity:.7}to{transform:scale(3.2);opacity:0}}
+.lv-l p{margin:.9em 0 0;font-size:clamp(17px,1.7vw,27px);line-height:1.35;font-weight:500;letter-spacing:-.01em;max-width:21em;color:rgba(255,255,255,.88)}
+.lv-r{display:flex;align-items:center;gap:clamp(14px,1.8vw,26px)}
+.lv-url{font-weight:600;letter-spacing:-.03em;line-height:1.1;font-size:clamp(26px,3.6vw,60px)}
+.lv-url .u{background:linear-gradient(var(--orange),var(--orange)) 0 100%/100% .07em no-repeat;transition:background-size .6s var(--ease);padding-bottom:.08em}
+.livecard:hover .lv-url .u{background-size:0 .07em;background-position:100% 100%}
+.livecard .arr{flex:none;width:clamp(48px,5vw,76px);aspect-ratio:1;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;transition:transform .5s var(--ease)}
+.livecard .arr svg{width:42%;height:42%;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.livecard:hover .arr{transform:rotate(45deg) scale(1.08)}
+.livecard:focus-visible{outline-offset:6px}
+.live+.outro{padding-top:clamp(60px,11vh,130px)}
+.outro .kicker{order:0;text-align:left;padding-top:0}
+
+/* ---------- outro ---------- */
+.outro{padding:clamp(90px,17vh,200px) var(--padr) clamp(50px,10vh,110px) var(--pad);display:flex;flex-direction:column;align-items:flex-start;gap:26px;background:#fff}
+.nextbtn{display:inline-flex;align-items:center;gap:18px;background:none;border:0;padding:0;cursor:pointer;font-weight:600;letter-spacing:-.03em;line-height:1;font-size:clamp(30px,4.6vw,80px)}
+.nextbtn .arr{flex:none;width:1.05em;height:1.05em;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.8em;line-height:0;transition:transform .5s var(--ease)}
+.nextbtn .arr svg{width:46%;height:46%;display:block;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nextbtn:hover .arr{transform:rotate(-45deg) scale(1.08)}
+.nextbtn span.t{background:linear-gradient(var(--ink),var(--ink)) 0 100%/0 .06em no-repeat;transition:background-size .6s var(--ease)}
+.nextbtn:hover span.t{background-size:100% .06em}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:30px var(--padr) 36px var(--pad);background:#fff;font-size:13px;color:var(--mut)}
+.foot a{text-decoration:none}.foot a:hover{color:var(--ink)}
+
+/* ---------- responsive ---------- */
+@media (min-width:821px) and (max-width:1280px){.h1{font-size:3.55vw}}
+@media (max-width:820px){
+ :root{--padr:var(--pad)}
+ .hero{grid-template-columns:1fr;gap:34px}
+ .meta{padding-bottom:0}
+ .intro{grid-template-columns:1fr;gap:18px}.kicker{order:0;text-align:left}
+ .sec{grid-template-columns:1fr;gap:18px}.sec-l{position:static;display:flex;align-items:baseline;gap:18px}.sec-l .lab{margin:0}.sec .num{font-size:60px}.cols{grid-template-columns:1fr}
+ .side{display:none}
+ .lv-r{width:100%;justify-content:space-between}
+ .big .ph{aspect-ratio:16/10}
+ .deck-in{grid-template-columns:1fr;grid-template-areas:"head" "stack" "cap" "ctl"}
+ .deck-r{margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){.rv .w>i,.fade,.big .ph,.sec::before,.card li,.chips span{transition:none!important;animation:none!important}.c3{transition:none}}
+
+/* ================= case 3 : Postavkin ================= */
+.hero3{padding:clamp(130px,21vh,220px) var(--padr) 0 var(--pad)}
+.hero3 .h1{font-size:clamp(38px,4.9vw,96px);max-width:16em;margin-top:.3em}
+.lede{margin:clamp(20px,3vh,34px) 0 0;max-width:27em;font-size:clamp(16px,1.35vw,23px);line-height:1.45;color:#5a5240}
+.route{display:flex;align-items:center;gap:18px;margin-top:clamp(40px,8vh,90px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:500}
+.route .pt{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.route .pt::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--orange);background:var(--bgc)}
+.lane{position:relative;flex:1;height:2px;background:repeating-linear-gradient(90deg,rgba(59,50,36,.38) 0 7px,transparent 7px 15px)}
+.lane .box{position:absolute;top:50%;left:0;width:20px;height:20px;border-radius:5px;background:var(--orange);translate:0 -50%;opacity:0;box-shadow:inset 0 -6px 0 rgba(150,70,0,.22),inset 0 6px 0 rgba(255,255,255,.25);animation:ship 5s cubic-bezier(.65,0,.25,1) 4.9s infinite}
+@keyframes ship{0%{left:0;rotate:0deg;opacity:0}8%{opacity:1}72%{left:calc(100% - 20px);rotate:180deg;opacity:1}86%{left:calc(100% - 20px);rotate:180deg;opacity:0}100%{left:calc(100% - 20px);opacity:0}}
+.facts{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));margin-top:clamp(26px,4vh,44px);border-top:1px solid rgba(59,50,36,.22)}
+.facts>div{padding:clamp(18px,2.4vh,28px) clamp(12px,1.6vw,26px) 0 0;display:flex;flex-direction:column;gap:10px}
+.facts b{font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.facts span{font-size:clamp(17px,1.4vw,24px);font-weight:500;line-height:1.25}
+.facts .yr span{font-weight:700;font-size:clamp(56px,8.4vw,150px);line-height:.88;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--orange);transition:color .5s}
+.facts .yr:hover span{color:var(--orange)}
+
+.big .ph{aspect-ratio:3600/1843;clip-path:inset(100% 0 0 0 round 34px)}
+.big.in .ph{clip-path:inset(0 0 0 0 round 34px)}
+
+.intro3{display:grid;grid-template-columns:minmax(120px,.4fr) minmax(0,2fr);gap:var(--pad);padding:clamp(90px,16vh,190px) var(--padr) clamp(50px,8vh,100px) var(--pad);align-items:start}
+.intro3 .kicker{order:0;text-align:left;padding-top:.7em}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(34px,6vh,64px)}
+.svc>div{position:relative;padding-top:20px;border-top:2px solid var(--ink)}
+.svc>div::before{content:"";position:absolute;left:0;top:-2px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.svc>div:hover::before{transform:scaleX(1)}
+.svc .sn{display:block;font-weight:700;font-size:clamp(40px,4.4vw,72px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.4px var(--orange)}
+.svc h4{margin:.9em 0 .4em;font-size:clamp(19px,1.6vw,26px);font-weight:600;letter-spacing:-.02em}
+.svc p{margin:0;font-size:clamp(14px,1.1vw,17px);line-height:1.55;color:#5a5240}
+
+.h2{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1;font-size:clamp(30px,4.2vw,72px)}
+.pairs{padding:clamp(80px,14vh,170px) var(--padr) clamp(60px,10vh,120px) var(--pad)}
+.pr-grid{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.6fr);gap:var(--pad);margin-top:clamp(32px,6vh,70px);align-items:start}
+.pr-list{display:flex;flex-direction:column}
+.ptab{display:grid;grid-template-columns:auto 1fr;gap:0 18px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-top:1px solid rgba(59,50,36,.22);padding:clamp(18px,3vh,30px) 0;cursor:pointer;position:relative;opacity:.5;transition:opacity .4s,padding .5s var(--ease)}
+.ptab:last-child{border-bottom:1px solid rgba(59,50,36,.22)}
+.ptab .tn2{font-weight:700;font-size:clamp(22px,2.2vw,36px);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.3px var(--orange)}
+.ptab .pt{font-weight:600;font-size:clamp(26px,3.2vw,54px);letter-spacing:-.03em;line-height:1}
+.ptab .bar{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%}
+.ptab:hover{opacity:.9}
+.ptab.on{opacity:1;padding-left:16px}
+.ptab.on .bar{animation:fill 7s linear forwards}
+.pr-list.manual .ptab.on .bar{animation:none;transform:none}
+.pr-list.paused .ptab.on .bar{animation-play-state:paused}
+@keyframes fill{to{transform:scaleX(1)}}
+.pr-panel{display:grid;gap:clamp(14px,1.6vw,22px)}
+.pp-p,.pp-s{border-radius:clamp(18px,2vw,28px);padding:clamp(22px,2.6vw,42px)}
+.pp-p{background:#fff;border:1px solid rgba(59,50,36,.12)}
+.pp-s{background:#1f1a12;color:#fff}
+.pr-panel h4{margin:0 0 1em;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--mut)}
+.pp-s h4{color:var(--orange)}
+.pp-p h5{margin:0 0 .7em;font-size:clamp(20px,2vw,32px);line-height:1.15;font-weight:600;letter-spacing:-.025em}
+.pp-p p{margin:0;font-size:clamp(16px,1.3vw,20px);line-height:1.6;color:#5a5240}
+.pp-s p{margin:0;font-size:clamp(17px,1.5vw,24px);line-height:1.5;font-weight:500;letter-spacing:-.01em}
+.pp-s ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px}
+.pp-s li{position:relative;padding-left:32px;font-size:clamp(15px,1.15vw,18px);line-height:1.45;font-weight:500}
+.pp-s li::before{content:"";position:absolute;left:0;top:.12em;width:20px;height:20px;border-radius:50%;background:var(--orange)}
+.pp-s li::after{content:"";position:absolute;left:7px;top:.33em;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.pr-panel.swap>div{animation:capin .7s var(--ease) both}.pr-panel.swap>div+div{animation-delay:.1s}
+.pr-panel.swap li{animation:capin .7s var(--ease) both;animation-delay:calc(var(--k)*70ms + 200ms)}
+@keyframes capin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* gallery: expanding panels on a dark ground */
+:root{--gr:clamp(26px,4vw,64px)}
+.gal3{position:relative;z-index:2;background:#1f1a12;color:#fff;border-radius:var(--gr);padding:clamp(60px,11vh,120px) var(--padr) clamp(46px,8vh,90px) var(--pad)}
+.g3-h{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.gal3 .h2{color:#fff}
+.g3-ctl{display:flex;align-items:center;gap:12px}
+.g3-ctl .cnt{font-variant-numeric:tabular-nums;font-size:15px;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-right:8px}
+.g3-ctl .b{width:54px;height:54px;border-radius:50%;border:2px solid rgba(255,255,255,.45);background:none;color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .25s,border-color .25s,transform .3s var(--ease)}
+.g3-ctl .b:hover{background:var(--orange);border-color:var(--orange);transform:scale(1.07)}
+.g3-ctl svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.acc{display:flex;gap:12px;height:clamp(360px,56vh,640px);margin-top:clamp(28px,5vh,56px)}
+.pn{margin:0;position:relative;flex:1 1 0;min-width:0;border-radius:clamp(16px,2vw,28px);overflow:hidden;cursor:pointer;background:#2c251a;transition:flex-grow .9s var(--ease);outline:none;isolation:isolate}
+.pn.on{flex-grow:var(--g,6.5)}
+.pn:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.ph3{position:absolute;inset:0;background:linear-gradient(160deg,hsl(var(--h) 88% 58%),hsl(calc(var(--h) + 30) 78% 40%));z-index:-1}
+.ph3 .mk{position:absolute;inset:7% 6% 9%;display:block}
+.ph3 .mk i{position:absolute;inset:0;border-radius:clamp(12px,1.4vw,20px);background:rgba(255,255,255,.34);display:grid;place-items:center}
+.ph3 .mk i::before{content:"";width:clamp(34px,5vw,72px);aspect-ratio:1;background:radial-gradient(circle at 70% 32%,rgba(255,255,255,.9) 0 11%,transparent 12%),linear-gradient(135deg,transparent 46%,rgba(255,255,255,.75) 47% 100%) 0 100%/60% 55% no-repeat,linear-gradient(225deg,transparent 46%,rgba(255,255,255,.55) 47% 100%) 100% 100%/60% 40% no-repeat;border:3px solid rgba(255,255,255,.85);border-radius:12px}
+.ph3 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;display:block;pointer-events:none;user-select:none}
+.pn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,26,18,.12),rgba(31,26,18,.6));transition:opacity .7s;pointer-events:none}
+.pn.on::after{opacity:0}
+.tn{position:absolute;top:20px;left:50%;translate:-50% 0;font-weight:700;font-size:15px;letter-spacing:.06em;color:#fff;z-index:2;transition:opacity .4s}
+.vt{position:absolute;left:50%;bottom:22px;translate:-50% 0;writing-mode:vertical-rl;rotate:180deg;white-space:nowrap;font-weight:600;font-size:clamp(16px,1.4vw,22px);letter-spacing:-.01em;color:#fff;z-index:2;transition:opacity .4s}
+.pn.on .tn,.pn.on .vt{opacity:0}
+.cap3{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:clamp(40px,6vw,90px) clamp(18px,2.4vw,36px) clamp(18px,2.4vw,34px);background:linear-gradient(0deg,rgba(20,15,8,.86),rgba(20,15,8,0));opacity:0;transform:translateY(16px);transition:opacity .4s,transform .5s var(--ease)}
+.pn.on .cap3{opacity:1;transform:none;transition:opacity .6s .35s,transform .8s var(--ease) .35s}
+.cap3 .n{display:block;font-weight:700;font-size:clamp(34px,4vw,64px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.4px var(--orange)}
+.cap3 h3{margin:.45em 0 .25em;font-size:clamp(20px,1.9vw,32px);font-weight:600;letter-spacing:-.02em}
+.cap3 p{margin:0;font-size:clamp(14px,1.1vw,18px);line-height:1.5;color:rgba(255,255,255,.82);max-width:28em}
+.g3-prog{height:2px;margin-top:26px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+.g3-prog i{display:block;height:100%;width:0;background:var(--orange);transition:width .8s var(--ease)}
+
+
+@media (max-width:820px){
+ .hero3 .h1{font-size:clamp(36px,10.5vw,64px)}
+ .route{margin-top:34px}
+ .facts{grid-template-columns:1fr 1fr}.facts .yr{grid-column:1/-1}
+ .intro3{grid-template-columns:1fr;gap:18px}.intro3 .kicker{padding-top:0}
+ .svc{grid-template-columns:1fr}
+ .pr-grid{grid-template-columns:1fr;gap:26px}
+ .pp-s ul{grid-template-columns:1fr}
+ .big .ph{aspect-ratio:3600/1843}
+ .acc{flex-direction:column;height:clamp(460px,128vw,620px);gap:10px}
+ .pn.on{flex-grow:7}
+ .vt{writing-mode:horizontal-tb;rotate:0deg;left:20px;top:50%;bottom:auto;translate:0 -50%}
+ .tn{top:50%;left:auto;right:20px;translate:0 -50%}
+}
+@media (prefers-reduced-motion:reduce){.lane .box{animation:none}.pn,.ptab .bar{transition:none!important;animation:none!important}.pr-panel.swap>div,.pr-panel.swap li{animation:none}}
+.ph3 .mk{transition:opacity .6s}.pn:not(.on) .ph3 .mk{opacity:0}
+
+.more{margin:clamp(22px,3.4vh,36px) 0 0;max-width:36em;font-size:clamp(16px,1.3vw,21px);line-height:1.6;color:#5a5240}
+
+/* task: dark statement band */
+.task{padding:clamp(40px,8vh,90px) var(--padr) clamp(60px,10vh,120px) var(--pad)}
+.task-in{position:relative;overflow:hidden;isolation:isolate;border-radius:var(--gr);background:#1f1a12;color:#fff;padding:clamp(34px,5.4vw,90px)}
+.task-in::before{content:"";position:absolute;right:-10%;top:-30%;width:min(60%,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(254,168,49,.4),transparent 64%);z-index:-1}
+.task .k2{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500;margin-bottom:1.6em}
+.task .ts{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.08;font-size:clamp(28px,4.2vw,72px);max-width:17em}
+.task .tt{margin:clamp(24px,4vh,44px) 0 0;max-width:42em;font-size:clamp(15px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.78)}
+.task .chips span{border-color:rgba(255,255,255,.3);color:#fff}
+
+/* UX solutions: 2x2 */
+.ux{padding:0 var(--padr) clamp(80px,13vh,150px) var(--pad)}
+.ux-g{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,24px);margin-top:clamp(32px,6vh,64px)}
+.uxc{position:relative;display:flex;flex-direction:column;gap:clamp(34px,6vh,70px);min-height:clamp(240px,24vw,360px);padding:clamp(24px,2.6vw,42px);border-radius:clamp(20px,2.2vw,32px);background:#fff;border:1px solid rgba(59,50,36,.12);transition:opacity .9s ease var(--d,0ms),transform .6s var(--ease),background .4s,color .4s,box-shadow .6s}
+.uxc .un{font-weight:700;font-size:clamp(40px,4.4vw,72px);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.4px var(--orange);transition:-webkit-text-stroke-color .4s}
+.uxc h3{margin:auto 0 0;font-size:clamp(21px,2vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.uxc p{margin:-.6em 0 0;font-size:clamp(14px,1.1vw,17px);line-height:1.6;color:#5a5240;transition:color .4s}
+.uxc.in:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-6px);box-shadow:0 34px 50px -30px rgba(150,80,10,.55)}
+.uxc.in:hover .un{-webkit-text-stroke-color:#fff}.uxc.in:hover p{color:rgba(255,255,255,.92)}
+
+/* conveniences: ruled rows */
+.am{padding:clamp(20px,4vh,50px) var(--padr) clamp(90px,15vh,170px) var(--pad)}
+.am-l{list-style:none;margin:clamp(30px,5vh,60px) 0 0;padding:0}
+.am-l li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(14px,3vw,60px);align-items:baseline;padding:clamp(20px,3.2vh,34px) 0;border-top:1px solid rgba(59,50,36,.22);opacity:0;transform:translateX(-18px);transition:opacity .7s ease,transform .8s var(--ease),padding .5s var(--ease);transition-delay:calc(var(--k)*90ms),calc(var(--k)*90ms),0s}
+.am-l li:last-child{border-bottom:1px solid rgba(59,50,36,.22)}
+.am-l li::after{content:"";position:absolute;left:0;top:-1px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.am-l.in li{opacity:1;transform:none}
+.am-l.in li:hover::after{transform:scaleX(1)}
+.am-l.in li:hover{padding-left:14px;transition-delay:0s}
+.am-l b{position:relative;padding-left:38px;font-weight:600;font-size:clamp(19px,1.9vw,31px);letter-spacing:-.025em;line-height:1.15}
+.am-l b::before{content:"";position:absolute;left:0;top:.08em;width:24px;height:24px;border-radius:50%;background:var(--orange)}
+.am-l b::after{content:"";position:absolute;left:8px;top:.32em;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.am-l span{font-size:clamp(15px,1.2vw,19px);line-height:1.55;color:#5a5240}
+
+/* visual approach */
+.vis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--pad);padding:clamp(100px,17vh,200px) var(--padr) clamp(80px,13vh,150px) var(--pad);align-items:start}
+.vis .chips{margin-top:clamp(24px,4vh,40px)}
+.vis .v1{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.25;font-size:clamp(20px,2.1vw,34px)}
+.vis .v2{margin:1.4em 0 0;max-width:36em;font-size:clamp(15px,1.2vw,19px);line-height:1.65;color:#5a5240}
+
+/* white block: result + approach */
+.wb{background:#fff;border-radius:var(--gr) var(--gr) 0 0;padding-top:clamp(70px,12vh,140px)}
+.res{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--pad);padding:0 var(--padr) clamp(50px,8vh,100px) var(--pad);align-items:start}
+.res-l{position:sticky;top:clamp(90px,14vh,140px)}
+.res-l p{margin:1.2em 0 0;font-size:clamp(15px,1.25vw,20px);line-height:1.6;color:#5a5240;max-width:24em}
+.steps{list-style:none;margin:0;padding:0 0 0 clamp(18px,2vw,30px);position:relative}
+.steps::before{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:rgba(59,50,36,.15)}
+.steps::after{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:var(--orange);transform:scaleY(0);transform-origin:0 0;transition:transform 2s var(--ease) .3s}
+.steps.in::after{transform:none}
+.steps li{position:relative;padding:clamp(14px,2.2vh,24px) 0 clamp(14px,2.2vh,24px) clamp(22px,2.6vw,40px);font-size:clamp(18px,1.9vw,30px);font-weight:500;letter-spacing:-.02em;line-height:1.25;opacity:0;transform:translateX(18px);transition:opacity .7s ease,transform .8s var(--ease);transition-delay:calc(var(--k)*140ms + 200ms)}
+.steps li::before{content:"";position:absolute;left:calc(-1*clamp(18px,2vw,30px) + 1px);top:calc(clamp(14px,2.2vh,24px) + .3em);width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--orange)}
+.steps.in li{opacity:1;transform:none}
+.principle{margin:0 var(--padr) clamp(80px,13vh,150px) var(--pad);padding:clamp(28px,4vw,64px);border-radius:var(--gr);background:var(--bgc);position:relative}
+.principle::before{content:"";position:absolute;left:clamp(28px,4vw,64px);top:0;width:80px;height:4px;background:var(--orange);border-radius:0 0 4px 4px}
+.principle b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:500;margin-bottom:1.4em}
+.principle p{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.18;font-size:clamp(22px,2.8vw,48px);max-width:24em}
+.appr{padding:0 var(--padr) clamp(90px,15vh,170px) var(--pad)}
+.appr .kicker{order:0;text-align:left;padding:0 0 1.4em}
+.appr .a1{margin:0;max-width:44em;font-size:clamp(15px,1.25vw,20px);line-height:1.65;color:#5a5240}
+.appr .aq{margin:clamp(34px,6vh,70px) 0 0;font-weight:600;letter-spacing:-.04em;line-height:1.02;font-size:clamp(34px,5.6vw,100px);max-width:14em}
+@media (max-width:820px){
+ .ux-g{grid-template-columns:1fr}.uxc{min-height:0}
+ .am-l li{grid-template-columns:1fr;gap:8px}
+ .vis,.res{grid-template-columns:1fr;gap:26px}.res-l{position:static}
+}
+.big{filter:drop-shadow(0 0 1px rgba(59,50,36,.3)) drop-shadow(0 34px 40px rgba(60,40,10,.16))}
+
+.pn.on::after{opacity:0}
+.ph3 img{inset:7% 6% 9%;width:88%;height:84%;object-fit:contain;object-position:center;border-radius:clamp(10px,1.2vw,18px);box-shadow:0 22px 44px -22px rgba(0,0,0,.5)}
+.ph3:has(img) .mk{display:none}
+.ph3 img{inset:auto;left:6%;top:7%;width:88%;height:57%;object-position:top center;transition:opacity .5s}
+.pn:not(.on) .ph3 img{opacity:0}
+.cap3{background:none;padding-top:0}
+@media(max-width:820px){.ph3 img{height:50%;box-shadow:none;border-radius:0}}
+.ph3 img{height:calc(93% - clamp(150px,14vw,200px))}
+.cap3 p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:820px){.acc{height:clamp(520px,150vw,700px)}.ph3 img{height:calc(93% - 150px)}.cap3 p{font-size:13px}.cap3 .n{font-size:34px}}
+.ph3 img{left:50%;transform:translateX(-50%);width:auto;height:auto;max-width:88%;max-height:calc(93% - clamp(150px,14vw,200px));object-fit:fill;border-radius:clamp(10px,1.2vw,16px);box-shadow:0 22px 44px -22px rgba(0,0,0,.5)}
+@media(max-width:820px){.ph3 img{max-height:calc(93% - 150px);border-radius:10px;box-shadow:0 14px 28px -16px rgba(0,0,0,.5)}}
+#h1 .ht{display:block}
+#h1.rv .w{overflow:visible}
+#h1.rv .w>i{transform:none!important;transition:none!important}
+#h1.rv .ht{clip-path:inset(-12% 101% -22% -2%);transform:translateX(-26px);opacity:.001;transition:clip-path 1.7s cubic-bezier(.22,.61,.36,1) .05s,transform 1.7s cubic-bezier(.22,.61,.36,1) .05s,opacity .5s ease .05s}
+#h1.rv.in .ht{clip-path:inset(-12% -2% -22% -2%);transform:none;opacity:1}
+@media(max-width:820px){body .big{margin-top:40px}body .intro3{padding-top:52px;padding-bottom:48px}body .task{padding-top:48px;padding-bottom:56px}body .pairs{padding-top:64px;padding-bottom:56px}body .ux{padding-bottom:64px}body .am{padding-bottom:72px}body .gal3{padding-top:64px;padding-bottom:48px}body .vis{padding-top:72px;padding-bottom:64px}body .wb{padding-top:64px}body .appr{padding-bottom:72px}body .outro{padding-top:64px;padding-bottom:64px}}
+.loader .bgfade{animation-duration:4.2s}.ring{animation:spin 4.2s linear forwards,txt 4.2s ease-in forwards}
+@media(max-width:820px){body .big .ph{aspect-ratio:16/10}body .intro3{padding-top:40px}body .intro3>.kicker:first-child,body .intro3 .kicker:first-child{padding-top:0;margin-top:0}}
+</style><link rel="stylesheet" href="common.css"><link rel="stylesheet" href="responsive.css"></head>
+<body data-page="c4">
+<div class="brand"><a href="index.html" data-go>Designer Kim</a><span data-i="b1">UI/UX Design</span><span data-i="b2">Mobile App</span><span data-i="b3">Web Design</span></div>
+<main>
+ <header class="hero3">
+  <div class="eyebrow fade in" style="animation:none;--d:0ms" data-t="eb">Case 03 · Postavkin · 2023</div>
+  <h1 class="h1 rv" id="h1" data-start="4400"><span class="ht" data-t="h1">x</span></h1>
+  <p class="lede fade" data-t="sub" style="--d:350ms">x</p>
+  <div class="route fade" style="--d:550ms" aria-hidden="true"><span class="pt" data-t="fr">China</span><div class="lane"><i class="box"></i></div><span class="pt" data-t="to">Russia</span></div>
+  <div class="facts fade" style="--d:750ms">
+   <div class="yr"><b data-t="year">Year</b><span>BCN</span></div>
+   <div><b data-t="role">Role</b><span data-t="role_v">x</span></div>
+   <div><b data-t="scope">Scope</b><span data-t="scope_v">x</span></div>
+   <div><b data-t="plat">Industry</b><span data-t="plat_v">x</span></div>
+  </div>
+ </header>
+
+ <section class="big" id="big" data-start="5500"><div class="ph"><div class="hph">Lotti</div><div class="in-img"><img src="lotti-hero.jpg" alt="Lotti App key visual" width="3600" height="1843" onerror="this.remove()"></div></div></section>
+
+ <section class="intro3">
+  <div class="kicker fade" data-t="story">About the project</div>
+  <div><p class="lead rv" id="lead" data-t="lead">x</p><p class="more fade" data-t="more">x</p><div class="svc" id="svc"></div></div>
+ </section>
+
+ <section class="task"><div class="task-in"><span class="k2 fade" data-t="tk">Task</span><p class="ts rv" data-t="ts">x</p><p class="tt fade" data-t="tt">x</p><div class="chips fade" data-chp="tc"></div></div></section>
+
+ <section class="gal" id="gal">
+  <div class="gal-h">
+   <h2 class="h2 rv" id="gh" data-t="gh">x</h2>
+   <div class="ctrl fade"><button id="prev" aria-label="Previous" data-ta="prev"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button id="next" aria-label="Next" data-ta="nxt"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  </div>
+  <div class="track" id="track" tabindex="0" aria-label="Screens carousel"><figure class="slide" style="--i:0;margin:0"><div class="ph"><span class="ico"></span><img src="lotti-1.png" alt="" width="558" height="1209" draggable="false" loading="lazy" onerror="this.remove()"></div><figcaption class="cap"><b></b><small></small></figcaption></figure><figure class="slide" style="--i:1;margin:0"><div class="ph"><span class="ico"></span><img src="lotti-2.png" alt="" width="558" height="1209" draggable="false" loading="lazy" onerror="this.remove()"></div><figcaption class="cap"><b></b><small></small></figcaption></figure><figure class="slide" style="--i:2;margin:0"><div class="ph"><span class="ico"></span><img src="lotti-3.png" alt="" width="558" height="1209" draggable="false" loading="lazy" onerror="this.remove()"></div><figcaption class="cap"><b></b><small></small></figcaption></figure><figure class="slide" style="--i:3;margin:0"><div class="ph"><span class="ico"></span><img src="lotti-4.png" alt="" width="558" height="1209" draggable="false" loading="lazy" onerror="this.remove()"></div><figcaption class="cap"><b></b><small></small></figcaption></figure><figure class="slide" style="--i:4;margin:0"><div class="ph"><span class="ico"></span><img src="lotti-5.png" alt="" width="558" height="1209" draggable="false" loading="lazy" onerror="this.remove()"></div><figcaption class="cap"><b></b><small></small></figcaption></figure></div>
+  <div class="prog"><i id="prog"></i></div>
+ </section>
+
+ <section class="pairs">
+  <h2 class="h2 rv" id="ph" data-t="ph">x</h2>
+  <div class="pr-grid"><div class="pr-list" id="prl" role="tablist"></div><div class="pr-panel" id="prp" aria-live="polite"></div></div>
+ </section>
+
+ <section class="ux"><h2 class="h2 rv" data-t="uh">x</h2><div class="ux-g" id="uxg"></div></section>
+
+ <section class="am"><h2 class="h2 rv" data-t="ah">x</h2><ul class="am-l stag" id="aml"></ul></section>
+
+
+
+ <div class="wb">
+  <section class="res">
+   <div class="res-l"><h2 class="h2 rv" data-t="rsh">x</h2><p class="fade" data-t="rs1">x</p></div>
+   <ul class="steps stag" data-ls="rs"></ul>
+  </section>
+  <section class="appr"><div class="kicker fade" data-t="apk">x</div><p class="a1 fade" data-t="ap1">x</p><p class="aq rv" data-t="apq">x</p></section>
+
+
+  <section class="outro">
+   <div class="kicker fade" data-t="next">Next up</div>
+   <button class="nextbtn fade" data-k="c4" style="--d:100ms"><span class="t" data-t="nx">Let's talk</span><span class="arr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12h15M13 5.5 19.5 12 13 18.5"/></svg></span></button>
+  </section>
+  <footer class="foot"><span>@designer kim 2026</span><a href="index.html" data-go data-t="back">← Back home</a></footer>
+ </div>
+</main>
+<div class="side" aria-label="Sections"><button data-k="home" data-i="m_home">Home</button><button data-k="about" data-i="m_about">About</button><button data-k="c1" data-i="m_c1">Tixxe App</button><button data-k="c2" data-i="m_c2">Boost-Hero</button><button data-k="c3" data-i="m_c3">Postavkin</button><button data-k="c4" data-i="m_c4">Lotti App</button><button data-k="contact" data-i="m_contact">Contact</button></div>
+<nav class="nav" id="nav" aria-label="Main menu">
+ <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
+ <div class="list" id="list">
+  <button data-k="home" data-i="m_home">Home</button>
+  <button data-k="about" data-i="m_about">About</button>
+  <div class="grp" data-i="m_case">Case</div>
+  <button class="sub" data-k="c1" data-i="m_c1">Tixxe App</button><button class="sub" data-k="c2" data-i="m_c2">Boost-Hero</button><button class="sub" data-k="c3" data-i="m_c3">Postavkin</button><button class="sub" data-k="c4" data-i="m_c4">Lotti App</button>
+  <button data-k="contact" style="margin-top:8px" data-i="m_contact">Contact</button>
+  <button class="lg-btn" id="lgBtn" aria-expanded="false" aria-controls="lgRow"><span class="lg-ico globe" id="lgIco"></span><span data-i="lang">Language</span></button>
+  <div class="lg-row" id="lgRow"></div>
+ </div>
+</nav>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh"><div class="box"><button class="cl" id="cl" aria-label="Close">×</button><h2 id="sh"></h2><div id="sb"></div></div></div>
+
+<div class="loader" id="loader" aria-hidden="true"><div class="bgfade"></div>
+ <svg class="ring" viewBox="-30 -30 360 360"><defs><path id="c" d="M150,150 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
+ <text><textPath id="rt" href="#c" textLength="868" lengthAdjust="spacing">Moving pixels since 2016. Still not done. Moving pixels since 2016. Still not done.</textPath></text></svg><div class="inside"><small data-i="ld_s">Your idea +<br>my obsession =</small><b data-i="ld_b">“Magic”</b></div></div>
+<script src="app.js"></script>
+<script>
+(function(){
+ function split(el){if(el.dataset.s)return;el.dataset.s=1;let n=0;
+  (function walk(node){[...node.childNodes].forEach(c=>{
+   if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+     const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=p;i.style.setProperty('--n',n++);w.appendChild(i);f.appendChild(w)});c.replaceWith(f)}
+   else if(c.nodeType===1&&!c.classList.contains('sub')&&c.tagName!=='EM'){walk(c)}
+   else if(c.tagName==='EM'){const t=c.textContent;c.textContent='';const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=t;i.style.setProperty('--n',n++);w.appendChild(i);c.appendChild(w)}
+  })})(el)}
+ const C={"ru": {"eb": "Кейс 04 · Lotti App", "h1": "Lotti: стирка,<br><em>без хлопот</em>", "sub": "UI/UX-дизайн · Мобильное приложение · Сервисы по запросу · E-commerce", "fr": "Заказ", "to": "Доставка", "year": "Город", "role": "Роль", "role_v": "UI/UX-дизайнер", "scope": "Направление", "scope_v": "UX/UI, мобильное приложение", "plat": "Сфера", "plat_v": "Сервисы по запросу", "story": "О проекте", "lead": "Lotti — сервис прачечной с забором и доставкой одежды на дом в Барселоне. Он позволяет заказать стирку и сушку, выбрать подходящую программу и отслеживать выполнение заказа без необходимости самостоятельно посещать прачечную.", "more": "Основная идея продукта — освободить пользователя от рутинных бытовых задач и сделать уход за одеждой таким же простым, как заказ еды или такси.", "sv": [["Заказ", "Услуга, программа, время и адрес."], ["Забор", "Курьер забирает вещи в выбранное время."], ["Стирка и сушка", "Программа под тип одежды."], ["Доставка", "Чистые вещи возвращаются домой."]], "tk": "Задача", "ts": "Превратить привычный, но неудобный бытовой процесс в простой цифровой сценарий.", "tt": "Самостоятельная стирка требует времени, а посещение прачечной связано с дополнительными перемещениями, ожиданием и необходимостью контролировать процесс.<br><br>Моя задача как UI/UX-дизайнера — организовать взаимодействие так, чтобы пользователь мог быстро оформить заказ, выбрать необходимые параметры, понять стоимость услуги и оставаться уверенным в том, что происходит с его вещами.", "tc": ["Быстрый заказ", "Выбор параметров", "Понятная цена", "Контроль статуса"], "ph": "Проблемы <em>пользователей</em>", "lp": "Проблема", "lh": "UX-решение", "pt": ["Время", "Оформление", "Стоимость", "Контроль"], "pth": ["Потеря времени на бытовые задачи", "Сложность оформления заказа", "Неопределённость стоимости", "Недостаток контроля над заказом"], "pp": ["Стирка включает несколько этапов: подготовку одежды, поездку в прачечную, ожидание и повторное посещение для получения вещей.", "Пользователю необходимо выбрать время, указать адрес, определиться с программой стирки и понять, как подготовить вещи к передаче курьеру.", "Без заранее понятных тарифов сложно оценить расходы и решить, подходит ли услуга пользователю.", "После передачи одежды пользователь может беспокоиться о сроках выполнения, состоянии заказа и времени доставки."], "ps": ["Объединить заказ, забор, стирку и доставку в единый сервис, доступный через цифровой интерфейс.", "Выстроить последовательный сценарий оформления, разделив процесс на понятные шаги и предоставив необходимую информацию в нужный момент.", "Сделать стоимость прозрачной до оплаты, объяснить различия между вариантами заказа и показать, какие услуги включены в итоговую цену.", "Предусмотреть отслеживание статуса заказа и своевременные уведомления, чтобы пользователь понимал, на каком этапе находится услуга."], "uh": "UX-<em>решения</em>", "ux": [["Простой путь от заказа до доставки", "Пользователь проходит понятную последовательность действий: выбирает услугу, указывает время и адрес, определяет программу стирки и оформляет заказ.<br><br>Такая структура снижает необходимость разбираться в процессе самостоятельно и помогает быстрее перейти от намерения к действию."], ["Понятный выбор программы стирки", "Разные ткани и типы одежды требуют разного ухода. Поэтому важно не просто перечислить доступные программы, а помочь пользователю понять, какая из них подходит для его вещей.<br><br>Информативные названия и краткие пояснения позволяют принимать решение увереннее и уменьшают риск выбора неподходящего режима."], ["Прозрачная стоимость", "Цена должна быть понятна до оформления заказа, без неожиданных доплат на последнем этапе.<br><br>Чёткая подача тарифов, веса белья и включённых услуг помогает пользователю сравнить варианты и выбрать подходящий формат обслуживания."], ["Контроль выполнения заказа", "Отслеживание статусов и уведомления превращают услугу из непрозрачного ожидания в понятный процесс.<br><br>Пользователь получает информацию о движении заказа и может планировать своё время, не проверяя состояние услуги вручную."]], "ah": "Удобства <em>для пользователя</em>", "am": [["Экономия времени", "Забор и доставка на дом избавляют от необходимости самостоятельно перевозить бельё и посещать прачечную."], ["Гибкое планирование", "Возможность выбрать время забора позволяет встроить услугу в повседневный график."], ["Индивидуальный уход", "Несколько программ стирки дают возможность подобрать подходящий режим для разных типов одежды."], ["Понятная стоимость", "Фиксированные тарифы за объём заказа упрощают оценку расходов до оплаты."], ["Повторный заказ", "Возможность повторить предыдущий заказ сокращает количество действий при регулярном использовании сервиса."]], "gh": "Экраны <em>приложения</em>", "scr": [["Знакомство", "Аксолотль берёт пакет — вы берёте выходной."], ["Как это работает", "Три шага, ноль поездок в прачечную."], ["Когда забрать", "Выберите час — аксолотль заведёт скутер."], ["Акции и скидки", "Чистота выгоднее: −10% и −20% на стирку."], ["Профиль", "Адрес, история, промокоды. Носки — ваши."]], "ih": "Возможности <em>для улучшения</em>", "imp": [["Упростить выбор программы", "Дополнительные подсказки по типам тканей, цветам и повседневным ситуациям могли бы помочь пользователям, которые не разбираются в режимах стирки."], ["Сделать подготовку заказа нагляднее", "Короткий визуальный сценарий с объяснением, как подготовить бельё и упаковать его перед приездом курьера, мог бы снизить количество вопросов перед забором."], ["Повысить прозрачность сроков", "Чёткие временные ориентиры для каждого этапа и уведомления при изменении графика помогли бы лучше управлять ожиданиями пользователя."], ["Сократить путь повторного заказа", "Быстрый доступ к предыдущему заказу, сохранённым адресам и предпочтительным настройкам мог бы сделать регулярное использование сервиса ещё удобнее."]], "vh": "Результат <em>и ценность дизайна</em>", "vt1": "Ключевая ценность Lotti — не только в самой услуге стирки, но и в удобстве организации всего процесса.", "vt2": "С точки зрения UX/UI, такой продукт должен объединять простое оформление заказа, понятный выбор параметров, прозрачную стоимость и контроль выполнения в единый пользовательский сценарий.", "vchips": ["Единый сценарий", "Прозрачная цена", "Статус заказа", "Повторный заказ"], "rsh": "Сильные стороны <em>продукта</em>", "rs1": "Что делает Lotti удобным в ежедневном использовании.", "rs": ["<b>Минимум усилий:</b> пользователь передаёт бытовую задачу сервису.", "<b>Единый сценарий:</b> заказ, забор, обработка и доставка объединены в одну услугу.", "<b>Прозрачные условия:</b> тарифы, программы и ограничения доступны до оформления.", "<b>Предсказуемость:</b> выбор времени и отслеживание статуса помогают планировать день.", "<b>Удобство регулярного использования:</b> повторный заказ упрощает взаимодействие постоянных клиентов с сервисом."], "rsl": "Основная идея", "rsq": "Забор, стирка и доставка — в одной услуге и одном понятном сценарии.", "apk": "Моя цель как дизайнера", "ap1": "Сделать взаимодействие с повседневной услугой настолько простым, чтобы пользователь тратил меньше времени на организацию быта и больше — на то, что действительно важно.", "apq": "Меньше времени на быт — больше на то, что действительно важно.", "prev": "Назад", "nxt": "Вперёд", "next": "Дальше", "nx": "Давайте поговорим", "back": "← На главную"}, "en": {"eb": "Case 04 · Lotti App", "h1": "Lotti: laundry,<br><em>without the hassle</em>", "sub": "UI/UX Design · Mobile App · On-Demand Services · E-commerce", "fr": "Order", "to": "Delivery", "year": "City", "role": "Role", "role_v": "UI/UX Designer", "scope": "Scope", "scope_v": "UX/UI, mobile app", "plat": "Industry", "plat_v": "On-demand services", "story": "About the project", "lead": "Lotti is a laundry service with pickup and home delivery of clothes in Barcelona. It lets you order washing and drying, choose a suitable programme and follow the order without visiting a laundromat yourself.", "more": "The core idea of the product is to free people from routine household chores and make taking care of clothes as simple as ordering food or a taxi.", "sv": [["Order", "Service, programme, time and address."], ["Pickup", "A courier collects the clothes at the chosen time."], ["Wash and dry", "A programme matched to the type of clothes."], ["Delivery", "Clean clothes come back home."]], "tk": "The task", "ts": "Turn a familiar but inconvenient household process into a simple digital scenario.", "tt": "Doing laundry yourself takes time, and going to a laundromat means extra trips, waiting and having to keep an eye on the process.<br><br>My task as a UI/UX designer was to shape the interaction so that users can place an order quickly, choose the parameters they need, understand the price of the service and stay confident about what is happening to their clothes.", "tc": ["Fast ordering", "Choice of parameters", "Clear price", "Status control"], "ph": "The problems <em>of users</em>", "lp": "The problem", "lh": "UX solution", "pt": ["Time", "Ordering", "Price", "Control"], "pth": ["Time lost on household chores", "A complicated ordering process", "Uncertain price", "Lack of control over the order"], "pp": ["Laundry has several stages: preparing the clothes, going to the laundromat, waiting and coming back to collect them.", "Users have to pick a time, enter an address, decide on a wash programme and understand how to prepare the clothes for the courier.", "Without clear tariffs up front, it is hard to estimate the cost and decide whether the service suits you.", "After handing the clothes over, users may worry about the deadline, the state of the order and the delivery time."], "ps": ["Combine order, pickup, washing and delivery into one service available through a digital interface.", "Build a sequential ordering scenario, split the process into clear steps and give the necessary information at the right moment.", "Make the price transparent before payment, explain the differences between order options and show which services are included in the final price.", "Provide order status tracking and timely notifications so users understand which stage the service is at."], "uh": "UX <em>solutions</em>", "ux": [["A simple path from order to delivery", "Users follow a clear sequence of actions: choose the service, set the time and address, pick a wash programme and place the order.<br><br>This structure reduces the need to figure the process out alone and helps people move faster from intention to action."], ["A clear choice of wash programme", "Different fabrics and types of clothes need different care. So it is important not just to list the available programmes, but to help users understand which one suits their clothes.<br><br>Informative names and short explanations let people decide with more confidence and lower the risk of choosing a wrong mode."], ["Transparent price", "The price must be clear before the order is placed, with no surprise extra charges at the last step.<br><br>A clear presentation of tariffs, laundry weight and included services helps users compare options and choose the right format."], ["Control over the order", "Status tracking and notifications turn the service from opaque waiting into a clear process.<br><br>Users get information about the order's progress and can plan their time without checking the service manually."]], "ah": "Conveniences <em>for the user</em>", "am": [["Saves time", "Pickup and delivery at home remove the need to carry laundry around and visit a laundromat."], ["Flexible planning", "Choosing the pickup time lets users fit the service into their daily schedule."], ["Individual care", "Several wash programmes make it possible to pick the right mode for different types of clothes."], ["Clear price", "Fixed tariffs by order volume make the cost easy to estimate before payment."], ["Reorder", "Repeating a previous order cuts the number of actions when the service is used regularly."]], "gh": "Inside the <em>app</em>", "scr": [["Welcome", "The axolotl takes the bag, you take the day off."], ["How it works", "Three steps, zero trips to the laundromat."], ["When to pick up", "Pick an hour — the axolotl starts the scooter."], ["Offers and discounts", "Clean gets cheaper: −10% and −20% off a wash."], ["Profile", "Address, history, promo codes. Socks are on you."]], "ih": "Room <em>for improvement</em>", "imp": [["Simplify the choice of programme", "Extra hints about fabric types, colours and everyday situations could help users who do not know much about wash modes."], ["Make order preparation clearer", "A short visual guide on how to prepare and pack the laundry before the courier arrives could reduce questions before pickup."], ["Make timing more transparent", "Clear time markers for each stage and notifications when the schedule changes would help manage users' expectations."], ["Shorten the reorder path", "Quick access to the previous order, saved addresses and preferred settings could make regular use of the service even more convenient."]], "vh": "Result <em>and value of the design</em>", "vt1": "The key value of Lotti is not only the laundry service itself, but how conveniently the whole process is organised.", "vt2": "From a UX/UI point of view, such a product should combine simple ordering, a clear choice of parameters, transparent pricing and order tracking into one user scenario.", "vchips": ["One scenario", "Transparent price", "Order status", "Reorder"], "rsh": "Strengths <em>of the product</em>", "rs1": "What makes Lotti convenient in everyday use.", "rs": ["<b>Minimum effort:</b> the user hands a household task over to the service.", "<b>One scenario:</b> order, pickup, processing and delivery are combined into one service.", "<b>Transparent terms:</b> tariffs, programmes and limits are available before checkout.", "<b>Predictability:</b> choosing the time and tracking the status help plan the day.", "<b>Easy regular use:</b> reordering simplifies the interaction for returning customers."], "rsl": "Main idea", "rsq": "Pickup, washing and delivery in one service and one clear scenario.", "apk": "My goal as a designer", "ap1": "To make interaction with an everyday service so simple that users spend less time organising their household and more on what really matters.", "apq": "Less time on chores, more on what really matters.", "prev": "Previous", "nxt": "Next", "next": "Next up", "nx": "Let's talk", "back": "← Back home"}, "de": {"eb": "Case 04 · Lotti App", "h1": "Lotti: Wäsche,<br><em>ohne Aufwand</em>", "sub": "UI/UX Design · Mobile App · On-Demand-Services · E-Commerce", "fr": "Bestellung", "to": "Lieferung", "year": "Stadt", "role": "Rolle", "role_v": "UI/UX Designer", "scope": "Umfang", "scope_v": "UX/UI, Mobile App", "plat": "Branche", "plat_v": "On-Demand-Services", "story": "Über das Projekt", "lead": "Lotti ist ein Wäscheservice mit Abholung und Lieferung der Kleidung nach Hause in Barcelona. Man kann Waschen und Trocknen bestellen, ein passendes Programm wählen und den Auftrag verfolgen, ohne selbst in den Waschsalon zu gehen.", "more": "Die Grundidee des Produkts: Nutzer von alltäglichen Haushaltsaufgaben befreien und die Pflege der Kleidung so einfach machen wie die Bestellung von Essen oder einem Taxi.", "sv": [["Bestellung", "Service, Programm, Zeit und Adresse."], ["Abholung", "Ein Kurier holt die Kleidung zur gewählten Zeit ab."], ["Waschen und Trocknen", "Ein Programm passend zur Kleidung."], ["Lieferung", "Saubere Kleidung kommt nach Hause zurück."]], "tk": "Die Aufgabe", "ts": "Einen gewohnten, aber unbequemen Haushaltsprozess in ein einfaches digitales Szenario verwandeln.", "tt": "Selbst zu waschen kostet Zeit, und der Weg zum Waschsalon bedeutet zusätzliche Wege, Warten und die Notwendigkeit, den Prozess zu überwachen.<br><br>Meine Aufgabe als UI/UX Designer war es, die Interaktion so zu gestalten, dass Nutzer schnell bestellen, die nötigen Parameter wählen, den Preis verstehen und sicher sein können, was mit ihrer Kleidung passiert.", "tc": ["Schnelle Bestellung", "Wahl der Parameter", "Klarer Preis", "Statuskontrolle"], "ph": "Probleme <em>der Nutzer</em>", "lp": "Das Problem", "lh": "UX-Lösung", "pt": ["Zeit", "Bestellung", "Preis", "Kontrolle"], "pth": ["Zeitverlust durch Haushaltsaufgaben", "Komplizierte Bestellung", "Unklarer Preis", "Fehlende Kontrolle über den Auftrag"], "pp": ["Wäschewaschen hat mehrere Etappen: Kleidung vorbereiten, zum Waschsalon fahren, warten und erneut hingehen, um sie abzuholen.", "Nutzer müssen eine Zeit wählen, eine Adresse angeben, sich für ein Waschprogramm entscheiden und verstehen, wie sie die Kleidung für den Kurier vorbereiten.", "Ohne vorab klare Tarife ist es schwer, die Kosten einzuschätzen und zu entscheiden, ob der Service passt.", "Nach der Übergabe der Kleidung sorgen sich Nutzer um Fristen, den Zustand des Auftrags und die Lieferzeit."], "ps": ["Bestellung, Abholung, Waschen und Lieferung in einem Service bündeln, der über eine digitale Oberfläche verfügbar ist.", "Ein sequenzielles Bestellszenario aufbauen, den Prozess in klare Schritte teilen und die nötigen Informationen im richtigen Moment liefern.", "Den Preis vor der Zahlung transparent machen, die Unterschiede zwischen den Optionen erklären und zeigen, welche Leistungen im Endpreis enthalten sind.", "Statusverfolgung und rechtzeitige Benachrichtigungen vorsehen, damit Nutzer wissen, in welcher Phase der Service ist."], "uh": "UX-<em>Lösungen</em>", "ux": [["Ein einfacher Weg von der Bestellung zur Lieferung", "Nutzer durchlaufen eine klare Abfolge: Service wählen, Zeit und Adresse angeben, Waschprogramm bestimmen und bestellen.<br><br>Diese Struktur verringert den Aufwand, den Prozess allein zu verstehen, und führt schneller von der Absicht zur Handlung."], ["Klare Wahl des Waschprogramms", "Verschiedene Stoffe und Kleidungsarten brauchen unterschiedliche Pflege. Deshalb reicht es nicht, Programme aufzulisten – Nutzer sollen verstehen, welches zu ihrer Kleidung passt.<br><br>Aussagekräftige Namen und kurze Erklärungen helfen, sicherer zu entscheiden, und senken das Risiko eines falschen Modus."], ["Transparenter Preis", "Der Preis muss vor der Bestellung klar sein, ohne unerwartete Aufschläge im letzten Schritt.<br><br>Eine klare Darstellung von Tarifen, Wäschegewicht und enthaltenen Leistungen hilft beim Vergleichen und bei der Wahl des passenden Formats."], ["Kontrolle über den Auftrag", "Statusverfolgung und Benachrichtigungen machen aus undurchsichtigem Warten einen verständlichen Prozess.<br><br>Nutzer erfahren, wie der Auftrag vorankommt, und können ihre Zeit planen, ohne den Service manuell zu prüfen."]], "ah": "Komfort <em>für den Nutzer</em>", "am": [["Zeitersparnis", "Abholung und Lieferung nach Hause ersparen den Transport der Wäsche und den Besuch im Waschsalon."], ["Flexible Planung", "Die Wahl der Abholzeit erlaubt es, den Service in den Alltag einzupassen."], ["Individuelle Pflege", "Mehrere Waschprogramme ermöglichen den passenden Modus für verschiedene Kleidungsarten."], ["Klarer Preis", "Feste Tarife nach Auftragsmenge machen die Kosten vor der Zahlung leicht einschätzbar."], ["Wiederholte Bestellung", "Eine frühere Bestellung zu wiederholen verkürzt die Schritte bei regelmäßiger Nutzung."]], "gh": "Einblick in die <em>App</em>", "scr": [["Kennenlernen", "Der Axolotl nimmt den Beutel, du nimmst frei."], ["So funktioniert es", "Drei Schritte, null Fahrten zum Waschsalon."], ["Wann abholen", "Stunde wählen – der Axolotl startet den Roller."], ["Aktionen und Rabatte", "Sauber wird günstiger: −10 % und −20 %."], ["Profil", "Adresse, Verlauf, Promocodes. Socken bleiben deine Sache."]], "ih": "Raum <em>für Verbesserungen</em>", "imp": [["Programmwahl vereinfachen", "Zusätzliche Hinweise zu Stoffarten, Farben und Alltagssituationen könnten Nutzern helfen, die sich mit Waschmodi nicht auskennen."], ["Vorbereitung der Bestellung anschaulicher machen", "Eine kurze visuelle Anleitung, wie die Wäsche vor der Ankunft des Kuriers vorbereitet und verpackt wird, könnte Rückfragen vor der Abholung verringern."], ["Zeitangaben transparenter machen", "Klare Zeitmarken für jede Phase und Benachrichtigungen bei Terminänderungen würden helfen, die Erwartungen der Nutzer zu steuern."], ["Den Weg zur Wiederbestellung verkürzen", "Schneller Zugriff auf die letzte Bestellung, gespeicherte Adressen und bevorzugte Einstellungen könnte die regelmäßige Nutzung noch bequemer machen."]], "vh": "Ergebnis <em>und Wert des Designs</em>", "vt1": "Der Kernwert von Lotti liegt nicht nur im Wäscheservice selbst, sondern in der bequemen Organisation des ganzen Prozesses.", "vt2": "Aus UX/UI-Sicht muss ein solches Produkt einfache Bestellung, klare Parameterwahl, transparente Preise und Auftragskontrolle in einem Nutzerszenario vereinen.", "vchips": ["Ein Szenario", "Transparenter Preis", "Auftragsstatus", "Wiederbestellung"], "rsh": "Stärken <em>des Produkts</em>", "rs1": "Was Lotti im Alltag bequem macht.", "rs": ["<b>Minimaler Aufwand:</b> Der Nutzer gibt die Haushaltsaufgabe an den Service ab.", "<b>Ein Szenario:</b> Bestellung, Abholung, Bearbeitung und Lieferung bilden einen Service.", "<b>Transparente Bedingungen:</b> Tarife, Programme und Einschränkungen sind vor der Bestellung sichtbar.", "<b>Planbarkeit:</b> Zeitwahl und Statusverfolgung helfen, den Tag zu planen.", "<b>Bequeme regelmäßige Nutzung:</b> Die Wiederbestellung vereinfacht die Interaktion für Stammkunden."], "rsl": "Grundidee", "rsq": "Abholung, Waschen und Lieferung in einem Service und einem klaren Szenario.", "apk": "Mein Ziel als Designer", "ap1": "Die Interaktion mit einem Alltagsservice so einfach zu machen, dass Nutzer weniger Zeit für die Organisation des Haushalts brauchen und mehr für das, was wirklich zählt.", "apq": "Weniger Zeit für Haushalt, mehr für das, was wirklich zählt.", "prev": "Zurück", "nxt": "Weiter", "next": "Als Nächstes", "nx": "Lass uns reden", "back": "← Zur Startseite"}, "ko": {"eb": "케이스 04 · Lotti App", "h1": "Lotti: 빨래,<br><em>번거로움 없이</em>", "sub": "UI/UX 디자인 · 모바일 앱 · 온디맨드 서비스 · 이커머스", "fr": "주문", "to": "배송", "year": "도시", "role": "역할", "role_v": "UI/UX 디자이너", "scope": "범위", "scope_v": "UX/UI, 모바일 앱", "plat": "분야", "plat_v": "온디맨드 서비스", "story": "프로젝트 소개", "lead": "Lotti는 바르셀로나에서 옷을 집 앞에서 수거하고 다시 배송해 주는 세탁 서비스입니다. 세탁과 건조를 주문하고, 알맞은 코스를 고르고, 직접 세탁소에 가지 않고도 주문 진행 상황을 확인할 수 있습니다.", "more": "제품의 핵심 아이디어는 사용자를 일상의 집안일에서 해방하고, 옷 관리를 음식이나 택시를 주문하는 것만큼 간단하게 만드는 것입니다.", "sv": [["주문", "서비스, 코스, 시간, 주소."], ["수거", "기사가 원하는 시간에 옷을 수거합니다."], ["세탁과 건조", "옷 종류에 맞는 코스."], ["배송", "깨끗한 옷이 집으로 돌아옵니다."]], "tk": "과제", "ts": "익숙하지만 불편한 집안일 과정을 간단한 디지털 시나리오로 바꾸는 것.", "tt": "직접 빨래를 하려면 시간이 들고, 세탁소에 가려면 추가 이동과 기다림, 과정을 지켜봐야 하는 부담이 따릅니다.<br><br>UI/UX 디자이너로서 저의 과제는 사용자가 빠르게 주문하고, 필요한 옵션을 고르고, 서비스 가격을 이해하며, 자신의 옷에 무슨 일이 일어나는지 안심할 수 있도록 상호작용을 설계하는 것이었습니다.", "tc": ["빠른 주문", "옵션 선택", "명확한 가격", "상태 확인"], "ph": "사용자의 <em>문제</em>", "lp": "문제", "lh": "UX 해결책", "pt": ["시간", "주문", "가격", "통제"], "pth": ["집안일로 인한 시간 낭비", "복잡한 주문 절차", "불확실한 가격", "주문에 대한 통제력 부족"], "pp": ["빨래에는 옷 준비, 세탁소 방문, 대기, 옷을 찾으러 다시 방문하는 여러 단계가 있습니다.", "사용자는 시간을 정하고, 주소를 입력하고, 세탁 코스를 결정하고, 기사에게 맡길 옷을 어떻게 준비할지 알아야 합니다.", "요금이 미리 명확하지 않으면 비용을 가늠하고 서비스가 맞는지 판단하기 어렵습니다.", "옷을 맡긴 뒤 사용자는 완료 시점, 주문 상태, 배송 시간이 걱정될 수 있습니다."], "ps": ["주문, 수거, 세탁, 배송을 디지털 인터페이스로 이용하는 하나의 서비스로 통합합니다.", "주문 과정을 이해하기 쉬운 단계로 나누고, 필요한 정보를 적절한 순간에 제공하는 순차적 시나리오를 만듭니다.", "결제 전에 가격을 투명하게 보여 주고, 주문 옵션의 차이와 최종 가격에 포함된 서비스를 설명합니다.", "주문 상태 추적과 적시 알림을 제공해 서비스가 어느 단계인지 알 수 있게 합니다."], "uh": "UX <em>해결책</em>", "ux": [["주문부터 배송까지 간단한 경로", "사용자는 서비스를 고르고, 시간과 주소를 정하고, 세탁 코스를 선택해 주문하는 명확한 순서를 따릅니다.<br><br>이 구조는 과정을 혼자 파악해야 하는 부담을 줄이고 의도에서 행동으로 더 빠르게 넘어가도록 돕습니다."], ["이해하기 쉬운 세탁 코스 선택", "옷감과 옷 종류마다 필요한 관리가 다릅니다. 그래서 코스를 나열하는 데 그치지 않고, 어떤 코스가 자신의 옷에 맞는지 이해하도록 도와야 합니다.<br><br>알기 쉬운 이름과 짧은 설명은 더 확신 있는 결정을 돕고 잘못된 코스를 고를 위험을 줄입니다."], ["투명한 가격", "주문 전에 가격이 명확해야 하며, 마지막 단계에서 예상치 못한 추가 요금이 없어야 합니다.<br><br>요금, 세탁물 무게, 포함된 서비스를 명확히 보여 주면 옵션을 비교하고 알맞은 방식을 고르기 쉽습니다."], ["주문 진행 상황 확인", "상태 추적과 알림은 서비스를 불투명한 기다림에서 이해하기 쉬운 과정으로 바꿉니다.<br><br>사용자는 주문의 진행 상황을 알 수 있고, 직접 확인하지 않고도 시간을 계획할 수 있습니다."]], "ah": "사용자를 위한 <em>편의</em>", "am": [["시간 절약", "집 앞 수거와 배송으로 빨래를 직접 옮기거나 세탁소에 갈 필요가 없습니다."], ["유연한 일정", "수거 시간을 선택할 수 있어 서비스를 일상 일정에 맞출 수 있습니다."], ["맞춤 관리", "여러 세탁 코스로 옷 종류별로 알맞은 방식을 고를 수 있습니다."], ["명확한 가격", "주문량에 따른 고정 요금으로 결제 전에 비용을 쉽게 가늠할 수 있습니다."], ["재주문", "이전 주문을 반복할 수 있어 정기적으로 이용할 때 단계가 줄어듭니다."]], "gh": "앱 <em>화면</em>", "scr": [["시작하기", "아홀로틀이 짐을 들고, 당신은 쉬는 날을 얻어요."], ["이용 방법", "세 단계, 세탁소 방문은 0번."], ["언제 수거할까요", "시간을 고르면 아홀로틀이 스쿠터 시동을 걸어요."], ["프로모션과 할인", "깨끗함이 더 저렴해져요: −10%, −20%."], ["프로필", "주소, 내역, 프로모션 코드. 양말은 직접 챙겨요."]], "ih": "<em>개선</em> 가능성", "imp": [["코스 선택 단순화", "옷감 종류, 색상, 일상 상황에 대한 추가 힌트가 세탁 방식을 잘 모르는 사용자에게 도움이 될 수 있습니다."], ["주문 준비 과정을 더 알기 쉽게", "기사가 오기 전에 세탁물을 준비하고 포장하는 방법을 보여 주는 짧은 시각 가이드가 수거 전 문의를 줄일 수 있습니다."], ["일정 투명성 높이기", "각 단계의 명확한 시간 표시와 일정 변경 시 알림이 사용자의 기대를 관리하는 데 도움이 됩니다."], ["재주문 경로 단축", "이전 주문, 저장된 주소, 선호 설정에 빠르게 접근하면 정기 이용이 더 편해질 수 있습니다."]], "vh": "결과와 <em>디자인의 가치</em>", "vt1": "Lotti의 핵심 가치는 세탁 서비스 자체뿐 아니라 전체 과정을 편리하게 구성했다는 데 있습니다.", "vt2": "UX/UI 관점에서 이런 제품은 간단한 주문, 명확한 옵션 선택, 투명한 가격, 진행 상황 확인을 하나의 사용자 시나리오로 묶어야 합니다.", "vchips": ["하나의 시나리오", "투명한 가격", "주문 상태", "재주문"], "rsh": "제품의 <em>강점</em>", "rs1": "Lotti를 매일 쓰기 편하게 만드는 것들.", "rs": ["<b>최소한의 노력:</b> 사용자는 집안일을 서비스에 맡깁니다.", "<b>하나의 시나리오:</b> 주문, 수거, 처리, 배송이 하나의 서비스로 연결됩니다.", "<b>투명한 조건:</b> 요금, 코스, 제한 사항을 주문 전에 확인할 수 있습니다.", "<b>예측 가능성:</b> 시간 선택과 상태 추적이 하루를 계획하는 데 도움이 됩니다.", "<b>정기 이용의 편의:</b> 재주문으로 단골 고객의 이용이 간편해집니다."], "rsl": "핵심 아이디어", "rsq": "수거, 세탁, 배송을 하나의 서비스와 하나의 명확한 시나리오로.", "apk": "디자이너로서의 목표", "ap1": "일상 서비스와의 상호작용을 아주 간단하게 만들어, 사용자가 생활을 정리하는 데 쓰는 시간은 줄이고 정말 중요한 일에 더 쓰게 하는 것.", "apq": "집안일은 줄이고, 정말 중요한 일에 더.", "prev": "이전", "nxt": "다음", "next": "다음", "nx": "이야기해요", "back": "← 홈으로"}};
+ const N=6,P=4;
+ const L=()=>C[document.documentElement.lang]||C.en;
+ const E=id=>document.getElementById(id);
+ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+ /* ---- problems / solutions: tabs with a timer bar ---- */
+ const prl=E('prl'),prp=E('prp');let pi=0,pvis=false;
+ function paintPair(anim){const d=L();
+  prp.innerHTML='<div class="pp-p"><h4>'+d.lp+'</h4><h5>'+d.pth[pi]+'</h5><p>'+d.pp[pi]+'</p></div><div class="pp-s"><h4>'+d.lh+'</h4><p>'+d.ps[pi]+'</p></div>';
+  if(anim){prp.classList.remove('swap');void prp.offsetWidth;prp.classList.add('swap')}}
+ function buildTabs(){const d=L();
+  prl.innerHTML=d.pt.map((t,i)=>'<button role="tab" class="ptab'+(i===pi?' on':'')+'" aria-selected="'+(i===pi)+'" data-n="'+i+'"><span class="tn2">0'+(i+1)+'</span><span class="pt">'+t+'</span><i class="bar"></i></button>').join('');}
+ function pick(i,user){pi=(i+P)%P;if(user)prl.classList.add('manual');
+  [...prl.children].forEach((b,k)=>{b.classList.toggle('on',k===pi);b.setAttribute('aria-selected',k===pi)});
+  paintPair(true)}
+ prl.addEventListener('click',e=>{const b=e.target.closest('.ptab');if(b)pick(+b.dataset.n,true)});
+ prl.addEventListener('animationend',e=>{if(e.animationName==='fill'&&!prl.classList.contains('manual'))pick(pi+1,false)});
+ new IntersectionObserver(es=>{pvis=es[0].isIntersecting;prl.classList.toggle('paused',!pvis)},{threshold:.3}).observe(prl);
+
+ /* ---- static texts, lists, services ---- */
+ function render(){
+  const d=L();
+  document.querySelectorAll('[data-t]').forEach(el=>{const v=d[el.dataset.t];if(v==null)return;
+   const rv=el.classList.contains('rv')||el.classList.contains('ht');
+   el.innerHTML=v;
+   if(rv){delete el.dataset.s;split(el);if(el.classList.contains('ht')&&el.closest('.rv.in'))el.classList.add('in')}});
+  document.querySelectorAll('[data-ls]').forEach(ul=>{const a=d[ul.dataset.ls]||[];ul.innerHTML=a.map((x,i)=>'<li style="--k:'+i+'">'+x+'</li>').join('')});
+  document.querySelectorAll('[data-chp]').forEach(el=>{el.innerHTML=(d[el.dataset.chp]||[]).map((x,i)=>'<span style="--k:'+i+'">'+x+'</span>').join('')});
+  const ug=E('uxg');ug.innerHTML=d.ux.map((u,i)=>'<article class="uxc fade" style="--d:'+((i%2)*120)+'ms"><span class="un">0'+(i+1)+'</span><h3>'+u[0]+'</h3><p>'+u[1]+'</p></article>').join('');
+  ug.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  E('aml').innerHTML=d.am.map((a,i)=>'<li style="--k:'+i+'"><b>'+a[0]+'</b><span>'+a[1]+'</span></li>').join('');
+  const sv=E('svc');sv.innerHTML=d.sv.map((s,i)=>'<div class="fade'+(sv.classList.contains('in')?' in':'')+'" style="--d:'+(i*110)+'ms"><span class="sn">0'+(i+1)+'</span><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>').join('');
+  sv.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  buildTabs();paintPair(false);
+  caps()}
+ window.buildHeading=render;
+
+ /* ---- scroll reveals ---- */
+ document.querySelectorAll('.rv').forEach(split);
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+ const start=performance.now();
+ function arm(el){const d=+el.dataset.start||0;const wait=Math.max(0,d-(performance.now()-start));setTimeout(()=>io.observe(el),wait)}
+ document.querySelector('.hero3').querySelectorAll('.rv,.fade').forEach(el=>{if(!el.dataset.start)el.dataset.start=4400});
+ document.querySelectorAll('.rv,.fade,.big,.stag,.gal').forEach(el=>{if(el.classList.contains('in'))return;el.dataset.start?arm(el):io.observe(el)});
+
+ /* ---- big image: slow zoom ---- */
+ const bigIn=document.querySelector('.big .in-img'),bigEl=E('big');
+ function par(){const r=bigEl.getBoundingClientRect(),vh=innerHeight;if(r.bottom<0||r.top>vh)return;const p=(r.top+r.height/2-vh/2)/vh;
+  bigIn.style.setProperty('--sc',(1+Math.min(1,Math.max(0,.5-p))*.03).toFixed(3))}
+ addEventListener('scroll',par,{passive:true});addEventListener('resize',par);par();
+
+ const tr=document.getElementById('track'),pr=document.getElementById('prog'),pv=document.getElementById('prev'),nx=document.getElementById('next');
+ const slides=[...tr.querySelectorAll('.slide')];
+ function step(){const s=slides[1]?slides[1].offsetLeft-slides[0].offsetLeft:300;return s}
+ function upd(){const max=tr.scrollWidth-tr.clientWidth,p=max>0?tr.scrollLeft/max:0,vis=tr.clientWidth/tr.scrollWidth;
+  pr.style.width=(Math.max(vis,.1)*100)+'%';pr.style.transform='translateX('+(p*(1/Math.max(vis,.1)-1)*100)+'%)';
+  pv.disabled=tr.scrollLeft<=4;nx.disabled=tr.scrollLeft>=max-4}
+ tr.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+ pv.addEventListener('click',()=>tr.scrollBy({left:-step(),behavior:'smooth'}));
+ nx.addEventListener('click',()=>tr.scrollBy({left:step(),behavior:'smooth'}));
+ tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight')nx.click();if(e.key==='ArrowLeft')pv.click()});
+ let down=false,sx=0,sl=0,moved=0;
+ tr.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=0;sx=e.clientX;sl=tr.scrollLeft;tr.classList.add('drag')});
+ addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;moved=Math.max(moved,Math.abs(dx));tr.scrollLeft=sl-dx});
+ addEventListener('pointerup',()=>{if(!down)return;down=false;tr.classList.remove('drag');const s=step();tr.scrollTo({left:Math.round(tr.scrollLeft/s)*s,behavior:'smooth'})});
+ let last=tr.scrollLeft,sk=0;
+ (function loop(){const v=tr.scrollLeft-last;last=tr.scrollLeft;sk+=(Math.max(-9,Math.min(9,v*-.35))-sk)*.18;
+  if(Math.abs(sk)>.02||Math.abs(v)>0){slides.forEach(s=>s.firstElementChild.style.setProperty('--sk',sk.toFixed(2)+'deg'))}
+  requestAnimationFrame(loop)})();
+ setTimeout(upd,300);setTimeout(upd,2000);addEventListener('load',upd);
+ function caps(){const d=L();[...tr.querySelectorAll('.slide')].forEach((p,i)=>{const x=d.scr[i];p.querySelector('.cap b').textContent=x[0];p.querySelector('.cap small').textContent=x[1];p.querySelector('img')&&p.querySelector('img').setAttribute('alt',x[0])})}
+ render();
+})();
+
+</script>
+
+<style>
+.dpop{position:fixed;left:50%;bottom:clamp(16px,4vh,36px);z-index:9000;width:min(440px,calc(100vw - 32px));padding:22px 24px 24px;border-radius:28px;color:#2b2115;background:linear-gradient(135deg,rgba(255,255,255,.5),rgba(255,255,255,.18));backdrop-filter:blur(22px) saturate(1.7);-webkit-backdrop-filter:blur(22px) saturate(1.7);border:1px solid rgba(255,255,255,.65);box-shadow:0 24px 60px -18px rgba(60,40,10,.35),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,255,255,.2);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(24px);transform-origin:50% 100%;overflow:hidden}
+.dpop::before{content:"";position:absolute;width:180px;height:180px;right:-50px;top:-70px;border-radius:50%;background:radial-gradient(circle,rgba(255,168,50,.55),rgba(255,168,50,0) 70%);z-index:-1;pointer-events:none}
+.dpop.go{visibility:visible;pointer-events:auto;animation:dpIn 9.4s ease-in-out forwards}
+.dpop:hover{animation-play-state:paused}
+.dpop h4{margin:0 0 6px;font-size:clamp(19px,1.6vw,23px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.dpop p{white-space:pre-line;margin:0 0 16px;font-size:clamp(14px,1.05vw,16px);line-height:1.45;color:rgba(43,33,21,.78)}
+.dpop a{display:inline-block;padding:11px 22px;border-radius:99px;background:#ffa832;color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 8px 20px -8px rgba(255,140,0,.7)}
+@keyframes dpIn{0%{opacity:0;transform:translateX(-50%) translateY(26px) rotate(0)}
+11%{opacity:1;transform:translateX(-50%) translateY(0) rotate(0)}
+20%{transform:translateX(-50%) rotate(-2deg)}
+31%{transform:translateX(-50%) rotate(2deg)}
+42%{transform:translateX(-50%) rotate(-2deg)}
+53%{transform:translateX(-50%) rotate(2deg)}
+64%{transform:translateX(-50%) rotate(-1.8deg)}
+75%{transform:translateX(-50%) rotate(1.4deg)}
+84%{opacity:1;transform:translateX(-50%) translateY(0) rotate(-.6deg)}
+89%{opacity:1;transform:translateX(-50%) translateY(0) rotate(0)}
+100%{opacity:0;transform:translateX(-50%) translateY(20px) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.dpop.go{animation-duration:9.4s}}
+</style>
+<div class="dpop" id="dpop" role="dialog" aria-live="polite"><h4 id="dpT"></h4><p id="dpP"></p><a id="dpA" href="https://dribbble.com/kimmmy" target="_blank" rel="noopener">Dribbble</a></div>
+<script>
+(function(){
+var T={ru:['Тебе всё ещё мало моих работ? 🎨','Ну ты и любитель дизайна! 😂\nДержи добавку — на Dribbble ещё целая порция пикселей, кнопок и дизайнерского безумия.','Открыть Dribbble'],
+en:['Still not enough of my work? 🎨',"You really love design! 😂\nHere's a refill — Dribbble has a whole other portion of pixels, buttons and design madness.",'Open Dribbble'],
+de:['Immer noch nicht genug von meinen Arbeiten? 🎨','Du liebst Design wirklich! 😂\nHier kommt Nachschub — auf Dribbble gibt es noch eine ganze Portion Pixel, Buttons und Design-Wahnsinn.','Dribbble öffnen'],
+ko:['아직도 내 작업이 부족해? 🎨','디자인을 정말 좋아하는구나! 😂\nDribbble에 픽셀과 버튼, 디자인 광기가 한가득 더 있어.','Dribbble 열기']};
+var l='en';try{var q=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')||window.name;if(T[q])l=q}catch(e){}
+var el=document.getElementById('dpop'),shown=false,x=T[l];
+document.getElementById('dpT').textContent=x[0];document.getElementById('dpP').textContent=x[1];document.getElementById('dpA').textContent=x[2];
+function chk(){if(shown||document.getElementById("loader"))return;var d=document.documentElement;if(window.scrollY+window.innerHeight>=d.scrollHeight-6&&d.scrollHeight>window.innerHeight*1.5){shown=true;el.classList.add('go');setTimeout(function(){el.classList.remove('go')},9500)}}
+window.addEventListener('scroll',chk,{passive:true});setTimeout(chk,5400);setTimeout(chk,6500);
+})();
+</script>
+
+<style>@media(max-width:820px){body .big{filter:none!important;-webkit-filter:none!important}body .big .ph{border-radius:6px!important;aspect-ratio:16/10;overflow:hidden;clip-path:inset(100% 0 0 0 round 6px)!important;-webkit-clip-path:inset(100% 0 0 0 round 6px)!important}body .big.in .ph{clip-path:inset(0 0 0 0 round 6px)!important;-webkit-clip-path:inset(0 0 0 0 round 6px)!important}body .big .ph .in-img,body .big .ph .in-img img{border-radius:6px!important}}</style>
+<style>
+
+.gal{padding:clamp(60px,11vh,130px) 0 clamp(70px,12vh,140px);background:#fff;border-radius:clamp(26px,4vw,64px)}
+.gal-h{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:0 var(--padr) 0 var(--pad);margin-bottom:clamp(20px,4vh,44px)}
+.ctrl{display:flex;align-items:center;gap:12px;flex:none}
+.ctrl button{width:56px;height:56px;border-radius:50%;border:2px solid var(--ink);background:none;cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s,transform .3s var(--ease),border-color .25s}
+.ctrl button:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:scale(1.07)}
+.ctrl button:disabled{opacity:.3;pointer-events:none}
+.ctrl svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.track{--gap:clamp(12px,1.6vw,26px);display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:60px var(--padr) 70px var(--pad);scroll-padding-left:var(--pad);cursor:grab;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.slide{flex:none;width:calc((100vw - var(--pad) - var(--padr) - var(--gap)*3)/4);scroll-snap-align:start;position:relative;transform-origin:50% 100%;opacity:0;translate:0 90px;rotate:5deg;transition:opacity .8s ease,translate .9s var(--ease),rotate .9s var(--ease),scale .5s var(--ease),filter .4s ease;transition-delay:calc(var(--i)*90ms),calc(var(--i)*90ms),calc(var(--i)*90ms),0s,0s}
+.gal.in .slide{opacity:1;translate:0 calc((var(--i) % 2)*34px);rotate:0deg}
+.slide .ph{background:#82BFF6;aspect-ratio:3/5;transform:skewX(var(--sk,0deg));transition:transform .25s ease-out,box-shadow .5s ease}
+.slide .ph img{position:absolute;inset:0;width:100%;height:100%;padding:5% 9%;box-sizing:border-box;object-fit:contain;display:block;pointer-events:none;user-select:none;filter:drop-shadow(0 18px 22px rgba(30,70,120,.35))}
+.slide .ico{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.6);display:grid;place-items:center}
+.slide .ico::after{content:"";width:24px;height:18px;border:2.5px solid #fff;border-radius:5px;background:linear-gradient(135deg,transparent 55%,#fff 56%) no-repeat 6px 4px/10px 10px}
+.slide .cap{display:block;margin-top:14px;font-size:clamp(14px,1.05vw,17px)}
+.slide .cap b{font-weight:500}
+.slide .cap small{display:block;margin-top:2px;font-weight:400;color:var(--mut);font-size:.88em}
+@media (hover:hover){
+ .track:hover .slide{filter:saturate(.7) opacity(.72)}
+ .track .slide:hover{filter:none;scale:1.05;z-index:2}
+ .slide:hover .ph{box-shadow:0 30px 50px -20px rgba(40,90,150,.35)}
+}
+.prog{margin:0 var(--padr) 0 var(--pad);height:3px;background:rgba(59,50,36,.12);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;width:25%;background:var(--orange);border-radius:3px;transform-origin:0 50%;transition:transform .15s linear}
+@media (max-width:1100px){.slide{width:calc((100vw - var(--pad) - var(--padr) - var(--gap)*2)/3)}}
+@media (max-width:820px){.slide{width:min(74vw,340px)}.ctrl button{width:46px;height:46px}.gal-h{align-items:flex-start;flex-direction:column}body .gal{padding-top:64px;padding-bottom:72px}}
+
+.big .ph{background:linear-gradient(120deg,#69d0d0,#8fe0dc 55%,#e9fbf8)}
+.hph{color:rgba(255,255,255,.4)}
+.steps li{font-size:clamp(16px,1.35vw,22px);line-height:1.4;font-weight:400}
+.steps li b{font-weight:600;color:var(--orange)}
+.svc{grid-template-columns:repeat(2,1fr)}
+.imp{padding-top:clamp(50px,9vh,110px)}
+/* phone screens in the expanding panels */
+@media(min-width:821px){
+ .ph3 .mk{inset:auto;right:7%;top:50%;transform:translateY(-50%);width:auto;height:84%;aspect-ratio:9/19}
+ .ph3 .mk i{border-radius:30px}
+ .ph3 img{left:auto!important;right:7%;top:50%;transform:translateY(-50%)!important;width:auto!important;height:auto!important;max-height:84%!important;max-width:44%!important;border-radius:26px!important;box-shadow:0 26px 50px -20px rgba(0,0,0,.55)!important}
+ .cap3{right:auto;width:50%}
+}
+@media(max-width:820px){
+ body .ph3 .mk{inset:auto;left:50%;top:6%;transform:translateX(-50%);width:auto;height:52%;aspect-ratio:9/19}
+ body .ph3 .mk i{border-radius:22px}
+ body .ph3 img{left:50%!important;top:6%!important;transform:translateX(-50%)!important;width:auto!important;height:auto!important;max-height:52%!important;max-width:60%!important;border-radius:20px!important;box-shadow:0 14px 28px -14px rgba(0,0,0,.5)!important}
+}
+</style>
+</body></html>
