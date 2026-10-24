@@ -86,3 +86,4 @@
 @keyframes wave{0%{transform:rotate(0)}5%{transform:rotate(16deg)}10%{transform:rotate(-10deg)}15%{transform:rotate(16deg)}20%{transform:rotate(-10deg)}25%{transform:rotate(16deg)}30%{transform:rotate(-8deg)}36%{transform:rotate(10deg)}42%,100%{transform:rotate(0)}}
 @keyframes look{0%{transform:translate(0,0)}7%,15%{transform:translate(-.14em,0)}24%,32%{transform:translate(.14em,0)}38%{transform:translate(0,-.1em)}45%,100%{transform:translate(0,0)}}
 @media (prefers-reduced-motion:reduce){.wave,.eyes{animation:none}}
+.box p+p{margin-top:14px}
