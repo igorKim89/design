@@ -41,8 +41,9 @@ body{margin:0;min-height:100%;background:var(--bg);font-family:var(--round);colo
 .copy{position:absolute;z-index:4;left:50%;bottom:clamp(6px,1.4vh,14px);transform:translateX(-50%);font-size:12px;color:var(--mute);letter-spacing:.03em;white-space:nowrap}
 /* running line under the logo (same format as on the About page) */
 .lm{position:relative;z-index:1;flex:none;width:100vw;height:calc(var(--fs)*1.2);display:flex;align-items:center;overflow:hidden;pointer-events:none;animation:lg 1.4s cubic-bezier(.2,.8,.2,1) .25s both}
-.tr{display:flex;width:max-content;animation:mq 60s linear infinite}
+.tr{display:flex;flex:none;width:max-content;-webkit-animation:mq 60s linear infinite;animation:mq 60s linear infinite}
 .seg{flex:none;white-space:nowrap;font-weight:600;font-size:var(--fs);line-height:1;color:var(--orange);padding-right:.7em;letter-spacing:-.01em}
+@-webkit-keyframes mq{from{-webkit-transform:none;transform:none}to{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}
 @keyframes mq{from{transform:none}to{transform:translateX(-50%)}}
 /* side menu, bottom left (same look as on the case pages) */
 .side{position:fixed;z-index:15;left:var(--e);bottom:30px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
@@ -52,33 +53,16 @@ body{margin:0;min-height:100%;background:var(--bg);font-family:var(--round);colo
 .side div.cur{color:#000;font-weight:500}.side div.cur::before{background:var(--orange)}
 @keyframes sd{from{opacity:0;transform:translateX(-14px)}}
 /* top-right menu: same pill as on the other pages, only the language choice inside */
-.nav{position:fixed;z-index:70;top:calc(22px + env(safe-area-inset-top,0px));right:var(--e);width:56px;height:56px;border-radius:28px;background:var(--orange);overflow:hidden;color:#fff;transition:width .5s cubic-bezier(.7,0,.2,1),height .5s cubic-bezier(.7,0,.2,1)}
-.nav.open{width:212px}
-.tog{position:absolute;z-index:2;top:0;right:0;width:56px;height:56px;border:0;background:none;cursor:pointer;color:#fff}
-.dots,.x{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .25s,transform .4s}
-.dots i{display:block;width:5px;height:5px;border-radius:50%;background:#fff;margin:2px 0}
-.x{opacity:0;transform:rotate(-90deg);font-size:0}
-.x::before,.x::after{content:"";position:absolute;left:18px;top:27px;width:20px;height:2.5px;background:#fff;border-radius:2px;transform:rotate(45deg)}
 .x::after{transform:rotate(-45deg)}
-.nav.open .dots{opacity:0;transform:rotate(90deg)}.nav.open .x{opacity:1;transform:none}
-.list{width:212px;padding:18px 20px 22px 40px;pointer-events:none;opacity:0;transition:opacity .2s}
-.nav.open .list{pointer-events:auto;opacity:1;transition:opacity .35s .25s}
-.lg-btn{display:flex;align-items:center;gap:10px;margin:0;padding:0;background:none;border:0;color:#fff;font:500 15px/1.3 var(--round);cursor:pointer}
-.lg-btn:hover span{text-decoration:underline}
-.lg-ico{position:relative;display:block;width:36px;height:36px;flex:none;filter:drop-shadow(0 2px 3px rgba(150,70,0,.25))}
-.lg-ico.globe{animation:wob 5s ease-in-out infinite}.lg-ico.pop{animation:lpop .7s cubic-bezier(.3,1.5,.5,1)}
-.lg-row{display:flex;gap:8px;margin-left:-24px;height:0;overflow:hidden;pointer-events:none}
-.lg-row.open{height:48px;overflow:visible;pointer-events:auto}
-.lc{display:block;width:38px;height:38px;padding:0;margin-top:10px;border:0;background:none;border-radius:50%;cursor:pointer;transform:scale(.3);opacity:0;transition:transform .4s cubic-bezier(.3,1.7,.5,1),opacity .25s;transition-delay:calc(var(--n)*55ms)}
-.lg-row.open .lc{transform:none;opacity:1}
-.lc:hover{transform:translateY(-3px) scale(1.08);transition-delay:0s}
-.lc.sel{box-shadow:0 0 0 3px rgba(255,255,255,.95),0 0 0 6px rgba(255,255,255,.35)}
 .bst{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;pointer-events:none}
+.langs{position:fixed;z-index:70;top:calc(22px + env(safe-area-inset-top,0px));right:var(--e);display:flex;gap:10px;padding:9px 12px;border-radius:30px;background:var(--bg);box-shadow:var(--raise-s)}
+.lc{position:relative;display:block;width:38px;height:38px;padding:0;border:0;background:none;border-radius:50%;cursor:pointer;filter:drop-shadow(0 2px 3px rgba(80,60,30,.25));transition:transform .35s cubic-bezier(.3,1.7,.5,1),box-shadow .2s}
+.lc:hover{transform:translateY(-2px) scale(1.08)}
+.lc.sel{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--orange)}
+@media (max-width:560px){.langs{top:calc(14px + env(safe-area-inset-top,0px));gap:8px;padding:8px 10px}.lc{width:34px;height:34px}}
 @keyframes wob{0%,84%,100%{transform:rotate(0)}88%{transform:rotate(-12deg)}93%{transform:rotate(10deg)}97%{transform:rotate(-4deg)}}
 @keyframes lpop{0%{transform:scale(.2) rotate(-200deg);opacity:0}60%{transform:scale(1.18) rotate(12deg);opacity:1}100%{transform:none;opacity:1}}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-.nav :focus-visible{outline-color:#fff}
-@media (max-width:560px){.nav{top:calc(14px + env(safe-area-inset-top,0px))}.nav.open{width:min(212px,calc(100vw - 28px))}}
 /* tablet / phone: stacked */
 @media (max-width:820px){:root{--e:24px}}
 @media (max-width:560px){:root{--e:14px}}
@@ -99,17 +83,14 @@ body{margin:0;min-height:100%;background:var(--bg);font-family:var(--round);colo
  .copy{position:relative;left:auto;bottom:auto;transform:none;white-space:normal;text-align:center;padding:2px 0 calc(10px + env(safe-area-inset-bottom,0px))}
 }
 @media (max-width:980px) and (orientation:landscape){.stage{display:block}.cd{position:relative}}
-@media (prefers-reduced-motion:reduce){.tr,.who,.logo img,.cd .k::before{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.who,.logo img,.cd .k::before{animation:none!important}}
 </style></head>
 <body>
 <div class="page">
- <nav class="nav" id="nav" aria-label="Menu">
- <button class="tog" id="tog" aria-expanded="false" aria-controls="list" aria-label="Open menu"><span class="dots"><span><i></i><i></i><i></i></span></span><span class="x"></span></button>
- <div class="list" id="list"><button class="lg-btn" id="lgBtn" aria-expanded="false" aria-controls="lgRow"><span class="lg-ico globe" id="lgIco"></span><span>Language</span></button><div class="lg-row" id="lgRow"></div></div>
-</nav>
+ <div class="langs" id="lgRow" role="group" aria-label="Language"></div>
  <main class="stage">
-  <section class="cd" aria-label="Time left until the Beta launch">
-   <p class="k">Beta launch in</p>
+  <section class="cd" id="cdSec" aria-label="Time left until the Beta launch">
+   <p class="k" id="kT">Beta launch in</p>
    <div class="cells" role="timer" aria-live="off">
     <div class="cell"><b id="cM">00</b><span id="lM">months</span></div>
     <div class="cell"><b id="cD">00</b><span id="lD">days</span></div>
@@ -120,24 +101,20 @@ body{margin:0;min-height:100%;background:var(--bg);font-family:var(--round);colo
    <p class="beta">Beta 1.0.1</p>
   </section>
   <div class="mid"><h1 class="logo"><img src="persona-logo.png" alt="Persona" width="1600" height="317"></h1>
-   <div class="lm" role="marquee" aria-label="Why click 100 times when you can just say ONE thing? No endless menus. No complicated shortcuts. No unnecessary clicking."><div class="tr" id="tr"></div></div></div>
+   <div class="lm" id="lm" role="marquee" aria-label="Why click 100 times when you can just say ONE thing? No endless menus. No complicated shortcuts. No unnecessary clicking."><div class="tr" id="tr"></div></div></div>
   <div class="duo" aria-hidden="true">
    <div class="disc"></div>
    <div class="who b"><img src="persona-boy.png" alt="" width="442" height="1250"></div>
    <div class="who g"><img src="persona-girl.png" alt="" width="447" height="1250"></div>
   </div>
-  <nav class="side" aria-label="Menu"><div class="cur" style="--n:0">Home</div><div style="--n:1">News</div><div style="--n:2">About Persona</div><div style="--n:3">Download App</div><div style="--n:4">Subscription</div><div style="--n:5">Contacts</div></nav>
-  <div class="copy">©2026 Persona. All Right Reserved. Beta 1.0.1</div>
+  <nav class="side" id="side" aria-label="Menu"><div class="cur" style="--n:0"></div><div style="--n:1"></div><div style="--n:2"></div><div style="--n:3"></div><div style="--n:4"></div><div style="--n:5"></div></nav>
+  <div class="copy" id="copyT">©2026 Persona. All Right Reserved. Beta 1.0.1</div>
  </main>
 </div>
 <script>
 (function(){
- /* marquee: two identical halves => seamless loop */
- var t='Why click 100 times when you can just say ONE thing? No endless menus. No complicated shortcuts. No unnecessary clicking. ✨ ',one='',i;for(i=0;i<2;i++)one+='<span class="seg">'+t+'</span>';
- document.getElementById('tr').innerHTML=one+one;
  /* countdown to the Beta launch: 1 Jan 2027, 02:06:51 Moscow time (= 1 month 24 days 10:51:51 from the brief) */
  var T=new Date('2027-01-01T02:06:51+03:00').getTime(),E=function(id){return document.getElementById(id)};
- function pl(n,a){return n===1?a[0]:a[1]}
  function addM(d,n){var x=new Date(d.getTime()),day=x.getDate();x.setDate(1);x.setMonth(x.getMonth()+n);var last=new Date(x.getFullYear(),x.getMonth()+1,0).getDate();x.setDate(Math.min(day,last));return x}
  function z(n){return n<10?'0'+n:''+n}
  function tick(){
@@ -146,15 +123,33 @@ body{margin:0;min-height:100%;background:var(--bg);font-family:var(--round);colo
   var r=T-addM(now,mo).getTime();if(r<0)r=0;
   var d=Math.floor(r/864e5);r-=d*864e5;var h=Math.floor(r/36e5);r-=h*36e5;var mi=Math.floor(r/6e4);r-=mi*6e4;var s=Math.floor(r/1e3);
   E('cM').textContent=z(mo);E('cD').textContent=z(d);E('cH').textContent=z(h);E('cN').textContent=z(mi);E('cS').textContent=z(s);
-  E('lM').textContent=pl(mo,['month','months']);E('lD').textContent=pl(d,['day','days']);E('lH').textContent=pl(h,['hour','hours']);E('lN').textContent=pl(mi,['minute','minutes']);E('lS').textContent=pl(s,['second','seconds']);
+  E('lM').textContent=unit('M',mo);E('lD').textContent=unit('D',d);E('lH').textContent=unit('H',h);E('lN').textContent=unit('N',mi);E('lS').textContent=unit('S',s);
  }
- tick();setInterval(tick,250);
+ setInterval(function(){if(TXT)tick()},250);
  
- /* language menu (same icons and behaviour as on the other pages; the choice is remembered site-wide) */
- var nav=document.getElementById('nav'),tog=document.getElementById('tog'),list=document.getElementById('list'),row=document.getElementById('lgRow'),ico=document.getElementById('lgIco'),VALID=['en','ru','de','ko'],LG='en';
+ /* ---------- translations ---------- */
+ var VALID=['en','ru','de','ko'],LG='en',NAMES={ru:'Русский',en:'English',de:'Deutsch',ko:'한국어'};
+ var TXT={
+  en:{k:'Beta launch in',aria:'Time left until the Beta launch',mq:'Why click 100 times when you can just say ONE thing? No endless menus. No complicated shortcuts. No unnecessary clicking.',side:['Home','News','About Persona','Download App','Subscription','Contacts'],copy:'©2026 Persona. All Right Reserved. Beta 1.0.1',menu:'Language',
+   u:{M:['month','months'],D:['day','days'],H:['hour','hours'],N:['minute','minutes'],S:['second','seconds']}},
+  ru:{k:'До запуска беты',aria:'Время до запуска беты',mq:'Зачем кликать 100 раз, если можно просто сказать ОДНО? Никаких бесконечных меню. Никаких сложных сочетаний клавиш. Никаких лишних кликов.',side:['Главная','Новости','О Persona','Скачать приложение','Подписка','Контакты'],copy:'©2026 Persona. Все права защищены. Beta 1.0.1',menu:'Язык',
+   u:{M:['месяц','месяца','месяцев'],D:['день','дня','дней'],H:['час','часа','часов'],N:['минута','минуты','минут'],S:['секунда','секунды','секунд']}},
+  de:{k:'Beta-Start in',aria:'Verbleibende Zeit bis zum Beta-Start',mq:'Warum 100-mal klicken, wenn du einfach EINE Sache sagen kannst? Keine endlosen Menüs. Keine komplizierten Shortcuts. Kein unnötiges Klicken.',side:['Start','Neuigkeiten','Über Persona','App herunterladen','Abo','Kontakt'],copy:'©2026 Persona. Alle Rechte vorbehalten. Beta 1.0.1',menu:'Sprache',
+   u:{M:['Monat','Monate'],D:['Tag','Tage'],H:['Stunde','Stunden'],N:['Minute','Minuten'],S:['Sekunde','Sekunden']}},
+  ko:{k:'베타 출시까지',aria:'베타 출시까지 남은 시간',mq:'한마디면 되는데 100번이나 클릭할 필요 있을까요? 끝없는 메뉴도, 복잡한 단축키도, 불필요한 클릭도 이제 그만.',side:['홈','뉴스','Persona 소개','앱 다운로드','구독','연락처'],copy:'©2026 Persona. 모든 권리 보유. Beta 1.0.1',menu:'언어',
+   u:{M:['개월'],D:['일'],H:['시간'],N:['분'],S:['초']}}
+ };
+ function unit(key,n){var a=TXT[LG].u[key];if(LG==='ru'){var m10=n%10,m100=n%100;return m10===1&&m100!==11?a[0]:(m10>=2&&m10<=4&&(m100<10||m100>=20))?a[1]:a[2]}return a.length===1?a[0]:(n===1?a[0]:a[1])}
+ function buildMq(){var t=TXT[LG].mq+' ✨ ',one='',i;for(i=0;i<2;i++)one+='<span class="seg">'+t+'</span>';document.getElementById('tr').innerHTML=one+one}
+ function applyLang(){var T=TXT[LG];document.documentElement.lang=LG;
+  E('kT').textContent=T.k;E('cdSec').setAttribute('aria-label',T.aria);E('copyT').textContent=T.copy;
+  var items=E('side').children;for(var i=0;i<items.length;i++)items[i].textContent=T.side[i];
+  E('lm').setAttribute('aria-label',T.mq);E('lgRow').setAttribute('aria-label',T.menu);buildMq();tick()}
  try{LG=new URLSearchParams(location.search).get('lang')}catch(e){}
  if(VALID.indexOf(LG)<0){try{LG=localStorage.getItem('lang')}catch(e){LG=null}}
- if(VALID.indexOf(LG)<0)LG=null;
+ if(VALID.indexOf(LG)<0){try{LG=sessionStorage.getItem('lang')}catch(e){LG=null}}
+ if(VALID.indexOf(LG)<0){var wm=/(?:^|;)lang=(\w+)/.exec(window.name||'');LG=wm?wm[1]:null}
+ if(VALID.indexOf(LG)<0)LG='en';
  let uid=0;
  const star=(cx,cy,r,rot=0)=>{const p=[];for(let i=0;i<10;i++){const a=Math.PI/5*i-Math.PI/2+rot,R=i%2?r*.4:r;p.push((cx+R*Math.cos(a)).toFixed(1)+','+(cy+R*Math.sin(a)).toFixed(1))}return '<polygon points="'+p.join(' ')+'"/>'};
  const badge=inner=>{const id='cp'+(uid++);return '<svg viewBox="0 0 36 36" width="100%" height="100%"><defs><clipPath id="'+id+'"><circle cx="18" cy="18" r="16"/></clipPath></defs><g clip-path="url(#'+id+')">'+inner+'<ellipse cx="12" cy="9" rx="9" ry="5" fill="#fff" opacity=".22"/></g><circle cx="18" cy="18" r="16" fill="none" stroke="#fff" stroke-width="2.5"/></svg>'};
@@ -165,24 +160,18 @@ body{margin:0;min-height:100%;background:var(--bg);font-family:var(--round);colo
   en:()=>badge('<rect width="36" height="36" fill="#2f4aa8"/><path d="M0 0L36 36M36 0L0 36" stroke="#fff" stroke-width="7"/><path d="M0 0L36 36M36 0L0 36" stroke="#e0413a" stroke-width="3"/><path d="M18 0V36M0 18H36" stroke="#fff" stroke-width="10"/><path d="M18 0V36M0 18H36" stroke="#e0413a" stroke-width="6"/>'),
   ko:()=>badge('<rect width="36" height="36" fill="#fff"/><circle cx="18" cy="18" r="7" fill="#0047a0"/><path d="M11 18a7 7 0 0 1 14 0z" fill="#cd2e3a"/><circle cx="14.5" cy="18" r="3.5" fill="#cd2e3a"/><circle cx="21.5" cy="18" r="3.5" fill="#0047a0"/>'+tri(7,7,-45)+tri(29,7,45)+tri(7,29,45)+tri(29,29,-45))
  };
- const GLOBE='<svg viewBox="0 0 36 36" width="100%" height="100%"><circle cx="18" cy="18" r="16" fill="#fff"/><circle cx="18" cy="19" r="11.5" fill="#fea831"/><ellipse cx="18" cy="19" rx="5" ry="11.5" fill="none" stroke="#fff" stroke-width="1.5" opacity=".35"/><circle cx="14" cy="17" r="1.6" fill="#3b3224"/><circle cx="22" cy="17" r="1.6" fill="#3b3224"/><path d="M15 21.2q3 2.6 6 0" fill="none" stroke="#3b3224" stroke-width="1.6" stroke-linecap="round"/><circle cx="11.2" cy="20.6" r="1.7" fill="#ff7b6b" opacity=".6"/><circle cx="24.8" cy="20.6" r="1.7" fill="#ff7b6b" opacity=".6"/><path class="sp" d="M30 3l1.1 2.9L34 7l-2.9 1.1L30 11l-1.1-2.9L26 7l2.9-1.1z" fill="#ffc83d"/></svg>';
- const NAMES={ru:'Русский',en:'English',de:'Deutsch',ko:'한국어'};
- row.innerHTML=['ru','en','de','ko'].map((l,n)=>'<button class="lc" data-l="'+l+'" style="--n:'+n+'" aria-label="'+NAMES[l]+'" title="'+NAMES[l]+'">'+FLAG[l]()+'</button>').join('');
+ var row=document.getElementById('lgRow');
+ row.innerHTML=['ru','en','de','ko'].map(function(l){return '<button class="lc" data-l="'+l+'" aria-label="'+NAMES[l]+'" title="'+NAMES[l]+'">'+FLAG[l]()+'</button>'}).join('');
  function burst(el){const c=['#fff','#ffe27a','#ffd0a0'];for(let k=0;k<7;k++){const d=document.createElement('i');d.className='bst';d.style.background=c[k%3];el.appendChild(d);const a=k/7*Math.PI*2,r=24+Math.random()*10;
   d.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+Math.cos(a)*r+'px,'+Math.sin(a)*r+'px) scale(.2)',opacity:0}],{duration:650,easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=()=>d.remove()}}
- function setIcon(l,anim){ico.innerHTML=l?FLAG[l]():GLOBE;ico.classList.toggle('globe',!l);
-  row.querySelectorAll('.lc').forEach(b=>b.classList.toggle('sel',b.dataset.l===l));
-  if(anim){ico.classList.remove('pop');void ico.offsetWidth;ico.classList.add('pop');burst(ico)}}
- 
- 
- function menuH(){list.style.height='auto';var h=list.offsetHeight;list.style.height='';return h}
- function setMenu(o){nav.classList.toggle('open',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu');nav.style.height=o?menuH()+'px':'56px';if(!o)row.classList.remove('open')}
- function toggleRow(o){var open=o===undefined?!row.classList.contains('open'):o;row.classList.toggle('open',open);document.getElementById('lgBtn').setAttribute('aria-expanded',open);if(nav.classList.contains('open'))nav.style.height=menuH()+'px'}
- function setLang(l){LG=l;try{localStorage.setItem('lang',l)}catch(e){}try{sessionStorage.setItem('lang',l)}catch(e){}window.name='lang='+l;setIcon(l,true);setTimeout(function(){toggleRow(false)},650)}
- tog.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
- document.addEventListener('click',function(e){if(e.target.closest('#lgBtn')){toggleRow();return}var lc=e.target.closest('[data-l]');if(lc){setLang(lc.dataset.l);return}if(nav.classList.contains('open')&&!e.target.closest('#nav'))setMenu(false)});
- addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
- setIcon(LG,false);
+ function mark(l){row.querySelectorAll('.lc').forEach(function(b){b.classList.toggle('sel',b.dataset.l===l);b.setAttribute('aria-pressed',b.dataset.l===l)})}
+ function setLang(l,btn){LG=l;try{localStorage.setItem('lang',l)}catch(e){}try{sessionStorage.setItem('lang',l)}catch(e){}window.name='lang='+l;
+  try{var u=new URL(location.href);u.searchParams.set('lang',l);history.replaceState(null,'',u.href)}catch(e){}
+  mark(l);applyLang();if(btn)burst(btn)}
+ row.addEventListener('click',function(e){var b=e.target.closest('[data-l]');if(b&&b.dataset.l!==LG)setLang(b.dataset.l,b)});
+ mark(LG);applyLang();
+ /* fallback: if the CSS animation did not start, drive the marquee with the Web Animations API */
+ var trEl=document.getElementById('tr');setTimeout(function(){var a=getComputedStyle(trEl).animationName;if((!a||a==='none')&&trEl.animate){trEl.animate([{transform:'translateX(0)'},{transform:'translateX(-50%)'}],{duration:60000,iterations:Infinity,easing:'linear'})}},400);
  /* mobile browser bars */
  function vh(){document.documentElement.style.setProperty('--vh',((window.visualViewport&&visualViewport.height)||innerHeight)*0.01+'px')}vh();addEventListener('resize',vh);
 })();
